@@ -56,13 +56,13 @@
     }
 }
 .container {
-    /* padding: 0 2rem; */
+    padding: 0 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     height: 100%;
-    width: 100%;
+    width: calc(100% - 4rem);
     z-index: 1;
     color: #fff;
 }
@@ -72,11 +72,16 @@
 #daynight,
 #clock,
 #loginForm,
-#greeting {
+#greeting,
+.main-date {
     font-family: 'yg-jalnan';
 }
 .hidden {
     display: none;
+}
+.main-date {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
 }
 .time {
     display: flex;
@@ -123,7 +128,7 @@
 .todo-input-box {
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     margin-top: 1.5rem;
 }
 .todo-input-box + .todo-list {
@@ -183,10 +188,12 @@
     flex: auto;
     text-align: left;
     padding: 0 1.5rem;
+    position: relative;
+    width: calc(100% - 7rem);
 }
 .todo-list .todo-item .todo {
-    max-width: 42rem;
-    /* white-space: nowrap; */
+    /* max-width: 42rem; */
+    word-break: break-all;
 }
 .todo-list .todo-item .date {
     display: block;
@@ -195,11 +202,24 @@
     opacity: 0.3;
     font-weight: 300;
 }
+.todo-list .todo-item .edit-input {
+    background: #222;
+    position: absolute;
+    top: -1px;
+    width: calc(100% - 2rem);
+    padding: 0.1rem 0;
+    color: #fff;
+}
 .todo-list .todo-item.checked {
     opacity: 0.4;
 }
 .todo-list .todo-item.checked .cont {
     text-decoration: line-through;
+}
+.todo-list .todo-item .delBtn {
+    width: 1.6rem;
+    height: fit-content;
+    line-height: initial;
 }
 .todo-bottom {
     display: flex;
@@ -224,6 +244,13 @@
     border-color: #17ffaf !important;
     color: #17ffaf !important;
     opacity: 1;
+}
+.info {
+    text-align: right;
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-top: 2rem;
+    color: #999;
 }
 
 #weather {
@@ -291,19 +318,33 @@
 #wrap.light:before {
     background: rgba(255, 255, 255, 0.3);
 }
-#wrap.light #weather {
-    color: #222;
-    background: rgba(0, 0, 0, 0.05);
-}
 #wrap.light .container {
     color: #222;
     border-color: #222;
 }
+#wrap.light #loginForm input {
+    color: #222;
+}
+#wrap.light #loginForm input[type='text'] {
+    border-color: #222;
+}
+#wrap.light #loginForm input[type='text']::placeholder {
+    color: rgba(0, 0, 0, 0.6);
+}
 #wrap.light .todo-box {
     background: #fff;
+    box-shadow: 2px 3px 15px 3px rgba(0, 0, 0, 0.05);
 }
 #wrap.light .complete-all-btn {
     color: #222;
+}
+#wrap.light .todo-list .todo-item .edit-input {
+    background: #fff;
+    color: #222;
+}
+#wrap.light #weather {
+    color: #222;
+    background: rgba(0, 0, 0, 0.05);
 }
 #wrap.light .todo-input {
     color: rgba(0, 0, 0, 1);

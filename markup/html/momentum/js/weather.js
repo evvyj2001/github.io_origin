@@ -1,25 +1,5 @@
 const API_KEY = 'be3191bee825ce100d3043e2535cfe42';
 
-function onGeoOk(position) {
-    const lat = position.coords.latitude;
-    const log = position.coords.longitude;
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${log}&appid=${API_KEY}&units=metric`;
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            const weather = document.querySelector('#weather .wt');
-            const temp = document.querySelector('#weather .temp');
-            const city = document.querySelector('#weather .city');
-            const icon = document.querySelector('#weather .icon');
-            const iconImg = document.createElement('img');
-            weather.innerHTML = `현재 날씨는 ${wDescEngToKor(data.weather[0].id)}로`;
-            temp.innerText = `현재 기온은 ${Math.floor(data.main.temp)}도입니다.`;
-            city.innerText = `@ ${data.name}`;
-            document.createElement('img');
-            icon.appendChild(iconImg);
-            iconImg.src = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;
-        });
-}
 function wDescEngToKor(wId) {
     const wIdArr = [
         201, 200, 202, 210, 211, 212, 221, 230, 231, 232, 300, 301, 302, 310, 311, 312, 313, 314, 321, 500, 501, 502,
@@ -110,6 +90,28 @@ function wDescEngToKor(wId) {
     }
     return 'none';
 }
+
+function onGeoOk(position) {
+    const lat = position.coords.latitude;
+    const log = position.coords.longitude;
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${log}&appid=${API_KEY}&units=metric`;
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const weather = document.querySelector('#weather .wt');
+            const temp = document.querySelector('#weather .temp');
+            const city = document.querySelector('#weather .city');
+            const icon = document.querySelector('#weather .icon');
+            const iconImg = document.createElement('img');
+            weather.innerHTML = `현재 날씨는 ${wDescEngToKor(data.weather[0].id)}로`;
+            temp.innerText = `현재 기온은 ${Math.floor(data.main.temp)}도입니다.`;
+            city.innerText = `@ ${data.name}`;
+            document.createElement('img');
+            icon.appendChild(iconImg);
+            iconImg.src = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+        });
+}
+
 function onGeoError() {
     alert("Can't find you. No weather for you");
 }

@@ -187,7 +187,6 @@ const appendTodos = text => {
 
     const newTodos = getAllTodos().concat({ id: newId, isCompleted: false, content: text, date: now });
 
-    console.log(month);
     todos.push(newTodos);
     setTodos(newTodos);
     setLeftItems();
@@ -220,8 +219,17 @@ const completeTodo = todoId => {
 
 const updateTodo = (text, todoId) => {
     const currentTodos = getAllTodos();
+    const date = new Date();
+    const year = date.getFullYear();
+    const getMonth = String(date.getMonth() + 1);
+    const month = getMonth.padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const now = `${year}년 ${month}월 ${day}일 ${hours}시 ${minutes}분 수정`;
     // const newTodos = getAllTodos().map((todo) => (todo.id === todoId ? { ...todo, content: text } : todo));
-    const newTodos = currentTodos.map(todo => (todo.id === todoId ? { ...todo, content: text } : todo));
+    const newTodos = currentTodos.map(todo => (todo.id === todoId ? { ...todo, content: text, date: `${now}` } : todo));
+
     todos.push(newTodos);
     setTodos(newTodos);
     paintTodos();
@@ -236,19 +244,19 @@ const onDbclickTodo = (e, todoId) => {
     inputElem.value = inputText;
     inputElem.classList.add('edit-input');
 
-    inputElem.addEventListener('keypress', evt => {
-        if (evt.key === 'Enter') {
-            updateTodo(e.target.value, todoId); // 엔터키 눌리면 updateTodo() 실행 및 텍스트 수정
-            document.body.removeEventListener('click', onClickBody);
-        }
-    });
-
     const onClickBody = evt => {
         if (evt.target !== inputElem) {
             todoItemElem.removeChild(inputElem);
             document.body.removeEventListener('click', onClickBody);
         }
     };
+
+    inputElem.addEventListener('keypress', evt => {
+        if (evt.key === 'Enter') {
+            updateTodo(evt.target.value, todoId); // 엔터키 눌리면 updateTodo() 실행 및 텍스트 수정
+            document.body.removeEventListener('click', onClickBody);
+        }
+    });
 
     document.body.addEventListener('click', onClickBody);
     todoItemElem.appendChild(inputElem); // todo 텍스트 위에 올라가는 input(수정용)

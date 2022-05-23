@@ -13,6 +13,10 @@ function setScreenSize() {
 }
 setScreenSize();
 
+window.addEventListener('resize', () => {
+    setScreenSize();
+});
+
 // Log In function
 const logIn = {
     onLoginSubmit(event) {
@@ -37,6 +41,24 @@ if (savedUsername === null) {
     // show the greeting
     logIn.paintGreeting(savedUsername);
 }
+
+// Date
+const dateElem = document.querySelector('.main-date');
+const dateFunc = {
+    getDate() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1;
+        const date = now.getDate();
+        const day = now.getDay() - 1;
+        const week = ['월', '화', '수', '목', '금', '토', '일'];
+
+        dateElem.innerText = `${year}년 ${month}월 ${date}일 ${week[day]}요일`;
+    },
+};
+
+dateFunc.getDate();
+setInterval(dateFunc.getDate, 1000);
 
 // Clock
 const clock = document.querySelector('#clock');
