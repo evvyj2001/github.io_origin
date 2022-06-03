@@ -16,3 +16,7 @@ window.addEventListener('scroll', () => {});
 window.addEventListener('resize', () => {
     setScreenHeight();
 });
+
+window.addEventListener('touchend', () => {
+    setScreenHeight();
+});

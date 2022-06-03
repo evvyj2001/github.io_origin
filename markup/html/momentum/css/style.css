@@ -1,9 +1,13 @@
 @charset "UTF-8";
 
+:root {
+    --vh100: calc(var(--vh, 1vh) * 100);
+}
+
 #wrap {
     width: 100%;
     max-width: 1920px;
-    height: calc(var(--vh, 1vh) * 100);
+    height: var(--vh100);
     text-align: center;
     position: relative;
     z-index: 1;
