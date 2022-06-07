@@ -7,7 +7,20 @@ $htmlFz: 10px;
 $baseLine: $htmlFz * 1.4;
 
 // color
-$bgColor: #fff;
+$white: #fff;
+$black: #222;
+$mainColor: rgb(248, 63, 63);
+$gray: #999;
+$lightGray: #efefef;
 
 // 기타 요소
 $vh100: calc(var(--vh) * 100);
+
+:root {
+    --vh100: #{$vh100};
+    --white: #{$white};
+    --black: #{$black};
+    --mainColor: #{$mainColor};
+    --gray: #{$gray};
+    --lightGray: #{$lightGray};
+}

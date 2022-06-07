@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+@import 'variable';
+@import 'mixin';
+
+@media all and (max-width: 690px) {
+    #header {
+        .header-inner {
+        }
+        nav {
+            display: none;
+        }
+        .now {
+            display: none;
+        }
+        .nav-btn {
+            display: block;
+        }
+    }
+}
