@@ -54,8 +54,8 @@ figcaption {
     border: 0;
     font-size: 100%;
     font-weight: normal;
-
-    /* letter-spacing: 0.5px; */
+    box-sizing: border-box;
+    letter-spacing: 0.5px;
 }
 
 html {

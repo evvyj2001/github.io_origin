@@ -3,9 +3,16 @@
 @import 'variable';
 @import 'mixin';
 
+@media all and (min-width: 691px) {
+    .nav-wrap {
+        transform: translateX(100%) !important;
+    }
+}
+
 @media all and (max-width: 690px) {
     #header {
         .header-inner {
+            padding: 0 2rem;
         }
         nav {
             display: none;
@@ -15,6 +22,17 @@
         }
         .nav-btn {
             display: block;
+        }
+    }
+    .nav-wrap {
+        padding: 0 2rem;
+    }
+    .container {
+        padding: 2rem;
+    }
+    #footer {
+        .footer-inner {
+            padding: 0 2rem;
         }
     }
 }
