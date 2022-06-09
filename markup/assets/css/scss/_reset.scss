@@ -202,3 +202,19 @@ sub {
 //         font-size: 9px !important;
 //     }
 // }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--lightGray);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--mainColor);
+    opacity: 0.3;
+}

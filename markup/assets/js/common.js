@@ -4,33 +4,62 @@ function setScreenHeight() {
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 
+// tabMove
+function tabMove() {
+    const list = document.querySelectorAll('#header nav li');
+    list.forEach(el => {
+        const item = el.querySelector('a');
+
+        item.addEventListener('click', e => {
+            const targetElem = e.target.dataset.scroll;
+            const scrollElem = document.getElementById(targetElem);
+            const scrollTop = scrollElem.offsetTop;
+            document.querySelector('.container').scrollTo({
+                top: scrollTop - 20,
+                left: 0,
+                behavior: 'smooth',
+            });
+        });
+    });
+}
+
 // header nav bottom border effect
 function navBottom() {
     const nav = document.querySelector('nav > ul');
     const navWidth = nav.clientWidth;
-    const navList = nav.querySelectorAll('li');
+    const lineBottom = document.querySelector('.line-bottom');
+
+    lineBottom.style.width = `${navWidth}px`;
+}
+
+function findScroll() {
+    const nav = document.querySelector('nav > ul');
     const lineBottom = document.querySelector('.line-bottom');
     const lineMove = lineBottom.querySelector('span');
 
-    lineBottom.style.width = `${navWidth}px`;
+    const section = document.querySelectorAll('.section');
+    const sections = [];
 
-    navList.forEach(el => {
-        const item = el.querySelector('a');
+    Array.prototype.forEach.call(section, e => {
+        sections[e.id] = e.offsetTop;
+    });
+    const scrollPosition = document.documentElement.scrollTop || document.querySelector('.container').scrollTop;
 
-        item.addEventListener('click', elm => {
-            const itemWidth = elm.target.clientWidth / 2;
-            const position = elm.target.offsetLeft - nav.offsetLeft;
+    // eslint-disable-next-line no-restricted-syntax
+    for (const i in sections) {
+        if (sections[i] <= scrollPosition + 100) {
+            const item = document.querySelector(`a[data-scroll="${i}"]`);
+            const itemWidth = item.clientWidth / 2;
+            const position = item.offsetLeft - nav.offsetLeft;
             const lineHalf = lineMove.clientWidth / 2;
 
             lineMove.style.opacity = 1;
             lineMove.style.transform = `translateX(calc(${position}px + ${itemWidth}px - ${lineHalf}px))`;
 
-            for (let i = 0; i < navList.length; i++) {
-                navList[i].classList.remove('is-on');
-            }
-            elm.target.parentNode.classList.add('is-on');
-        });
-    });
+            document.querySelector('.is-on').classList.remove('is-on');
+            item.parentNode.classList.add('is-on');
+        }
+    }
 }
 
 // header mobile nav
@@ -135,18 +164,28 @@ function popClose(el) {
     }, 500);
 }
 
+const introLayer = setTimeout(() => {
+    const layer = document.getElementById('introLayer');
+    layer.style.opacity = 0;
+    setTimeout(() => {
+        layer.remove();
+    }, 200);
+}, 13000);
+
 // load
 window.addEventListener('load', () => {
     const scrollContent = document.querySelector('.container');
     scrollContent.addEventListener('scroll', () => {
         scrollIndicator();
+        findScroll();
+        // findScrollPosition();
     });
-
     setScreenHeight();
     navBottom();
     isNow();
     mobileNav();
     mobileNavMenu();
+    tabMove();
 });
 
 // resize

@@ -1,3 +1,12 @@
 @charset "UTF-8";
 
 @import 'base';
+
+.section {
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    min-height: calc(var(--vh100) - 13.6rem);
+    & + .section {
+        margin-top: 4rem;
+    }
+}
