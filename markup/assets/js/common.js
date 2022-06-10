@@ -6,7 +6,7 @@ function setScreenHeight() {
 
 // tabMove
 function tabMove() {
-    const list = document.querySelectorAll('#header nav li');
+    const list = document.querySelectorAll('#header nav li, .nav-wrap ul li');
     list.forEach(el => {
         const item = el.querySelector('a');
 
@@ -142,6 +142,19 @@ function scrollIndicator() {
     document.querySelector('.scroll-indicator > span').style.width = scrolled + '%';
 }
 
+// 메인 circle effect
+function circleBg() {
+    const container = document.querySelector('.container');
+    container.addEventListener('scroll', event => {
+        document.querySelectorAll('.circle').forEach(el => {
+            const position = el.getAttribute('value');
+            const y = ((container.scrollTop - el.scrollTop) * position) / 50;
+            el.style.left = `${y}px`;
+            el.style.top = `${y}px`;
+        });
+    });
+}
+
 function popOpen(el) {
     const popDimmed = document.createElement('div');
     popDimmed.classList.add('popup-dimmed');
@@ -172,13 +185,46 @@ const introLayer = setTimeout(() => {
     }, 200);
 }, 13000);
 
+// 메인 별 개수 툴팁
+function tooptipStar() {
+    const parentElem = document.querySelectorAll('li[data-stat]');
+    parentElem.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            const span = document.createElement('span');
+            el.appendChild(span);
+            const num = el.dataset.stat;
+            if (el.classList.contains('star')) {
+                const text = '★'.repeat(num);
+                span.innerText = text;
+            } else {
+                const text = num;
+                span.innerText = text;
+            }
+            span.style.display = 'block';
+        });
+        el.addEventListener('mouseout', () => {
+            const span = el.childNodes[1];
+            span.style.display = 'none';
+            span.remove();
+        });
+    });
+}
+
 // load
 window.addEventListener('load', () => {
     const scrollContent = document.querySelector('.container');
+    const topBtn = document.querySelector('.btn-top');
     scrollContent.addEventListener('scroll', () => {
         scrollIndicator();
         findScroll();
-        // findScrollPosition();
+
+        if (scrollContent.scrollTop < 300) {
+            topBtn.style.opacity = 0;
+            topBtn.style.zIndex = -1;
+        } else {
+            topBtn.style.opacity = 1;
+            topBtn.style.zIndex = 1;
+        }
     });
     setScreenHeight();
     navBottom();
@@ -186,6 +232,16 @@ window.addEventListener('load', () => {
     mobileNav();
     mobileNavMenu();
     tabMove();
+    tooptipStar();
+    circleBg();
+    // top button
+    topBtn.addEventListener('click', () => {
+        scrollContent.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+        });
+    });
 });
 
 // resize

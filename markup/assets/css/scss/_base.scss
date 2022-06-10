@@ -6,3 +6,24 @@
 @import 'variable';
 @import 'layout';
 @import 'media';
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--lightGray);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--mainColor);
+    opacity: 0.3;
+}
+
+::selection {
+    background: var(--black);
+    color: var(--white);
+}

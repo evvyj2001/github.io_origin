@@ -3,6 +3,10 @@
 @import 'variable';
 @import 'mixin';
 
+body {
+    overflow: hidden;
+}
+
 #wrap {
     width: 100%;
     height: 100%;
@@ -16,13 +20,13 @@
         top: -1rem;
     }
     30% {
-        top: 1rem;
+        top: 1.4rem;
     }
     50% {
         top: 0.6rem;
     }
     100% {
-        top: 1rem;
+        top: 1.4rem;
     }
 }
 @keyframes itemPull {
@@ -71,19 +75,12 @@
     align-items: center;
     justify-content: center;
     transition: 0.3s;
+    display: none;
     .intro-text {
         font-size: 4rem;
-        @include fontType1;
+
         color: var(--white);
         position: relative;
-        // &:after {
-        //     @include pseudo;
-        //     width: 1%;
-        //     height: 4.4rem;
-        //     top: -1.5rem;
-        //     backdrop-filter: invert(1);
-        //     animation: textBoxEffect;
-        // }
     }
     .intro-text-dot {
         width: 1rem;
@@ -127,6 +124,7 @@
             height: 0.4rem;
             @include absolute(top 0 left 0);
             background: var(--gray);
+            transition: 0.2s;
         }
     }
     .header-inner {
@@ -137,26 +135,35 @@
             > a {
                 display: block;
                 width: fit-content;
-                @include fontType1;
                 font-size: 1.8rem;
                 position: relative;
                 padding-right: 2rem;
                 &::first-letter {
                     color: var(--mainColor);
                 }
-                &:after {
-                    content: '';
-                    display: block;
+                i {
+                    display: inline-block;
                     width: 0.5rem;
                     height: 0.5rem;
                     background: var(--mainColor);
                     border-radius: 100%;
-                    position: absolute;
                     right: 1rem;
-                    top: 1rem;
+                    top: 1.4rem;
                     animation: logoAnimation 1s;
                     animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-                    animation-delay: 10s;
+                    animation-delay: 14s;
+                    position: absolute;
+                    transform: translateY(0);
+                    &:after {
+                        @include pseudo;
+                        width: 0.5rem;
+                        height: 0.5rem;
+                        background: var(--white);
+                        right: 0;
+                        top: 0;
+                        opacity: 0;
+                        animation: dotOpacity 1.2s ease-in-out 16s infinite;
+                    }
                 }
             }
         }
@@ -177,7 +184,7 @@
                         font-size: 1.4rem;
                         font-weight: 500;
                         color: var(--gray);
-                        @include fontType1;
+
                         transition: 0.3s;
                     }
 
@@ -272,7 +279,6 @@
     > ul {
         > li {
             a {
-                @include fontType1;
                 font-size: 1.6rem;
                 height: 5rem;
                 display: inline-block;
@@ -308,7 +314,6 @@
             display: inline-block;
             dt,
             dd {
-                @include fontType1;
                 font-weight: 700;
             }
             dt {
@@ -327,6 +332,36 @@
         }
     }
 }
+.btn-top {
+    @include fixed(bottom 5rem right 4rem);
+    background: var(--mainColor);
+    width: 5.5rem;
+    height: 5.5rem;
+    transition: 0.3s;
+    opacity: 0;
+    border-radius: 0.5rem;
+    > i {
+        display: inline-block;
+        width: 1.6rem;
+        height: 1.6rem;
+        transform: rotate(45deg);
+        position: relative;
+        top: 0.6rem;
+        &:before,
+        &:after {
+            @include pseudo;
+            background: var(--white);
+            border-radius: 3rem;
+            width: 1.6rem;
+            height: 0.4rem;
+        }
+        &:after {
+            transform: rotate(-90deg);
+            left: -7px;
+            top: 7px;
+        }
+    }
+}
 #footer {
     @include fixed(bottom 0 left 0);
     width: 100%;
@@ -340,16 +375,12 @@
             line-height: 3.6rem;
             font-size: 1rem;
             color: var(--gray);
-            @include fontType1;
         }
         .l-right {
             > a {
                 display: block;
                 color: var(--gray);
                 font-weight: 700;
-                &::first-letter {
-                    color: var(--mainColor);
-                }
             }
         }
     }
@@ -362,6 +393,8 @@
     margin-top: 6.1rem;
     height: calc(var(--vh100) - 6rem - 3.6rem);
     position: relative;
+    scroll-padding-top: 2rem;
+    scroll-snap-type: y mandatory;
 }
 
 /* popup */
@@ -416,16 +449,24 @@
     }
 }
 .now {
-    font-size: 1.2rem;
-    text-align: right;
-    @include fixed(right 2rem top 9rem);
-    writing-mode: vertical-rl;
+    font-size: 1rem;
+    line-height: inherit;
+    // text-align: right;
+    // @include fixed(right 2rem top 9rem);
+    // writing-mode: vertical-rl;
     * {
-        @include fontType1;
-        line-height: 1.4;
         display: inline-block;
     }
     .day-night {
-        margin: 0.5rem 0;
+        margin: 0 0.5rem;
     }
+}
+.text-side {
+    @include fixed(right 2rem top 9rem);
+    writing-mode: vertical-rl;
+
+    font-size: 1rem;
+    line-height: 1.6;
+    text-transform: uppercase;
+    letter-spacing: 0.6rem;
 }
