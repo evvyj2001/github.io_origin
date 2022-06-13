@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+@keyframes logoAnimation {
+    0% {
+        top: -1rem;
+    }
+    30% {
+        top: 1.7rem;
+    }
+    50% {
+        top: 0.8rem;
+    }
+    100% {
+        top: 1.7rem;
+    }
+}
+@keyframes itemPull {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes dotMove {
+    0% {
+        top: calc(50% + 1.5rem);
+        left: 0;
+    }
+    100% {
+        top: calc(50% + 1.5rem);
+        left: calc(50% + 18.5rem);
+    }
+}
+@keyframes dotOpacity {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+@keyframes textBoxEffect {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+@keyframes circleRotate {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes shake {
+    0% {
+        transform: translateX(-0.25rem) rotate(-30deg);
+    }
+    25% {
+        transform: translateX(0.25rem) rotate(30deg);
+    }
+    50% {
+        transform: translateX(-0.4rem) rotate(-30deg);
+    }
+    75% {
+        transform: translateX(0.4rem) rotate(30deg);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}

@@ -6,10 +6,11 @@
 @import 'variable';
 @import 'layout';
 @import 'media';
+@import 'keyframes';
 
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
 }
 
 /* Track */

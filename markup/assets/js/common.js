@@ -111,7 +111,6 @@ function isNow() {
     const date = now.getDate();
     const day = now.getDay() - 1;
     const week = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
-
     // const hours = String(now.getHours()).padStart(2, '0');
     const hours = String(now.getHours());
     let hour;
@@ -142,15 +141,59 @@ function scrollIndicator() {
     document.querySelector('.scroll-indicator > span').style.width = scrolled + '%';
 }
 
-// 메인 circle effect
-function circleBg() {
+// paralle effect
+function scrollParalle() {
     const container = document.querySelector('.container');
-    container.addEventListener('scroll', event => {
-        document.querySelectorAll('.circle').forEach(el => {
-            const position = el.getAttribute('value');
-            const y = ((container.scrollTop - el.scrollTop) * position) / 50;
-            el.style.left = `${y}px`;
-            el.style.top = `${y}px`;
+    container.addEventListener('scroll', () => {
+        document.querySelectorAll('[paralle]').forEach(el => {
+            let position;
+            if (el.dataset.top) {
+                position = el.dataset.top;
+                const y = ((container.scrollTop - el.scrollTop) * position) / 50;
+                el.style.top = `${y}px`;
+            }
+            if (el.dataset.left) {
+                position = el.dataset.left;
+                const y = ((container.scrollTop - el.scrollTop) * position) / 50;
+                el.style.left = `${y}px`;
+            }
+        });
+        document.querySelectorAll('.shake').forEach(elm => {
+            const offset = elm.offsetTop;
+            // console.log(`offset: ${offset}, scroll: ${container.scrollTop}`);
+            if (offset - 200 >= container.scrollTop) {
+                setTimeout(() => {
+                    elm.classList.add('is-active');
+                }, 300);
+            } else {
+                elm.classList.remove('is-active');
+            }
+        });
+    });
+}
+
+// 툴팁
+function tooltip() {
+    const parentElem = document.querySelectorAll('[data-tooltip]');
+    parentElem.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            const span = document.createElement('span');
+            el.appendChild(span);
+            const content = el.dataset.tooltip;
+            if (el.classList.contains('star')) {
+                const text = '★'.repeat(content);
+                span.innerText = text;
+                span.style.fontFamily = 'yg-jalnan';
+            } else {
+                const text = content;
+                span.innerText = text;
+            }
+            span.style.display = 'block';
+        });
+        el.addEventListener('mouseout', () => {
+            const span = el.childNodes[1];
+            span.style.display = 'none';
+            span.remove();
         });
     });
 }
@@ -185,31 +228,6 @@ const introLayer = setTimeout(() => {
     }, 200);
 }, 13000);
 
-// 메인 별 개수 툴팁
-function tooptipStar() {
-    const parentElem = document.querySelectorAll('li[data-stat]');
-    parentElem.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            const span = document.createElement('span');
-            el.appendChild(span);
-            const num = el.dataset.stat;
-            if (el.classList.contains('star')) {
-                const text = '★'.repeat(num);
-                span.innerText = text;
-            } else {
-                const text = num;
-                span.innerText = text;
-            }
-            span.style.display = 'block';
-        });
-        el.addEventListener('mouseout', () => {
-            const span = el.childNodes[1];
-            span.style.display = 'none';
-            span.remove();
-        });
-    });
-}
-
 // load
 window.addEventListener('load', () => {
     const scrollContent = document.querySelector('.container');
@@ -232,8 +250,10 @@ window.addEventListener('load', () => {
     mobileNav();
     mobileNavMenu();
     tabMove();
-    tooptipStar();
-    circleBg();
+    tooltip();
+    scrollParalle();
+    popOpen('popupIntro');
+
     // top button
     topBtn.addEventListener('click', () => {
         scrollContent.scrollTo({
