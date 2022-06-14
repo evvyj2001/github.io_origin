@@ -10,6 +10,9 @@
 }
 
 @media all and (max-width: 690px) {
+    html {
+        font-size: 9px;
+    }
     #header {
         .header-inner {
             padding: 0 2rem;

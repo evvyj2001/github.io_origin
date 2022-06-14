@@ -46,7 +46,11 @@ function findScroll() {
     const scrollPosition = document.documentElement.scrollTop || document.querySelector('.container').scrollTop;
 
     // eslint-disable-next-line no-restricted-syntax
-    for (const i in sections) {
+    // for (const i in sections) {
+
+    // }
+
+    for (const i of Object.keys(sections)) {
         if (sections[i] <= scrollPosition + 100) {
             const item = document.querySelector(`a[data-scroll="${i}"]`);
             const itemWidth = item.clientWidth / 2;
@@ -183,6 +187,7 @@ function tooltip() {
             if (el.classList.contains('star')) {
                 const text = '★'.repeat(content);
                 span.innerText = text;
+                span.style.color = `rgb(255, 255, 0)`;
                 span.style.fontFamily = 'yg-jalnan';
             } else {
                 const text = content;
@@ -210,7 +215,7 @@ function popOpen(el) {
 }
 
 function popClose(el) {
-    const popup = el.target.parentNode;
+    const popup = el.target.closest('.popup');
     const popDimmed = document.querySelector('.popup-dimmed');
 
     popDimmed.classList.remove('is-show');
@@ -228,6 +233,50 @@ const introLayer = setTimeout(() => {
     }, 200);
 }, 13000);
 
+// 메인 상단 텍스트
+function quoteChange() {
+    const textWrap = document.querySelector('.text-greeting');
+    const quotes = ['반갑습니다!🎉', '저는 성유진입니다!', '안녕하세요!😊', '환영합니다~'];
+    let i = 0;
+    let span;
+    const timeOut = () => {
+        setTimeout(() => {
+            textWrap.innerHTML = '';
+        }, 4950);
+    };
+    timeOut();
+    setInterval(() => {
+        const str = quotes[i++];
+        const splitStr = [...str];
+        textWrap.dataset.text = str;
+        for (const index of Object.keys(splitStr)) {
+            span = document.createElement('span');
+            span.style.top = `100%`;
+            span.innerText = `${splitStr[index]}`;
+            textWrap.append(span);
+            timeOut();
+            span.style.top = 0;
+        }
+        if (i === quotes.length) {
+            i = 0;
+        }
+    }, 5000);
+}
+// clearInterval(quoteChange);
+
+// cursor
+function cursorEvent() {
+    const linkElem = document.querySelectorAll('button, a, input, label, [data-tooltip]');
+    linkElem.forEach(elm => {
+        elm.addEventListener('mouseenter', () => {
+            document.querySelector('#cursor').classList.add('is-hover');
+        });
+        elm.addEventListener('mouseleave', () => {
+            document.querySelector('#cursor').classList.remove('is-hover');
+        });
+    });
+}
+
 // load
 window.addEventListener('load', () => {
     const scrollContent = document.querySelector('.container');
@@ -244,6 +293,8 @@ window.addEventListener('load', () => {
             topBtn.style.zIndex = 1;
         }
     });
+
+    quoteChange();
     setScreenHeight();
     navBottom();
     isNow();
@@ -252,6 +303,7 @@ window.addEventListener('load', () => {
     tabMove();
     tooltip();
     scrollParalle();
+    cursorEvent();
     popOpen('popupIntro');
 
     // top button
@@ -274,8 +326,10 @@ window.addEventListener('touchend', () => {
 });
 
 // mousemove
-window.addEventListener('mousemove', () => {
-    // const headerBottom = document.querySelector('#header .line-bottom > span');
-    // const mouseX = e.clientX - 50;
-    // headerBottom.style.transform = `translateX(${mouseX}px)`;
+window.addEventListener('mousemove', el => {
+    const circle = document.querySelector('#cursor');
+    const mouseX = el.clientX - 10;
+    const mouseY = el.clientY - 10;
+
+    circle.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
 });

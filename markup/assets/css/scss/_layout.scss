@@ -236,6 +236,7 @@ h3 {
                 }
                 dt {
                     margin-bottom: 1rem;
+                    @include fontType1;
                     &::first-letter {
                         color: var(--mainColor);
                     }
@@ -243,6 +244,7 @@ h3 {
                 dd,
                 dd > a {
                     color: var(--gray);
+                    font-weight: 400;
                 }
                 & + dl {
                     margin-left: 2rem;
@@ -282,6 +284,7 @@ h3 {
         }
     }
 }
+
 #footer {
     @include fixed(bottom 0 left 0);
     width: 100%;
@@ -306,6 +309,31 @@ h3 {
     }
 }
 
+/* Button */
+.btn-wrap {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+a,
+button {
+    &.btn {
+        font-size: 1.2em;
+        font-weight: 700;
+        height: 3.2rem;
+        min-width: 6rem;
+        padding: 0 1rem;
+        border-radius: 0.5rem;
+        background: var(--mainColor);
+        color: var(--white);
+        transition: 0.2s;
+        &:hover {
+            background: darken($mainColor, 10%);
+        }
+    }
+}
+
 /* popup */
 .popup-dimmed {
     width: 100vw;
@@ -322,16 +350,34 @@ h3 {
 .popup {
     @include absolute(top 0 left 0 right 0 bottom 0);
     margin: auto;
-    max-width: 1000px;
-    min-height: 500px;
+    max-width: 800px;
     height: fit-content;
     background: var(--white);
     border-radius: 1.5rem;
-    overflow: hidden;
+    // overflow: hidden;
     width: calc(100% - 4rem);
     opacity: 0;
     transform: scale(0);
     transition: 0.5s;
+    padding: 2rem;
+    z-index: 0;
+    &-body {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 20rem;
+        p {
+            font-size: 1.6rem;
+            text-align: center;
+            line-height: 1.8;
+            &:only-of-type {
+                margin-top: 3rem;
+            }
+        }
+        .btn-wrap {
+            margin-top: auto;
+        }
+    }
     &-btn-close {
         width: 2.6rem;
         height: 2.6rem;
@@ -358,10 +404,14 @@ h3 {
         opacity: 1;
         z-index: 10;
     }
+    .tit-no {
+        padding-top: 4rem;
+    }
 }
 .now {
     font-size: 1rem;
     line-height: inherit;
+    letter-spacing: 0.1rem;
     // text-align: right;
     // @include fixed(right 2rem top 9rem);
     // writing-mode: vertical-rl;

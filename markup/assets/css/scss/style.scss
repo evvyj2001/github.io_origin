@@ -2,6 +2,19 @@
 
 @import 'base';
 
+#cursor {
+    width: 1rem;
+    height: 1rem;
+    background: var(--mainColor);
+    border-radius: 100%;
+    position: absolute;
+    z-index: 100;
+    transition: 0.5s filter;
+    &.is-hover {
+        filter: hue-rotate(180deg);
+    }
+}
+
 #introLayer {
     width: 100%;
     height: var(--vh100);
@@ -12,7 +25,8 @@
     align-items: center;
     justify-content: center;
     transition: 0.3s;
-    @include fontType1; // display: none;
+    @include fontType1;
+    display: none;
     .intro-text {
         font-size: 4rem;
         color: var(--white);
@@ -56,10 +70,11 @@
         z-index: -1;
         @include flex;
         .circle {
-            width: 100vh;
-            height: 100vh;
+            width: 120vh;
+            height: 120vh;
             border-radius: 100%;
-            filter: blur(12rem) hue-rotate(10deg);
+            // filter: blur(12rem) hue-rotate(10deg);
+            filter: hue-rotate(10deg);
             @include absolute(left 0 right 0 top 0 bottom 0);
             transition: 0.3s transform;
             &.bg1 {
@@ -94,7 +109,7 @@
     // border: 1px solid var(--lightGray);
     width: 100%;
     min-height: calc(var(--vh100) - 13.6rem);
-    max-width: 102rem;
+    max-width: 100rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -106,12 +121,27 @@
     }
     > h1 {
         font-size: 5rem;
+        height: 8rem;
+        overflow: hidden;
     }
     > h2 {
         font-size: 3rem;
     }
     .center {
         text-align: center;
+    }
+}
+.text-greeting {
+    text-align: center;
+    > span {
+        position: relative;
+        animation: mainTitle 0.4s ease-in;
+        // top: 0;
+    }
+    @for $i from 1 to 15 {
+        > span:nth-child(#{$i}) {
+            animation-delay: ($i * 0.1s);
+        }
     }
 }
 .shake {
@@ -143,6 +173,7 @@
         word-break: keep-all;
         > strong {
             color: var(--mainColor);
+            filter: drop-shadow(1px 1px 3px rgba(255, 255, 255, 0.6));
         }
         > em {
             // background: var(--mainColor);
@@ -161,6 +192,7 @@
         }
         & + .tag-list {
             margin-top: 5rem;
+            justify-content: center;
         }
     }
 }
@@ -173,8 +205,9 @@
     > span {
         display: block;
         position: absolute;
+        backdrop-filter: blur(3px);
         background: var(--gray);
-        color: rgba(255, 255, 0, 1);
+        color: var(--white);
         font-size: 1.4rem;
         top: -4.2rem;
         left: 50%;
@@ -238,11 +271,13 @@
         }
     }
 }
-.elem-set {
+.list-set {
     background: var(--white);
     padding: 2rem 0;
     border-radius: 1rem;
     transition: 0.2s;
+    will-change: filter;
+    filter: drop-shadow(0.2rem 0.1rem 0.5rem rgba(0, 0, 0, 0.05));
     dt,
     dd {
         padding: 1rem 2rem;
@@ -285,8 +320,8 @@
             border-bottom: 1px dashed var(--gray);
         }
     }
-    // &:hover {
-    //     background: none;
-    //     backdrop-filter: hue-rotate(180deg);
-    // }
+    &:hover {
+        will-change: filter;
+        filter: drop-shadow(0.2rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3));
+    }
 }

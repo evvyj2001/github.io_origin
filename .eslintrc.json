@@ -45,7 +45,7 @@
         // "no-nested-ternary": "off",
         "max-classes-per-file": "off",
         // "consistent-return": "off",
-        // "no-restricted-syntax": ["off", "ForOfStatement"], // disallow specified syntax(ex. WithStatement)
+        "no-restricted-syntax": ["off", "ForOfStatement"], // disallow specified syntax(ex. WithStatement)
         "prefer-arrow-callback": "warn", // Require using arrow functions for callbacks
         // "require-await": "error",
         "arrow-parens": ["error", "as-needed"], // a => {}
