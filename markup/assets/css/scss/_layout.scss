@@ -99,11 +99,11 @@ h3 {
                         padding: 0 2rem;
                         height: 100%;
                         line-height: 6rem;
-                        font-size: 1.4rem;
+                        font-size: 1.6rem;
                         font-weight: 500;
                         color: var(--gray);
                         transition: 0.3s;
-                        @include fontType1;
+                        // @include fontType1;
                     }
                     &.is-on {
                         > a {
@@ -254,6 +254,90 @@ h3 {
     }
 }
 
+#footer {
+    @include fixed(bottom 0 left 0);
+    width: 100%;
+    height: 3.6rem;
+    border-top: 1px solid var(--lightGray);
+    background: var(--white);
+    .footer-inner {
+        padding: 0 4rem;
+        @include flex(null, space-between);
+        > * {
+            line-height: 3.6rem;
+            font-size: 1.2rem;
+            color: var(--gray);
+        }
+        .l-right {
+            > a {
+                display: block;
+                color: var(--gray);
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+/* Button */
+a,
+button {
+    &.btn {
+        font-size: 1.2em;
+        font-weight: 700;
+        height: 3.2rem;
+        min-width: 6rem;
+        padding: 0 1rem;
+        border-radius: 0.5rem;
+        transition: 0.2s;
+        overflow: hidden;
+        position: relative;
+        &[class*='bg-'] {
+            color: var(--white);
+            position: relative;
+            &[class*='green'] {
+                background: var(--mainColor);
+                border: 1px solid var(--mainColor);
+                &:hover {
+                    border: 1px solid var(--mainColor);
+                    background: transparent;
+                    color: var(--mainColor);
+                }
+            }
+        }
+        &[class*='line-'] {
+            border-width: 1px;
+            border-style: solid;
+            &:before {
+                @include pseudo;
+                width: 0;
+                height: 100%;
+                left: 0;
+                top: 0;
+                z-index: -1;
+                transition: 0.2s;
+            }
+            &[class*='green'] {
+                border-color: var(--mainColor);
+            }
+            &[class*='black'] {
+                border-color: var(--black);
+                &:before {
+                    background: var(--black);
+                }
+                &:hover {
+                    color: var(--white);
+                    &:before {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+.btn-wrap {
+    @include flex;
+    width: 100%;
+}
 .btn-top {
     @include fixed(bottom 5rem right 4rem);
     background: var(--mainColor);
@@ -281,55 +365,6 @@ h3 {
             transform: rotate(-90deg);
             left: -7px;
             top: 7px;
-        }
-    }
-}
-
-#footer {
-    @include fixed(bottom 0 left 0);
-    width: 100%;
-    height: 3.6rem;
-    border-top: 1px solid var(--lightGray);
-    background: var(--white);
-    .footer-inner {
-        padding: 0 4rem;
-        @include flex(null, space-between);
-        > * {
-            line-height: 3.6rem;
-            font-size: 1rem;
-            color: var(--gray);
-        }
-        .l-right {
-            > a {
-                display: block;
-                color: var(--gray);
-                font-weight: 700;
-            }
-        }
-    }
-}
-
-/* Button */
-.btn-wrap {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-a,
-button {
-    &.btn {
-        font-size: 1.2em;
-        font-weight: 700;
-        height: 3.2rem;
-        min-width: 6rem;
-        padding: 0 1rem;
-        border-radius: 0.5rem;
-        background: var(--mainColor);
-        color: var(--white);
-        transition: 0.2s;
-        &:hover {
-            background: darken($mainColor, 10%);
         }
     }
 }
@@ -366,16 +401,26 @@ button {
         flex-direction: column;
         height: 100%;
         min-height: 20rem;
-        p {
+        p:not(.popup-tit) {
             font-size: 1.6rem;
-            text-align: center;
-            line-height: 1.8;
-            &:only-of-type {
-                margin-top: 3rem;
-            }
+            line-height: 1.6;
         }
         .btn-wrap {
-            margin-top: auto;
+            margin-top: 1.5rem;
+        }
+    }
+    &-tit {
+        font-size: 2rem;
+        padding: 0 2.8rem 1rem 0;
+        border-bottom: 1px solid var(--lightGray);
+        margin-bottom: 2rem;
+        @include fontType1;
+        > span {
+            display: inline-block;
+            margin-left: 1rem;
+            color: var(--gray);
+            font-size: 1.4rem;
+            font-weight: 400;
         }
     }
     &-btn-close {
@@ -399,6 +444,9 @@ button {
             transform: rotate(-45deg);
         }
     }
+    &-tool {
+        display: flex;
+    }
     &.is-show {
         transform: scale(1);
         opacity: 1;
@@ -406,15 +454,17 @@ button {
     }
     .tit-no {
         padding-top: 4rem;
+        > p {
+            padding-top: 4rem;
+            text-align: center;
+        }
+        .btn-wrap {
+            margin-top: auto;
+        }
     }
 }
 .now {
-    font-size: 1rem;
     line-height: inherit;
-    letter-spacing: 0.1rem;
-    // text-align: right;
-    // @include fixed(right 2rem top 9rem);
-    // writing-mode: vertical-rl;
     * {
         display: inline-block;
     }

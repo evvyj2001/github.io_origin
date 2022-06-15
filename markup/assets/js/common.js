@@ -15,7 +15,7 @@ function tabMove() {
             const scrollElem = document.getElementById(targetElem);
             const scrollTop = scrollElem.offsetTop;
             document.querySelector('.container').scrollTo({
-                top: scrollTop - 20,
+                top: scrollTop,
                 left: 0,
                 behavior: 'smooth',
             });
@@ -188,7 +188,7 @@ function tooltip() {
                 const text = '★'.repeat(content);
                 span.innerText = text;
                 span.style.color = `rgb(255, 255, 0)`;
-                span.style.fontFamily = 'yg-jalnan';
+                // span.style.fontFamily = 'yg-jalnan';
             } else {
                 const text = content;
                 span.innerText = text;
@@ -235,8 +235,8 @@ const introLayer = setTimeout(() => {
 
 // 메인 상단 텍스트
 function quoteChange() {
-    const textWrap = document.querySelector('.text-greeting');
-    const quotes = ['반갑습니다!🎉', '저는 성유진입니다!', '안녕하세요!😊', '환영합니다~'];
+    const textWrap = document.querySelector('.text-greeting > h1');
+    const quotes = ['성유진입니다.', '웹퍼블리셔입니다.', '웹개발자입니다.'];
     let i = 0;
     let span;
     const timeOut = () => {
@@ -328,8 +328,8 @@ window.addEventListener('touchend', () => {
 // mousemove
 window.addEventListener('mousemove', el => {
     const circle = document.querySelector('#cursor');
-    const mouseX = el.clientX - 10;
-    const mouseY = el.clientY - 10;
+    const mouseX = el.clientX - 15;
+    const mouseY = el.clientY - 15;
 
     circle.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
 });

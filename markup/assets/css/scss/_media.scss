@@ -38,4 +38,36 @@
             padding: 0 2rem;
         }
     }
+
+    .intro {
+        .flex-box {
+            .text-greeting {
+                font-size: 4rem;
+                > h1 {
+                    display: block;
+                    height: 6rem;
+                }
+            }
+            .tag-list {
+                width: 100% !important;
+            }
+        }
+    }
+    .about {
+        .flex-box {
+            .info-wrap {
+                width: 100%;
+            }
+        }
+        .img-wrap {
+            display: none;
+        }
+    }
+    .skills {
+        .flex-box {
+            .list-set {
+                width: 100% !important;
+            }
+        }
+    }
 }

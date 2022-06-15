@@ -12,6 +12,8 @@
     transition: 0.5s filter;
     &.is-hover {
         filter: hue-rotate(180deg);
+        width: 1.5rem;
+        height: 1.5rem;
     }
 }
 
@@ -26,7 +28,7 @@
     justify-content: center;
     transition: 0.3s;
     @include fontType1;
-    display: none;
+    // display: none;
     .intro-text {
         font-size: 4rem;
         color: var(--white);
@@ -57,7 +59,7 @@
 .container {
     overflow-x: hidden;
     overflow-y: auto;
-    padding: 2rem 4rem;
+    padding: 0 4rem;
     margin-top: 6.1rem;
     height: calc(var(--vh100) - 6rem - 3.6rem);
     position: relative;
@@ -70,21 +72,21 @@
         z-index: -1;
         @include flex;
         .circle {
-            width: 120vh;
-            height: 120vh;
+            width: 140vh;
+            height: 140vh;
             border-radius: 100%;
-            // filter: blur(12rem) hue-rotate(10deg);
-            filter: hue-rotate(10deg);
+            filter: blur(12rem) hue-rotate(10deg);
+            // filter: hue-rotate(10deg);
             @include absolute(left 0 right 0 top 0 bottom 0);
             transition: 0.3s transform;
             &.bg1 {
                 background: rgb(211, 234, 254);
                 background: linear-gradient(
                     322deg,
-                    rgba(211, 234, 254, 0.3) 0%,
-                    rgba(118, 233, 192, 0.4) 27%,
-                    rgba(29, 115, 255, 0.3) 77%,
-                    rgba(129, 181, 255, 0.4) 100%
+                    rgba(211, 234, 254, 0.5) 0%,
+                    rgba(118, 233, 192, 0.5) 27%,
+                    rgba(29, 115, 255, 0.4) 77%,
+                    rgba(129, 181, 255, 0.5) 100%
                 );
                 margin: auto;
                 animation: circleRotate 10s infinite ease-in-out;
@@ -93,10 +95,10 @@
                 background: rgb(255, 255, 255);
                 background: linear-gradient(
                     322deg,
-                    rgba(255, 255, 255, 0.3) 0%,
-                    rgba(254, 239, 155, 0.4) 32%,
-                    rgba(252, 47, 47, 0.3) 77%,
-                    rgba(255, 234, 234, 0.4) 100%
+                    rgba(255, 255, 255, 0.5) 0%,
+                    rgba(254, 239, 155, 0.5) 30%,
+                    rgba(252, 71, 71, 0.3) 77%,
+                    rgba(255, 234, 234, 0.5) 100%
                 );
                 margin: auto;
                 animation: circleRotate 12s infinite ease-in-out 6s reverse;
@@ -104,44 +106,24 @@
         }
     }
 }
-
 .section {
-    // border: 1px solid var(--lightGray);
     width: 100%;
-    min-height: calc(var(--vh100) - 13.6rem);
+    min-height: calc(var(--vh100) - 9.6rem);
     max-width: 100rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     // scroll-snap-align: start;
     // scroll-snap-stop: normal;
+    padding: 4rem 0;
     margin: 0 auto;
-    & + .section {
-        margin-top: 4rem;
+    &.vertical-center {
+        justify-content: center;
     }
-    > h1 {
-        font-size: 5rem;
-        height: 8rem;
-        overflow: hidden;
-    }
-    > h2 {
+    h2 {
         font-size: 3rem;
     }
     .center {
         text-align: center;
-    }
-}
-.text-greeting {
-    text-align: center;
-    > span {
-        position: relative;
-        animation: mainTitle 0.4s ease-in;
-        // top: 0;
-    }
-    @for $i from 1 to 15 {
-        > span:nth-child(#{$i}) {
-            animation-delay: ($i * 0.1s);
-        }
     }
 }
 .shake {
@@ -167,16 +149,16 @@
         }
     }
     &-desc {
-        font-size: 1.8rem;
+        font-size: 2rem;
         line-height: 1.8;
         margin-top: 3rem;
         word-break: keep-all;
         > strong {
-            color: var(--mainColor);
-            filter: drop-shadow(1px 1px 3px rgba(255, 255, 255, 0.6));
+            // color: var(--mainColor);
+            // filter: drop-shadow(2px 2px 0px rgba(255, 255, 255, 0.8));
+            // padding-right: 0.2rem;
         }
         > em {
-            // background: var(--mainColor);
             color: #fff;
             padding: 0 0.2rem 0.1rem;
             position: relative;
@@ -189,10 +171,6 @@
                 @include absolute(bottom 0.2rem left 0);
                 z-index: -1;
             }
-        }
-        & + .tag-list {
-            margin-top: 5rem;
-            justify-content: center;
         }
     }
 }
@@ -234,6 +212,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    // margin-top: 5rem;
     // justify-content: center;
     > li {
         font-size: 1.4rem;
@@ -262,13 +241,11 @@
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
+    justify-content: space-between;
 }
-#tab2 {
+.skills {
     .flex-box {
-        margin-top: 3rem;
-        & + h2 {
-            margin-top: 6rem;
-        }
+        margin-top: 2rem;
     }
 }
 .list-set {
@@ -283,7 +260,7 @@
         padding: 1rem 2rem;
     }
     dt {
-        font-size: 2rem;
+        font-size: 1.8rem;
         border-bottom: 1px double var(--gray);
         border-width: 0.3rem;
         @include fontType1;
@@ -291,14 +268,14 @@
             color: var(--mainColor);
         }
         small {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             margin-left: 1rem;
             color: var(--gray);
-            font-style: italic;
+            opacity: 0.5;
         }
     }
     dd {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         border-bottom: 1px solid var(--lightGray);
         line-height: 1.4;
         word-break: keep-all;
@@ -324,4 +301,140 @@
         will-change: filter;
         filter: drop-shadow(0.2rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3));
     }
+}
+
+.intro {
+    justify-content: center;
+    .flex-box {
+        align-items: center;
+    }
+    .tag-list {
+        padding-top: 5rem;
+    }
+    .text-sub {
+        @include fontType1;
+    }
+    .text-greeting {
+        // text-align: center;
+        margin-top: 0.5rem;
+        font-size: 5rem;
+        @include fontType1;
+        > h1 {
+            height: 8rem;
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: top;
+            opacity: 0.5;
+            // filter: contrast(0.1);
+            color: lighten($black, 20%);
+            span {
+                position: relative;
+                animation: mainTitle 0.4s ease-in;
+            }
+            @for $i from 1 to 15 {
+                > span:nth-child(#{$i}) {
+                    animation-delay: ($i * 0.1s);
+                }
+            }
+        }
+    }
+}
+.about {
+    justify-content: center;
+    .flex-box {
+        align-items: stretch;
+    }
+    .img-wrap {
+        // width: 30rem;
+        border-radius: 1rem;
+        overflow: hidden;
+        > img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .info-wrap {
+        width: calc(100% - 32rem);
+        // padding-left: 2rem;
+    }
+    .name {
+        font-size: 3rem;
+        font-weight: 700;
+        letter-spacing: 1rem;
+        margin-bottom: 3rem;
+        @include fontType1;
+        > span {
+            font-size: 1.6rem;
+            // opacity: 0.4;
+            letter-spacing: 0;
+            position: relative;
+            color: rgba(0, 0, 0, 0.4);
+            display: inline-block;
+            vertical-align: middle;
+            &:before {
+                @include pseudo;
+                width: 0.6rem;
+                height: 0.6rem;
+                background: var(--mainColor);
+                border-radius: 50%;
+                left: -1.6rem;
+                bottom: 1rem;
+            }
+        }
+    }
+    .info-detail {
+        padding-left: 4rem;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        > p {
+            writing-mode: vertical-rl;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 1rem;
+            display: flex;
+            flex-direction: column;
+            @include absolute(left 0 top 0);
+            height: 100%;
+            &:after {
+                content: '';
+                display: inline-block;
+                width: 1px;
+                height: 100%;
+                background: #000;
+            }
+        }
+        dl {
+            dt,
+            dd {
+                margin-bottom: 1.5rem;
+                > button {
+                    font-size: 1.2rem;
+                }
+            }
+            dt {
+                font-size: 1.8rem;
+                font-weight: 700;
+            }
+            dd {
+                font-size: 1.6rem;
+                &:last-of-type {
+                    margin-top: 1rem;
+                    margin-bottom: 0;
+                }
+            }
+            & + dl {
+                margin-top: 2rem;
+            }
+        }
+        & + .info-detail {
+            margin-top: 4rem;
+        }
+    }
+}
+
+.experience {
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.1);
 }
