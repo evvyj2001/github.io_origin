@@ -291,16 +291,28 @@ button {
         transition: 0.2s;
         overflow: hidden;
         position: relative;
+        &:before {
+            @include pseudo;
+            height: 100%;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            transition: 0.2s;
+        }
         &[class*='bg-'] {
             color: var(--white);
             position: relative;
-            &[class*='green'] {
-                background: var(--mainColor);
+            &[class*='main'] {
                 border: 1px solid var(--mainColor);
+                &:before {
+                    width: 100%;
+                    background: var(--mainColor);
+                }
                 &:hover {
-                    border: 1px solid var(--mainColor);
-                    background: transparent;
                     color: var(--mainColor);
+                    &:before {
+                        width: 0;
+                    }
                 }
             }
         }
@@ -308,15 +320,10 @@ button {
             border-width: 1px;
             border-style: solid;
             &:before {
-                @include pseudo;
                 width: 0;
-                height: 100%;
-                left: 0;
-                top: 0;
                 z-index: -1;
-                transition: 0.2s;
             }
-            &[class*='green'] {
+            &[class*='main'] {
                 border-color: var(--mainColor);
             }
             &[class*='black'] {
@@ -396,31 +403,33 @@ button {
     transition: 0.5s;
     padding: 2rem;
     z-index: 0;
-    &-body {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        min-height: 20rem;
-        p:not(.popup-tit) {
-            font-size: 1.6rem;
-            line-height: 1.6;
-        }
-        .btn-wrap {
-            margin-top: 1.5rem;
-        }
-    }
-    &-tit {
+    &-head {
         font-size: 2rem;
-        padding: 0 2.8rem 1rem 0;
+        padding: 0 3rem 2rem 0;
         border-bottom: 1px solid var(--lightGray);
-        margin-bottom: 2rem;
-        @include fontType1;
+        // margin-bottom: 2rem;
+        font-weight: 700;
         > span {
             display: inline-block;
             margin-left: 1rem;
             color: var(--gray);
             font-size: 1.4rem;
             font-weight: 400;
+        }
+    }
+    &-body {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 20rem;
+        max-height: 65rem;
+        padding-top: 2rem;
+        p:not(.popup-tit) {
+            font-size: 1.6rem;
+            line-height: 1.6;
+        }
+        .btn-wrap {
+            margin-top: 3rem;
         }
     }
     &-btn-close {
@@ -446,6 +455,16 @@ button {
     }
     &-tool {
         display: flex;
+        font-size: 1.4rem;
+        margin-bottom: 2rem;
+        > li {
+            background: var(--lightGray);
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.5rem;
+            & + li {
+                margin-left: 1rem;
+            }
+        }
     }
     &.is-show {
         transform: scale(1);
@@ -460,6 +479,24 @@ button {
         }
         .btn-wrap {
             margin-top: auto;
+        }
+    }
+    .do-list {
+        margin-top: 2rem;
+        > li {
+            font-size: 1.4rem;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--gray);
+            &:before {
+                content: '▶';
+                font-size: 1rem;
+                color: var(--gray);
+                @include absolute(top 0.1rem left 0.2rem);
+            }
+            & + li {
+                margin-top: 1rem;
+            }
         }
     }
 }

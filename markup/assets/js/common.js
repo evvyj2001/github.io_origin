@@ -236,13 +236,13 @@ const introLayer = setTimeout(() => {
 // 메인 상단 텍스트
 function quoteChange() {
     const textWrap = document.querySelector('.text-greeting > h1');
-    const quotes = ['성유진입니다.', '웹퍼블리셔입니다.', '웹개발자입니다.'];
+    const quotes = ['성유진', '웹퍼블리셔💻', '웹개발자💻'];
     let i = 0;
     let span;
     const timeOut = () => {
         setTimeout(() => {
             textWrap.innerHTML = '';
-        }, 4950);
+        }, 4970);
     };
     timeOut();
     setInterval(() => {
@@ -250,13 +250,19 @@ function quoteChange() {
         const splitStr = [...str];
         textWrap.dataset.text = str;
         for (const index of Object.keys(splitStr)) {
-            span = document.createElement('span');
-            span.style.top = `100%`;
-            span.innerText = `${splitStr[index]}`;
-            textWrap.append(span);
+            span = document.createElement('span'); // span 생성
+            span.innerText = `${splitStr[index]}`; // 위에서 쪼갠 텍스트를 span에 삽입
+            textWrap.append(span); // span을 h1에 삽입
+            span.style.color = 'rgba(0,0,0,0)'; // 출력 직후 색상 투명으로
+            setTimeout(() => {
+                // 애니메이션 적용시점에 색상 들어가게
+                document.querySelectorAll('.text-greeting > h1 > span').forEach(el => {
+                    el.style.color = document.querySelector('.text-greeting > h1').style.color;
+                });
+            }, 500);
             timeOut();
-            span.style.top = 0;
         }
+
         if (i === quotes.length) {
             i = 0;
         }
