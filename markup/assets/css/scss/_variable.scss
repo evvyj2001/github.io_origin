@@ -9,10 +9,11 @@ $baseLine: $htmlFz * 1.4;
 // color
 $white: #fff;
 $black: #222;
-$mainColor: #4f20fa;
+$mainColor: rgb(79, 32, 250);
 $gray: #999;
-$lightGray: #efefef;
+$lightGray: rgb(239, 239, 239);
 $lightGreen: rgb(140, 248, 176);
+$dark: rgb(20, 33, 61);
 
 // 기타 요소
 $vh100: calc(var(--vh) * 100);
@@ -25,4 +26,5 @@ $vh100: calc(var(--vh) * 100);
     --gray: #{$gray};
     --lightGray: #{$lightGray};
     --lightGreen: #{$lightGreen};
+    --dark: #{$dark};
 }

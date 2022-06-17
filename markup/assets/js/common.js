@@ -32,6 +32,7 @@ function navBottom() {
     lineBottom.style.width = `${navWidth}px`;
 }
 
+// scroll spy
 function findScroll() {
     const nav = document.querySelector('nav > ul');
     const lineBottom = document.querySelector('.line-bottom');
@@ -104,7 +105,7 @@ function mobileNavMenu() {
     });
 }
 
-// header date
+// date
 function isNow() {
     const dateElem = document.querySelector('.now .date');
     const clockElem = document.querySelector('.now .clock');
@@ -137,6 +138,7 @@ setInterval(() => {
     isNow();
 }, 1000);
 
+// header indicator
 function scrollIndicator() {
     const winScroll = document.querySelector('.container').scrollTop;
     const height =
@@ -176,7 +178,7 @@ function scrollParalle() {
     });
 }
 
-// 툴팁
+// tooltop
 function tooltip() {
     const parentElem = document.querySelectorAll('[data-tooltip]');
     parentElem.forEach(el => {
@@ -203,6 +205,12 @@ function tooltip() {
     });
 }
 
+// isHidden
+function isHidden(el) {
+    return el.offsetParent === null;
+}
+
+// popup open
 function popOpen(el) {
     const popDimmed = document.createElement('div');
     popDimmed.classList.add('popup-dimmed');
@@ -214,6 +222,7 @@ function popOpen(el) {
     }, 100);
 }
 
+// popup close
 function popClose(el) {
     const popup = el.target.closest('.popup');
     const popDimmed = document.querySelector('.popup-dimmed');
@@ -225,6 +234,7 @@ function popClose(el) {
     }, 500);
 }
 
+// 페이지 진입 시 뜨는 layer
 const introLayer = setTimeout(() => {
     const layer = document.getElementById('introLayer');
     layer.style.opacity = 0;
@@ -236,7 +246,7 @@ const introLayer = setTimeout(() => {
 // 메인 상단 텍스트
 function quoteChange() {
     const textWrap = document.querySelector('.text-greeting > h1');
-    const quotes = ['성유진', '웹퍼블리셔💻', '웹개발자💻'];
+    const quotes = ['성유진', '웹퍼블리셔👩‍💻', '웹개발자💻'];
     let i = 0;
     let span;
     const timeOut = () => {
@@ -259,7 +269,7 @@ function quoteChange() {
                 document.querySelectorAll('.text-greeting > h1 > span').forEach(el => {
                     el.style.color = document.querySelector('.text-greeting > h1').style.color;
                 });
-            }, 500);
+            }, 400);
             timeOut();
         }
 
@@ -268,7 +278,6 @@ function quoteChange() {
         }
     }, 5000);
 }
-// clearInterval(quoteChange);
 
 // cursor
 function cursorEvent() {
@@ -283,8 +292,54 @@ function cursorEvent() {
     });
 }
 
+// drag scroll
+function dragScroll() {
+    const dragElem = document.querySelectorAll('[scroll-drag]');
+    dragElem.forEach(ele => {
+        ele.style.cursor = 'grab';
+
+        let pos = {
+            top: 0,
+            left: 0,
+            x: 0,
+            y: 0,
+        };
+
+        const mouseMoveHandler = function (e) {
+            const dx = e.clientX - pos.x;
+            ele.scrollLeft = pos.left - dx;
+        };
+
+        const mouseDownHandler = function (e) {
+            ele.style.cursor = 'grabbing';
+            ele.style.userSelect = 'none';
+
+            pos = {
+                left: ele.scrollLeft,
+                // top: ele.scrollTop,
+
+                // current mouse position
+                x: e.clientX,
+                // y: e.clientY,
+            };
+            ele.addEventListener('mousemove', mouseMoveHandler);
+            ele.addEventListener('mouseup', mouseUpHandler);
+        };
+
+        const mouseUpHandler = function () {
+            ele.style.cursor = 'grab';
+            ele.style.removeProperty('user-select');
+
+            ele.removeEventListener('mousemove', mouseMoveHandler);
+            ele.removeEventListener('mouseup', mouseUpHandler);
+        };
+
+        ele.addEventListener('mousedown', mouseDownHandler);
+    });
+}
+
 // load
-window.addEventListener('load', () => {
+window.addEventListener('DOMContentLoaded', () => {
     const scrollContent = document.querySelector('.container');
     const topBtn = document.querySelector('.btn-top');
     scrollContent.addEventListener('scroll', () => {
@@ -311,6 +366,7 @@ window.addEventListener('load', () => {
     scrollParalle();
     cursorEvent();
     popOpen('popupIntro');
+    dragScroll();
 
     // top button
     topBtn.addEventListener('click', () => {

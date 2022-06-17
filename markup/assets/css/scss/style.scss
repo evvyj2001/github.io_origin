@@ -331,7 +331,7 @@
             }
             @for $i from 1 to 15 {
                 > span:nth-child(#{$i}) {
-                    animation-delay: ($i * 0.1s) - 0.1s;
+                    animation-delay: ($i * 0.06s) - 0.06s;
                 }
             }
         }
@@ -418,7 +418,7 @@
             dd {
                 font-size: 1.6rem;
                 &:last-of-type {
-                    margin-top: 1rem;
+                    // margin-top: 1rem;
                     margin-bottom: 0;
                 }
             }
