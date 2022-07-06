@@ -26,6 +26,7 @@ h3 {
     width: 100%;
     position: relative;
     border-bottom: 1px solid var(--lightGray);
+    // filter: drop-shadow(1px 0.5px 6px rgba(0, 0, 0, 0.1));
     background: var(--white);
     @include fixed(top 0 left 0);
     .scroll-indicator {
@@ -104,10 +105,16 @@ h3 {
                         color: var(--gray);
                         transition: 0.3s;
                         @include fontType1;
+                        > i {
+                            display: inline-block;
+                        }
                     }
                     &.is-on {
                         > a {
                             color: var(--mainColor);
+                            > i {
+                                animation: shake 0.3s ease-in 0.5s;
+                            }
                         }
                     }
                 }
@@ -287,17 +294,18 @@ button {
         height: 3.2rem;
         min-width: 6rem;
         padding: 0 1rem;
-        border-radius: 0.5rem;
+        // border-radius: 0.5rem;
         transition: 0.2s;
-        overflow: hidden;
+        // overflow: hidden;
         position: relative;
         &:before {
             @include pseudo;
-            height: 100%;
+            height: calc(100% + 1px);
             left: 0;
-            top: 0;
+            top: -1px;
             z-index: -1;
             transition: 0.2s;
+            // border-radius: 0.5rem;
         }
         &[class*='bg-'] {
             color: var(--white);
@@ -305,7 +313,7 @@ button {
             &[class*='main'] {
                 border: 1px solid var(--mainColor);
                 &:before {
-                    width: 100%;
+                    width: calc(100% + 1px);
                     background: var(--mainColor);
                 }
                 &:hover {
@@ -334,7 +342,7 @@ button {
                 &:hover {
                     color: var(--white);
                     &:before {
-                        width: 100%;
+                        width: calc(100% + 1px);
                     }
                 }
             }
@@ -375,15 +383,15 @@ button {
             top: 7px;
         }
     }
-    &:hover {
-        background: var(--white);
-        > i {
-            &:before,
-            &:after {
-                background: var(--mainColor);
-            }
-        }
-    }
+    // &:hover {
+    //     background: var(--white);
+    //     > i {
+    //         &:before,
+    //         &:after {
+    //             background: var(--mainColor);
+    //         }
+    //     }
+    // }
 }
 
 /* popup */
@@ -429,12 +437,18 @@ button {
         }
     }
     &-body {
-        display: flex;
-        flex-direction: column;
         height: 100%;
-        min-height: 20rem;
-        max-height: 65rem;
-        padding-top: 2rem;
+        min-height: 10rem;
+        max-height: 55rem;
+        // padding-top: 2rem;
+        word-break: keep-all;
+        overflow-y: auto;
+        margin-bottom: 2rem;
+        .cont {
+            max-height: 30rem;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
         p:not(.popup-tit) {
             font-size: 1.6rem;
             line-height: 1.6;
@@ -456,6 +470,7 @@ button {
             @include absolute(left 50% top 1rem);
             margin-left: -1.3rem;
             border-radius: 0.5rem;
+            transition: 0.2s;
         }
         &:before {
             transform: rotate(45deg);
@@ -463,14 +478,21 @@ button {
         &:after {
             transform: rotate(-45deg);
         }
+        &:hover {
+            &:before,
+            &:after {
+                background: lighten($mainColor, 15%);
+            }
+        }
     }
     &-tool {
         display: flex;
         font-size: 1.4rem;
-        margin-bottom: 2rem;
+        margin: 2rem 0;
+        // margin-bottom: 2rem;
         > li {
             background: var(--lightGray);
-            padding: 0.8rem 1.5rem;
+            padding: 0.8rem 1rem;
             border-radius: 0.5rem;
             & + li {
                 margin-left: 1rem;
@@ -483,7 +505,8 @@ button {
         z-index: 10;
     }
     .tit-no {
-        padding-top: 4rem;
+        margin-top: 4rem;
+        padding-top: 0;
         > p {
             // padding-top: 4rem;
             text-align: center;
@@ -517,8 +540,14 @@ button {
         margin-top: 3rem;
         overflow-x: auto;
         overflow-y: hidden;
+        width: 100%;
+        padding-bottom: 0.5rem;
         &::-webkit-scrollbar {
             height: 5px;
+        }
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: var(--black);
         }
         > div {
             width: fit-content;
@@ -533,6 +562,7 @@ button {
                 position: relative;
                 transition: 0.3s;
                 overflow: hidden;
+                font-size: 1.4rem;
                 > img {
                     width: 10rem;
                     height: auto;

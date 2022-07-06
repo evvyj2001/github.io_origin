@@ -13,6 +13,9 @@
     html {
         font-size: 9px;
     }
+    #cursor {
+        display: none;
+    }
     #header {
         .header-inner {
             padding: 0 2rem;
@@ -68,6 +71,14 @@
             .list-set {
                 width: 100% !important;
             }
+        }
+    }
+}
+
+@media all and (max-width: 420px) {
+    .popup {
+        &-body {
+            max-height: 40rem;
         }
     }
 }

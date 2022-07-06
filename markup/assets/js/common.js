@@ -190,7 +190,6 @@ function tooltip() {
                 const text = '★'.repeat(content);
                 span.innerText = text;
                 span.style.color = `rgb(255, 255, 0)`;
-                // span.style.fontFamily = 'yg-jalnan';
             } else {
                 const text = content;
                 span.innerText = text;
@@ -199,7 +198,6 @@ function tooltip() {
         });
         el.addEventListener('mouseout', () => {
             const span = el.childNodes[1];
-            span.style.display = 'none';
             span.remove();
         });
     });
@@ -215,11 +213,19 @@ function popOpen(el) {
     const popDimmed = document.createElement('div');
     popDimmed.classList.add('popup-dimmed');
     const popupId = document.getElementById(`${el}`);
-    popupId.before(popDimmed);
+    const popupShow = document.querySelectorAll('.popup.is-show');
     setTimeout(() => {
         popDimmed.classList.add('is-show');
         popupId.classList.add('is-show');
     }, 100);
+    if (popupShow.length > 0) {
+        // console.log(`${popupShow.length}개의 팝업이 열려있음`);
+        popupShow.forEach(e => {
+            e.classList.remove('is-show');
+        });
+    } else {
+        popupId.before(popDimmed);
+    }
 }
 
 // popup close
@@ -246,7 +252,7 @@ const introLayer = setTimeout(() => {
 // 메인 상단 텍스트
 function quoteChange() {
     const textWrap = document.querySelector('.text-greeting > h1');
-    const quotes = ['성유진', '웹퍼블리셔👩‍💻', '웹개발자💻'];
+    const quotes = ['성유진', '웹퍼블리셔', '웹개발자💻', '성실한사람'];
     let i = 0;
     let span;
     const timeOut = () => {
