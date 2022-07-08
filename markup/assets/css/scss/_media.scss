@@ -33,22 +33,24 @@
     .nav-wrap {
         padding: 2rem 2rem 4rem;
     }
-    .container {
-        padding: 2rem 4rem 2rem 2rem;
-    }
     #footer {
         .footer-inner {
             padding: 0 2rem;
         }
     }
-
+    .section {
+        padding: 4rem 2rem !important;
+    }
     .intro {
         .flex-box {
             .text-greeting {
                 font-size: 4rem;
                 > h1 {
                     display: block;
-                    height: 6rem;
+                    height: 4rem;
+                }
+                > br {
+                    display: none;
                 }
             }
             .tag-list {

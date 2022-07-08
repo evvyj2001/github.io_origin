@@ -54,7 +54,7 @@ h3 {
             > a {
                 display: block;
                 width: fit-content;
-                font-size: 1.8rem;
+                font-size: 2rem;
                 position: relative;
                 padding-right: 2rem;
                 &::first-letter {
@@ -67,7 +67,7 @@ h3 {
                     background: var(--mainColor);
                     border-radius: 100%;
                     right: 1rem;
-                    top: 1.7rem;
+                    top: 2rem;
                     animation: logoAnimation 1s;
                     animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
                     animation-delay: 14s;
@@ -100,7 +100,7 @@ h3 {
                         padding: 0 2rem;
                         height: 100%;
                         line-height: 6rem;
-                        font-size: 1.6rem;
+                        font-size: 1.8rem;
                         // font-weight: 700;
                         color: var(--gray);
                         transition: 0.3s;
@@ -112,8 +112,20 @@ h3 {
                     &.is-on {
                         > a {
                             color: var(--mainColor);
-                            > i {
-                                animation: shake 0.3s ease-in 0.5s;
+                        }
+                    }
+                    &:first-child {
+                        > a {
+                            &:after {
+                                content: '🖐';
+                                display: inline-block;
+                            }
+                        }
+                        &.is-on {
+                            > a {
+                                &:after {
+                                    animation: shake 0.3s ease-in 0.5s;
+                                }
                             }
                         }
                     }
@@ -125,7 +137,7 @@ h3 {
                 overflow: hidden;
                 > span {
                     display: inline-block;
-                    width: 2rem;
+                    width: 3rem;
                     height: 100%;
                     background: var(--mainColor);
                     position: absolute;
@@ -195,7 +207,7 @@ h3 {
         margin-top: 6.1rem;
         background: var(--white);
         padding: 2rem 4rem;
-        z-index: 1;
+        z-index: 2;
         transform: translateX(100%);
         transition: 0.3s transform;
         display: flex;
@@ -204,29 +216,51 @@ h3 {
         > ul {
             > li {
                 a {
-                    font-size: 1.6rem;
+                    font-size: 1.8rem;
                     height: 5rem;
                     display: inline-block;
                     line-height: 5rem;
                     position: relative;
                     z-index: 1;
                     padding-right: 2rem;
+                    @include fontType1;
                     &:before {
                         @include pseudo;
-                        height: 0.4rem;
+                        height: 1rem;
                         background: var(--mainColor);
                         left: 0;
                         top: 2.3rem;
                         z-index: -1;
-                        opacity: 0.3;
+                        opacity: 0.5;
                         width: 0;
                         transition: 0.2s width;
+                    }
+                    > i {
+                        display: inline-block;
                     }
                 }
                 &.is-on {
                     a {
                         &:before {
                             width: 100%;
+                        }
+                        > i {
+                            animation: shake 0.3s ease-in 0.5s;
+                        }
+                    }
+                }
+                &:first-child {
+                    > a {
+                        &:after {
+                            content: '🖐';
+                            display: inline-block;
+                        }
+                    }
+                    &.is-on {
+                        > a {
+                            &:after {
+                                animation: shake 0.3s ease-in 0.5s;
+                            }
                         }
                     }
                 }
@@ -235,7 +269,7 @@ h3 {
         .contact-wrap {
             margin-top: auto;
             dl {
-                font-size: 1.3rem;
+                font-size: 1.6rem;
                 display: inline-block;
                 dt,
                 dd {
@@ -358,7 +392,7 @@ button {
     background: var(--mainColor);
     width: 5.5rem;
     height: 5.5rem;
-    transition: 0.3s;
+    // transition: 0.3s;
     opacity: 0;
     border-radius: 0.5rem;
     border: 1px solid var(--mainColor);
@@ -383,15 +417,15 @@ button {
             top: 7px;
         }
     }
-    // &:hover {
-    //     background: var(--white);
-    //     > i {
-    //         &:before,
-    //         &:after {
-    //             background: var(--mainColor);
-    //         }
-    //     }
-    // }
+    &:hover {
+        background: darken($mainColor, 10%);
+        // > i {
+        //     &:before,
+        //     &:after {
+        //         background: var(--subPointColor);
+        //     }
+        // }
+    }
 }
 
 /* popup */
@@ -533,59 +567,6 @@ button {
             }
             & + li {
                 margin-top: 1rem;
-            }
-        }
-    }
-    .project-wrap {
-        margin-top: 3rem;
-        overflow-x: auto;
-        overflow-y: hidden;
-        width: 100%;
-        padding-bottom: 0.5rem;
-        &::-webkit-scrollbar {
-            height: 5px;
-        }
-        /* Handle */
-        &::-webkit-scrollbar-thumb {
-            background: var(--black);
-        }
-        > div {
-            width: fit-content;
-            display: flex;
-            flex-wrap: nowrap;
-            gap: 0 1rem;
-            a {
-                display: block;
-                width: 10rem;
-                height: 10rem;
-                background: rgba(0, 0, 0, 0.2);
-                position: relative;
-                transition: 0.3s;
-                overflow: hidden;
-                font-size: 1.4rem;
-                > img {
-                    width: 10rem;
-                    height: auto;
-                    @include absolute(top 50%);
-                    transform: translateY(-50%);
-                }
-                > span {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    transition: 0.3s;
-                    height: 100%;
-                    transform: translateY(10rem);
-                    background: rgba(79, 32, 250, 0);
-                }
-                &:hover {
-                    background: rgba(0, 0, 0, 0.6);
-                    color: var(--white);
-                    > span {
-                        transform: translateY(0);
-                        background: rgba(79, 32, 250, 0.6);
-                    }
-                }
             }
         }
     }

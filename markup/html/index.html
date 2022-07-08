@@ -15,31 +15,30 @@
                 <div class="scroll-content">
                     <!-- intro -->
                     <div class="section intro" id="tab1">
-                        <!-- <button onclick="popOpen('popupPortfolio')">버튼입니다.</button> -->
                         <div class="flex-box">
                             <div>
                                 <p class="text-sub">안녕하세요😊</p>
                                 <div class="text-greeting">
                                     저는
-                                    <h1></h1>
+                                    <h1><span>성</span><span>유</span><span>진</span></h1>
+                                    <br />
                                     입니다.
                                 </div>
 
                                 <p class="text-desc">
-                                    저는 웹표준과 웹접근성을 준수한 웹사이트를 만드는<br />
-                                    웹퍼블리셔 <strong>SEONGYUJIN</strong>입니다.<br />CSS와 자바스크립트를 이용한
-                                    역동적인 페이지를<br />
-                                    짜는 것을 좋아하고 자바스크립트를 활용하여 기능을<br />
-                                    모듈화하는 것을 좋아합니다.
+                                    저는 웹표준과 웹접근성을 준수한 웹사이트를 만드는 웹퍼블리셔
+                                    <strong>SEONGYUJIN</strong>입니다.<br />CSS와 자바스크립트를 이용한 역동적인
+                                    페이지를 짜는 것을 좋아하고 자바스크립트를 활용하여 기능을 모듈화하는 것을
+                                    좋아합니다.
                                 </p>
                             </div>
-                            <ul class="tag-list" style="width: 40%">
+                            <ul class="tag-list">
                                 <li class="star" data-tooltip="3">웹퍼블리셔</li>
                                 <li class="star" data-tooltip="3">웹개발</li>
                                 <li class="star" data-tooltip="3">HTML5</li>
                                 <li class="star" data-tooltip="3">CSS3</li>
-                                <li class="star" data-tooltip="3">Frameworks</li>
                                 <li class="star" data-tooltip="3">Javascript</li>
+                                <li class="star" data-tooltip="3">Frameworks</li>
                                 <li class="star" data-tooltip="3">Library</li>
                                 <li class="star" data-tooltip="3">PlugIn</li>
                                 <li class="star" data-tooltip="3">SCSS</li>
@@ -57,28 +56,34 @@
                     <!-- // intro -->
                     <!-- about -->
                     <div class="section about" id="tab2">
-                        <div class="flex-box">
-                            <div class="info-wrap">
-                                <p class="name">성유진<span>1990.12.09</span></p>
+                        <div class="info-wrap">
+                            <p class="name">성유진<span>1990.12.09</span></p>
+                            <div class="flex-box">
                                 <div class="info-detail">
-                                    <p>Carrer</p>
+                                    <p class="text-sub">Carrer</p>
                                     <dl>
                                         <dt>2020.12 - 현재</dt>
-                                        <dd>(주)다름 웹퍼블리셔 재직중</dd>
                                         <dd>
-                                            <button class="btn line-black" onclick="popOpen('popupCareer')">
-                                                자세히보기
-                                            </button>
+                                            (주)다름 웹퍼블리셔 재직중
+                                            <button onclick="popOpen('popupCareer')">더보기</button>
                                         </dd>
+                                        <!-- <dd>
+                                        <button class="btn line-black">
+                                            자세히보기
+                                        </button>
+                                    </dd> -->
                                     </dl>
                                     <dl>
                                         <dt>2016.3 - 2020.3</dt>
-                                        <dd>(주)유학** 웹퍼블리셔 & 웹디자이너 재직</dd>
-                                        <dd><button class="btn line-black">자세히보기</button></dd>
+                                        <dd>
+                                            (주)유학** 웹퍼블리셔 & 웹디자이너 재직
+                                            <button onclick="popOpen('popupCareer')">더보기</button>
+                                        </dd>
+                                        <!-- <dd><button class="btn line-black">자세히보기</button></dd> -->
                                     </dl>
                                 </div>
                                 <div class="info-detail">
-                                    <p>Edu</p>
+                                    <p class="text-sub">Edu</p>
                                     <dl>
                                         <dt>2020.5 - 2020.11</dt>
                                         <dd>그린컴퓨터아카데미 프론트엔드 과정 수료</dd>
@@ -89,60 +94,71 @@
                                     </dl>
                                 </div>
                             </div>
-                            <div class="img-wrap">
-                                <img src="/assets/img/index/img_default.jpg" alt="" />
-                            </div>
                         </div>
+                        <!-- <div class="img-wrap">
+                        <img src="/assets/img/index/img_default.jpg" alt="" />
+                    </div> -->
                     </div>
                     <!-- // about -->
                     <div class="section skills" id="tab3">
                         <h2>I do Coding<i class="shake">💻</i> <span class="text-sub">#skills</span></h2>
                         <p class="text-desc">저는 이런 코딩을 합니다.</p>
-                        <div class="flex-box">
-                            <dl class="list-set" style="width: 100%">
-                                <dt>마크업</dt>
-                                <dd>HTML5 <mark>웹표준, 웹접근성</mark>을 준수한 마크업</dd>
-                                <dd>요소마다의 특성을 파악한 시멘틱 마크업</dd>
-                                <dd>React 등의 자바스크립트 라이브러리 기반 마크업</dd>
-                                <dd>
-                                    <mark>반응형/적응형</mark>에 따른 마크업과 웹일 경우 디바이스,
-                                    <span data-tooltip="IOS/AOS">OS</span>마다의 특성을 고려한 마크업
-                                </dd>
-                            </dl>
-                            <dl class="list-set" style="width: calc(60% - 1rem)">
-                                <dt>CSS</dt>
-                                <dd>SCSS 등 <mark>CSS 전처리기</mark>를 통한 스타일링</dd>
-                                <dd>
-                                    <span data-tooltip="CSS 방법론">SMACSS 작성법</span>을 기반으로 하여 OOCSS와 BEM을
-                                    혼합적으로 사용
-                                </dd>
-                                <dd>Styled Components와 같은 CSS-in-JS 사용 가능</dd>
-                                <dd>Bootstrap과 같은 프레임워크 사용 가능</dd>
-                            </dl>
-                            <dl class="list-set" style="width: calc(40% - 1rem)">
-                                <dt>자바스크립트</dt>
-                                <dd><mark>순수 자바스크립트</mark>로 함수 생성 및 사용 가능</dd>
-                                <dd>JQuery와 같은 자바스크립트 라이브러리 사용 가능</dd>
-                                <dd>JSON을 활용한 비동기 방식 구현</dd>
-                            </dl>
-                            <dl class="list-set" style="width: calc(50% - 1rem)">
-                                <dt>기타</dt>
-                                <dd><span data-tooltip="Wordpress">워드프레스</span> 사용 가능</dd>
-                                <dd>형상관리 툴 <mark>git</mark>, svn 등 사용 가능</dd>
-                                <dd><mark>크로스브라우징</mark></dd>
-                                <dd>Adobe Photoshop, Adobe Illustrator, Adobe XD, Adobe Premier 등 디자인 툴</dd>
-                            </dl>
-                            <dl class="list-set" style="width: calc(50% - 1rem)">
-                                <dt>마인드</dt>
-                                <dd>
-                                    단순히 스토리보드에 적혀있는 것만이 아닌 퍼블리셔로서
-                                    <mark>UI/UX적으로</mark> 고려되어야하는 부분이 있다면 이를 제안할 수 있는
-                                    <mark>열정과 책임감</mark>
-                                </dd>
-                                <dd>
-                                    현재에 안주하지 않고 더 알고 싶어하며 이를 행동으로 보여주는 <mark>실행력</mark>
-                                </dd>
-                            </dl>
+                        <!-- 탭메뉴 -->
+                        <div data-tab-wrap>
+                            <div class="tab-menu">
+                                <button class="is-on">ALL</button>
+                                <button>마크업</button>
+                                <button>CSS</button>
+                                <button>자바스크립트</button>
+                                <button>기타</button>
+                                <button>마인드</button>
+                            </div>
+                            <div class="tab-container">
+                                <dl class="list-set" data-tab-content="마크업">
+                                    <dt>마크업</dt>
+                                    <dd>HTML5 <mark>웹표준, 웹접근성</mark>을 준수한 마크업</dd>
+                                    <dd>요소마다의 특성을 파악한 시멘틱 마크업</dd>
+                                    <dd>React 등의 자바스크립트 라이브러리 기반 마크업</dd>
+                                    <dd>
+                                        <mark>반응형/적응형</mark>에 따른 마크업과 웹일 경우 디바이스,
+                                        <span data-tooltip="IOS/AOS">OS</span>마다의 특성을 고려한 마크업
+                                    </dd>
+                                </dl>
+                                <dl class="list-set" data-tab-content="CSS">
+                                    <dt>CSS</dt>
+                                    <dd>SCSS 등 <mark>CSS 전처리기</mark>를 통한 스타일링</dd>
+                                    <dd>
+                                        <span data-tooltip="CSS 방법론">SMACSS 작성법</span>을 기반으로 하여 OOCSS와
+                                        BEM을 혼합적으로 사용
+                                    </dd>
+                                    <dd>Styled Components와 같은 CSS-in-JS 사용 가능</dd>
+                                    <dd>Bootstrap과 같은 프레임워크 사용 가능</dd>
+                                </dl>
+                                <dl class="list-set" data-tab-content="자바스크립트">
+                                    <dt>자바스크립트</dt>
+                                    <dd><mark>순수 자바스크립트</mark>로 함수 생성 및 사용 가능</dd>
+                                    <dd>JQuery와 같은 자바스크립트 라이브러리 사용 가능</dd>
+                                    <dd>JSON을 활용한 비동기 방식 구현</dd>
+                                </dl>
+                                <dl class="list-set" data-tab-content="기타">
+                                    <dt>기타</dt>
+                                    <dd><span data-tooltip="Wordpress">워드프레스</span> 사용 가능</dd>
+                                    <dd>형상관리 툴 <mark>git</mark>, svn 등 사용 가능</dd>
+                                    <dd><mark>크로스브라우징</mark></dd>
+                                    <dd>Adobe Photoshop, Adobe Illustrator, Adobe XD, Adobe Premier 등 디자인 툴</dd>
+                                </dl>
+                                <dl class="list-set" data-tab-content="마인드">
+                                    <dt>마인드</dt>
+                                    <dd>
+                                        단순히 스토리보드에 적혀있는 것만이 아닌 퍼블리셔로서
+                                        <mark>UI/UX적으로</mark> 고려되어야하는 부분이 있다면 이를 제안할 수 있는
+                                        <mark>열정과 책임감</mark>
+                                    </dd>
+                                    <dd>
+                                        현재에 안주하지 않고 더 알고 싶어하며 이를 행동으로 보여주는 <mark>실행력</mark>
+                                    </dd>
+                                </dl>
+                            </div>
                         </div>
                         <!-- <h2>My Experience<i class="shake">🔎</i> <span class="text-sub">#경력</span></h2> -->
                         <!-- <div class="experience">
