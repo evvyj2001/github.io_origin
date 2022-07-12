@@ -137,7 +137,6 @@
     &-sub {
         display: inline-block;
         font-size: 2rem;
-        margin-top: 1rem;
         text-align: left;
         position: relative;
         &:before {
@@ -210,6 +209,11 @@
             margin-left: -0.6rem;
         }
     }
+    &.star {
+        span {
+            color: rgb(255, 255, 0);
+        }
+    }
 }
 .tag-list {
     display: flex;
@@ -246,19 +250,6 @@
     gap: 2rem;
     justify-content: space-between;
 }
-// .skills {
-//     scroll-snap-align: initial;
-//     scroll-snap-stop: unset;
-//     .flex-box {
-//         margin-top: 2rem;
-//     }
-//     .list-set {
-
-//         &.is-on {
-//             display: block;
-//         }
-//     }
-// }
 .list-set {
     background: var(--lightGray);
     padding: 2rem 0;
@@ -288,7 +279,7 @@
     dd {
         font-size: 1.6rem;
         border-bottom: 1px solid var(--white);
-        line-height: 1.4;
+        line-height: 1.6;
         word-break: keep-all;
         mark {
             background: var(--skyBlue);
@@ -323,34 +314,48 @@
         &-desc {
             margin-top: 5rem;
         }
-    }
-    .text-greeting {
-        font-size: 6rem;
-        @include fontType1;
-        line-height: 1.4;
-        > h1 {
-            display: inline;
-            height: 6rem;
-            overflow: hidden;
-            color: darken($mainColor, 10%);
-            line-height: 1;
-            position: relative;
-            span {
-                animation: mainTitle 0.5s ease-in;
-                display: inline-block;
+        &-greeting {
+            font-size: 6rem;
+            @include fontType1;
+            line-height: 1.4;
+            > h1 {
+                display: inline;
+                height: 6rem;
+                overflow: hidden;
+                color: darken($mainColor, 10%);
                 line-height: 1;
-                filter: drop-shadow(0.5rem 0.5rem 0 var(--subPointColor));
-            }
-            @for $i from 1 to 15 {
-                > span:nth-child(#{$i}) {
-                    animation-delay: ($i * 0.06s) - 0.06s;
+                position: relative;
+                span {
+                    animation: mainTitle 0.5s ease-in;
+                    display: inline-block;
+                    line-height: 1;
+                    filter: drop-shadow(0.5rem 0.5rem 0 var(--subPointColor));
+                }
+                @for $i from 1 to 15 {
+                    > span:nth-child(#{$i}) {
+                        animation-delay: ($i * 0.06s) - 0.06s;
+                    }
                 }
             }
         }
     }
 }
+.bg-text {
+    z-index: -1;
+    position: absolute;
+    white-space: nowrap;
+    @include fontType1;
+    color: rgba(0, 0, 0, 0.1);
+    font-size: 12rem;
+}
 .about {
     justify-content: center;
+    position: relative;
+    .bg-text {
+        top: 50%;
+        transform: translateY(-50%) translateX(80rem);
+        left: 0;
+    }
     .flex-box {
         align-items: stretch;
     }
@@ -390,20 +395,14 @@
             dd {
                 margin-bottom: 1rem;
                 > button {
-                    margin-left: 1rem;
-                    // @include textBlind;
+                    margin-left: 0.5rem;
                     border: 1px solid var(--black);
-                    background: var(--gray);
                     border-radius: 5rem;
                     font-size: 1.4rem;
                     height: 2rem;
-                    position: relative;
-                    // &:before {
-                    //     content: '+';
-                    //     position: absolute;
-                    //     top: 0;
-                    //     left: 0;
-                    // }
+                    width: 2rem;
+                    @include relative(top -0.1rem);
+                    font-weight: 700;
                 }
             }
             dt {
@@ -422,7 +421,39 @@
         }
     }
 }
-
+.skills {
+    position: relative;
+    .bg-text {
+        right: calc(-50% + 5rem);
+        transform: rotate(90deg) translateX(100rem);
+        color: var(--white);
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: rgba(0, 0, 0, 0.05);
+        filter: drop-shadow(0.5rem 1rem 0 rgba(0, 0, 0, 0.05));
+    }
+    .tab-menu {
+        margin: 3rem 0 1rem;
+    }
+    .btn-detail {
+        margin: 3rem auto 0;
+        width: fit-content;
+        @include fontType1;
+        padding: 1rem 3rem;
+        background: var(--dark);
+        color: var(--white);
+        font-size: 1.8rem;
+        border-radius: 5rem;
+        > i {
+            margin-left: 0.5rem;
+            display: inline-block;
+        }
+        &:hover {
+            > i {
+                animation: shake 0.3s ease-in;
+            }
+        }
+    }
+}
 .project-wrap {
     margin-top: 3rem;
     overflow-x: auto;
@@ -490,7 +521,7 @@
 }
 
 .tab-menu {
-    margin: 3rem 0 1rem;
+    font-size: 0;
     > button {
         font-size: 1.6rem;
         @include fontType1;
@@ -499,7 +530,7 @@
         border: 2px solid var(--mainColor);
         background: var(--mainColor);
         color: var(--white);
-        margin: 0 0.5rem 1rem 0;
+        margin: 0 1rem 1rem 0;
         &.is-on {
             background: var(--white);
             color: var(--mainColor);
@@ -514,3 +545,36 @@
         }
     }
 }
+
+/* popup custom style */
+#popupModule {
+    p {
+        text-align: left;
+    }
+    .tab-menu {
+        margin-top: 2rem;
+        // justify-content: center;
+        // display: flex;
+        // flex-wrap: wrap;
+        > button {
+            // min-width: 16rem;
+            // flex: 1;
+            // border-radius: 0;
+            // margin: 0;
+            border-width: 1px;
+            color: var(--dark);
+            background: var(--white);
+            border-color: var(--dark);
+            text-transform: capitalize;
+            &.is-on {
+                background: var(--dark);
+                color: var(--white);
+            }
+            & + button {
+                margin-left: -1px;
+            }
+        }
+    }
+}
+
+@import 'media'; // 반응형 css 가장 마지막에 compile되게 import 마지막에 시킴

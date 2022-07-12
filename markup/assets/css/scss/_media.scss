@@ -38,24 +38,34 @@
             padding: 0 2rem;
         }
     }
+    .text-side {
+        right: 1rem;
+        top: 10rem;
+    }
     .section {
-        padding: 4rem 2rem !important;
+        padding: 4rem 2rem;
+        min-height: auto;
     }
     .intro {
-        .flex-box {
-            .text-greeting {
-                font-size: 4rem;
+        .text {
+            &-desc {
+                font-size: 1.8rem;
+                margin-top: 3rem;
+            }
+            &-greeting {
+                font-size: 5rem;
+                line-height: 1.6;
                 > h1 {
                     display: block;
-                    height: 4rem;
+                    height: 5rem;
                 }
                 > br {
                     display: none;
                 }
             }
-            .tag-list {
-                width: 100% !important;
-            }
+        }
+        .tag-list {
+            width: 100% !important;
         }
     }
     .about {
@@ -63,15 +73,43 @@
             .info-wrap {
                 width: 100%;
             }
+            .info-detail {
+                width: 100%;
+            }
         }
-        .img-wrap {
-            display: none;
-        }
+        // .img-wrap {
+        //     display: none;
+        // }
     }
     .skills {
         .flex-box {
             .list-set {
                 width: 100% !important;
+            }
+        }
+    }
+    .tab-menu {
+        > button {
+            &:hover {
+                background: inherit;
+                border-color: var(--mainColor);
+                color: var(--mainColor);
+            }
+        }
+    }
+    #popupIntro {
+        p {
+            br {
+                display: none;
+            }
+        }
+    }
+    #popupModule {
+        .tab-menu {
+            overflow-x: auto;
+            &::-webkit-scrollbar {
+                // display: none;
+                height: 0.5rem;
             }
         }
     }

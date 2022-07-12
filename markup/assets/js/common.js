@@ -4,7 +4,7 @@ function setScreenHeight() {
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 
-// tabMove
+// header nav Move
 function tabMove() {
     const list = document.querySelectorAll('#header nav li, .nav-wrap ul li');
     list.forEach(el => {
@@ -72,18 +72,19 @@ function mobileNav() {
     const navBtn = document.querySelector('.nav-btn');
     const navWrap = document.querySelector('.nav-wrap');
     const screenSize = document.body.clientWidth;
+    const CLASS_ON = 'is-on';
     navBtn.addEventListener('click', () => {
-        if (!navBtn.classList.contains('is-on')) {
-            navBtn.classList.add('is-on');
+        if (!navBtn.classList.contains(CLASS_ON)) {
+            navBtn.classList.add(CLASS_ON);
             navWrap.style.transform = `translateX(0)`;
         } else {
-            navBtn.classList.remove('is-on');
+            navBtn.classList.remove(CLASS_ON);
             navWrap.style.transform = `translateX(100%)`;
         }
     });
 
     if (screenSize > 690) {
-        navBtn.classList.remove('is-on');
+        navBtn.classList.remove(CLASS_ON);
         navWrap.style.transform = `translateX(100%)`;
     }
 }
@@ -91,16 +92,17 @@ function mobileNav() {
 // header mobile nav menu
 function mobileNavMenu() {
     const navList = document.querySelectorAll('.nav-wrap > ul > li');
+    const CLASS_ON = 'is-on';
 
     navList.forEach(el => {
         const item = el.querySelector('a');
 
         item.addEventListener('click', elm => {
             for (let i = 0; i < navList.length; i++) {
-                navList[i].classList.remove('is-on');
+                navList[i].classList.remove(CLASS_ON);
             }
 
-            elm.target.parentNode.classList.add('is-on');
+            elm.target.parentNode.classList.add(CLASS_ON);
         });
     });
 }
@@ -219,14 +221,14 @@ function tooltip() {
     parentElem.forEach(el => {
         el.addEventListener('mouseenter', () => {
             const span = document.createElement('span');
-            el.appendChild(span);
             const content = el.dataset.tooltip;
+            el.appendChild(span);
+            let text;
             if (el.classList.contains('star')) {
-                const text = '★'.repeat(content);
+                text = '★'.repeat(content);
                 span.innerText = text;
-                span.style.color = `rgb(255, 255, 0)`;
             } else {
-                const text = content;
+                text = content;
                 span.innerText = text;
             }
             span.style.display = 'block';
@@ -249,10 +251,7 @@ function popOpen(el) {
     popDimmed.classList.add('popup-dimmed');
     const popupId = document.getElementById(`${el}`);
     const popupShow = document.querySelectorAll('.popup.is-show');
-    setTimeout(() => {
-        popDimmed.classList.add('is-show');
-        popupId.classList.add('is-show');
-    }, 100);
+
     if (popupShow.length > 0) {
         // console.log(`${popupShow.length}개의 팝업이 열려있음`);
         popupShow.forEach(e => {
@@ -261,6 +260,11 @@ function popOpen(el) {
     } else {
         popupId.before(popDimmed);
     }
+
+    setTimeout(() => {
+        popDimmed.classList.add('is-show');
+        popupId.classList.add('is-show');
+    }, 100);
 }
 
 // popup close
@@ -287,7 +291,7 @@ const introLayer = setTimeout(() => {
 // 메인 상단 텍스트
 function quoteChange() {
     const textWrap = document.querySelector('.text-greeting > h1');
-    const quotes = ['성유진', '웹퍼블리셔', '웹개발자💻', '성실한사람'];
+    const quotes = ['성유진', '웹퍼블리셔', '웹개발자💻', '성실한사람']; // 5글자 이하로
     let i = 0;
     let span;
     const timeOut = () => {
@@ -323,12 +327,13 @@ function quoteChange() {
 // cursor
 function cursorEvent() {
     const linkElem = document.querySelectorAll('button, a, input, label, [data-tooltip]');
+    const cursor = document.querySelector('#cursor');
     linkElem.forEach(elm => {
         elm.addEventListener('mouseenter', () => {
-            document.querySelector('#cursor').classList.add('is-hover');
+            cursor.classList.add('is-hover');
         });
         elm.addEventListener('mouseleave', () => {
-            document.querySelector('#cursor').classList.remove('is-hover');
+            cursor.classList.remove('is-hover');
         });
     });
 }
