@@ -570,25 +570,55 @@
         font-size: 1.3rem;
         position: relative;
         font-weight: 700;
-        border-bottom: 1px solid var(--black);
-        padding: 0 0.5rem 0.2rem 0.2rem;
-        > i {
-            display: inline-block;
-            width: 0.6rem;
-            height: 0.6rem;
-            border-width: 0.2rem 0.2rem 0 0;
-            border-style: solid;
-            border-color: var(--black);
-            transform: rotate(135deg);
-            position: relative;
-            top: -0.3rem;
-            left: 0.2rem;
+        &:after {
+            content: '>';
+            @include fontType1;
+            transform: rotate(90deg);
+            position: absolute;
+            top: -0.2rem;
+            right: -1.5rem;
         }
         &.is-show {
-            border-bottom: 0;
-            > i {
-                transform: rotate(-45deg);
-                top: 0;
+            &:after {
+                transform: rotate(-90deg);
+            }
+        }
+    }
+}
+
+.accordion-set {
+    > li {
+        font-size: 1.4rem;
+        > button {
+            height: 4.4rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            width: 100%;
+            text-align: left;
+            @include fontType1;
+            color: var(--gray);
+            padding: 0 2rem;
+            position: relative;
+            &:after {
+                content: '>';
+                position: absolute;
+                right: 2rem;
+                transform: rotate(90deg);
+            }
+            &.is-show {
+                color: var(--black);
+                &:after {
+                    transform: rotate(-90deg);
+                }
+            }
+        }
+        > div {
+            background: rgba(0, 0, 0, 0.05);
+            > p {
+                padding: 2rem;
+                line-height: 1.6;
+            }
+            &.is-show {
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             }
         }
     }
@@ -596,11 +626,11 @@
 
 /* popup custom style */
 #popupModule {
-    p {
-        text-align: left;
-        font-size: 1.8rem;
-        @include fontType1;
-    }
+    // p {
+    //     text-align: left;
+    //     font-size: 1.8rem;
+    //     // @include fontType1;
+    // }
     .tab-menu {
         // margin-top: 2rem;
         > button {
@@ -628,6 +658,11 @@
     }
     .view-detail {
         margin-top: 1.5rem;
+        .cont {
+            pre {
+                margin-top: 1rem;
+            }
+        }
     }
 }
 

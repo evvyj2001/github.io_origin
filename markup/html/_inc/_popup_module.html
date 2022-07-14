@@ -9,6 +9,7 @@
                 <button>accordion</button>
                 <button>dropdown</button>
                 <button>tooltip</button>
+                <button>toast</button>
             </div>
             <div class="tab-container cont">
                 <div data-tab-content="공통요소">
@@ -26,13 +27,14 @@
                             <input type="checkbox" id="chb3" disabled />
                             <label for="chb3">체크박스 ::disabled</label>
                         </span>
-                        <!-- accordion wrap으로 accordion-btn과 accordion-cont 감싸야함 -->
-                        <div class="view-detail" accordion-wrap>
-                            <button accordion-btn>자세히보기 <i></i></button>
+                        <!-- accordion wrap으로 accordion-trg과 accordion-cont 감싸야함 -->
+                        <div class="view-detail" data-accordion="1">
+                            <button accordion-trg>자세히보기</button>
                             <div class="cont" accordion-cont>
                                 <pre data-lang="html" class="language-html">
-< input type="checkbox" id="chb1" >
-< label for="chb1">체크박스< /></pre
+< input type="checkbox" id="chb1" />
+< label for="chb1">체크박스< /label>
+</pre
                                 >
                             </div>
                         </div>
@@ -51,6 +53,16 @@
                             <input type="radio" id="rd3" disabled name="radios" />
                             <label for="rd3">라디오 ::disabled</label>
                         </span>
+                        <div class="view-detail" data-accordion="1">
+                            <button accordion-trg>자세히보기</button>
+                            <div class="cont" accordion-cont>
+                                <pre data-lang="html" class="language-html">
+< input type="radio" id="rd1" name="radios" />
+< label for="rd1">라디오< /label>
+</pre
+                                >
+                            </div>
+                        </div>
                     </div>
                     <div class="elem-set">
                         <h3>Toggle</h3>
@@ -66,12 +78,69 @@
                             <input type="checkbox" class="toggle" id="tg3" disabled />
                             <label for="tg3">토글 ::disabled</label>
                         </span>
+                        <div class="view-detail" data-accordion="1">
+                            <button accordion-trg>자세히보기</button>
+                            <div class="cont" accordion-cont>
+                                <pre data-lang="html" class="language-html">
+< input type="checkbox" class="toggle" id="tg1" />
+< label for="tg1">토글 ::off< /label>
+</pre
+                                >
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- <div data-tab-content="tab">tab</div> -->
-                <div data-tab-content="accordion">accordion</div>
+                <div data-tab-content="accordion">
+                    <ul class="accordion-set">
+                        <li data-accordion>
+                            <button accordion-trg>제목 아코디언입니다.1</button>
+                            <div accordion-cont>
+                                <p>
+                                    아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1 아코디언
+                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1
+                                </p>
+                            </div>
+                        </li>
+                        <li data-accordion>
+                            <button accordion-trg>
+                                제목 아코디언입니다.2 아코디언입니다.2아코디언입니다.2아코디언입니다.2아코디언입니다.2
+                            </button>
+                            <div accordion-cont>
+                                <p>
+                                    아코디언 내용입니다.2아코디언 내용입니다.2아코디언 내용입니다.2아코디언
+                                    내용입니다.2아코디언 내용입니다.2아코디언 내용입니다.2
+                                </p>
+                            </div>
+                        </li>
+                        <li data-accordion>
+                            <button accordion-trg>제목 아코디언입니다.3</button>
+                            <div accordion-cont>
+                                <p>
+                                    아코디언 내용입니다.3아코디언 내용입니다.3아코디언 내용입니다.3아코디언
+                                    내용입니다.3아코디언 내용입니다.3아코디언 내용입니다.3아코디언 내용입니다.3아코디언
+                                    내용입니다.3아코디언 내용입니다.3아코디언 내용입니다.3아코디언 내용입니다.3아코디언
+                                    내용입니다.3아코디언 내용입니다.3
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
                 <div data-tab-content="dropdown">dropdown</div>
                 <div data-tab-content="tooltip">tooltip</div>
+                <div data-tab-content="toast">toast popup</div>
             </div>
         </div>
         <!-- <div class="cont">

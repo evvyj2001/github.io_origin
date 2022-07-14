@@ -144,24 +144,58 @@ function tabMenuFunction() {
 
 // accordion
 function accordion() {
-    const accordionWrap = document.querySelectorAll('[accordion-wrap]');
+    const accordionWrap = document.querySelectorAll('[data-accordion]');
     const CLASS_SHOW = 'is-show';
 
     accordionWrap.forEach(e => {
-        const accordionBtn = e.querySelector('[accordion-btn]');
+        const accordionBtn = e.querySelector('[accordion-trg]');
         const accordionCont = e.querySelector('[accordion-cont]');
-        accordionBtn.addEventListener('click', btn => {
-            accordionBtn.classList.toggle(CLASS_SHOW);
-            accordionCont.classList.toggle(CLASS_SHOW);
-            accordionCont.style.paddingTop = `10px`;
 
-            if (accordionCont.style.maxHeight) {
-                accordionCont.style.maxHeight = null;
-                setTimeout(() => {
-                    accordionCont.style.paddingTop = 0;
-                }, 150);
+        accordionBtn.addEventListener('click', trg => {
+            const btn = trg.target;
+            const parent = btn.parentElement;
+            const stat = parent.dataset.accordion;
+            const cont = btn.nextElementSibling;
+
+            if (stat === '1') {
+                btn.classList.toggle(CLASS_SHOW);
+                cont.classList.toggle(CLASS_SHOW);
+
+                if (accordionCont.style.maxHeight) {
+                    accordionCont.style.maxHeight = null;
+                } else {
+                    accordionCont.style.paddingTop = `2rem 0`;
+                    // setTimeout(() => {
+                    //     accordionCont.style.paddingTop = `2rem 0`;
+                    // }, 50);
+                    accordionCont.style.maxHeight = `${accordionCont.scrollHeight}px`;
+                }
             } else {
-                accordionCont.style.maxHeight = accordionCont.scrollHeight + 'px';
+                const accordions = parent.parentElement.querySelectorAll('[data-accordion]');
+
+                if (!btn.classList.contains(CLASS_SHOW)) {
+                    accordions.forEach(el => {
+                        const otherTrg = el.querySelector('[accordion-trg]');
+                        const otherCont = el.querySelector('[accordion-cont]');
+
+                        otherTrg.classList.remove(CLASS_SHOW);
+                        otherCont.classList.remove(CLASS_SHOW);
+                        otherCont.style.maxHeight = null;
+                        setTimeout(() => {
+                            otherCont.style.padding = 0;
+                            cont.style.paddingTop = `2rem 0`;
+                        }, 50);
+                    });
+
+                    // cont.style.paddingTop = `2rem 0`;
+                    btn.classList.add(CLASS_SHOW);
+                    cont.classList.add(CLASS_SHOW);
+                    cont.style.maxHeight = `${cont.scrollHeight}px`;
+                } else {
+                    btn.classList.remove(CLASS_SHOW);
+                    cont.classList.remove(CLASS_SHOW);
+                    cont.style.maxHeight = null;
+                }
             }
         });
     });
