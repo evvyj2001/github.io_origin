@@ -142,6 +142,31 @@ function tabMenuFunction() {
     });
 }
 
+// accordion
+function accordion() {
+    const accordionWrap = document.querySelectorAll('[accordion-wrap]');
+    const CLASS_SHOW = 'is-show';
+
+    accordionWrap.forEach(e => {
+        const accordionBtn = e.querySelector('[accordion-btn]');
+        const accordionCont = e.querySelector('[accordion-cont]');
+        accordionBtn.addEventListener('click', btn => {
+            accordionBtn.classList.toggle(CLASS_SHOW);
+            accordionCont.classList.toggle(CLASS_SHOW);
+            accordionCont.style.paddingTop = `10px`;
+
+            if (accordionCont.style.maxHeight) {
+                accordionCont.style.maxHeight = null;
+                setTimeout(() => {
+                    accordionCont.style.paddingTop = 0;
+                }, 150);
+            } else {
+                accordionCont.style.maxHeight = accordionCont.scrollHeight + 'px';
+            }
+        });
+    });
+}
+
 // date
 function isNow() {
     const dateElem = document.querySelector('.now .date');
@@ -414,6 +439,7 @@ window.addEventListener('DOMContentLoaded', () => {
     popOpen('popupIntro');
     dragScroll();
     tabMenuFunction();
+    accordion();
 
     // top button
     topBtn.addEventListener('click', () => {

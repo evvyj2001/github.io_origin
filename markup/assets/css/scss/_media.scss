@@ -106,10 +106,8 @@
     }
     #popupModule {
         .tab-menu {
-            overflow-x: auto;
-            &::-webkit-scrollbar {
-                // display: none;
-                height: 0.5rem;
+            > button {
+                font-size: 1.4rem;
             }
         }
     }

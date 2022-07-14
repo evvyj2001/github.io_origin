@@ -1,18 +1,74 @@
 <!-- popup Module -->
 <div class="popup" id="popupModule">
     <div class="popup-body tit-no">
-        <p>여러가지 기능들을 확인해보세요!</p>
+        <!-- <p>여러가지 기능들을 확인해보세요!</p> -->
         <div data-tab-wrap>
             <div class="tab-menu">
-                <button>공통요소</button>
-                <button>tab</button>
+                <button class="is-on">공통요소</button>
+                <!-- <button>tab</button> -->
                 <button>accordion</button>
                 <button>dropdown</button>
                 <button>tooltip</button>
             </div>
             <div class="tab-container cont">
-                <div data-tab-content="공통요소">공통요소</div>
-                <div data-tab-content="tab">tab</div>
+                <div data-tab-content="공통요소">
+                    <div class="elem-set">
+                        <h3>Checkbox</h3>
+                        <span class="inp-box">
+                            <input type="checkbox" id="chb1" />
+                            <label for="chb1">체크박스</label>
+                        </span>
+                        <span class="inp-box">
+                            <input type="checkbox" id="chb2" checked />
+                            <label for="chb2">체크박스 ::checked</label>
+                        </span>
+                        <span class="inp-box">
+                            <input type="checkbox" id="chb3" disabled />
+                            <label for="chb3">체크박스 ::disabled</label>
+                        </span>
+                        <!-- accordion wrap으로 accordion-btn과 accordion-cont 감싸야함 -->
+                        <div class="view-detail" accordion-wrap>
+                            <button accordion-btn>자세히보기 <i></i></button>
+                            <div class="cont" accordion-cont>
+                                <pre data-lang="html" class="language-html">
+< input type="checkbox" id="chb1" >
+< label for="chb1">체크박스< /></pre
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="elem-set">
+                        <h3>라디오 버튼</h3>
+                        <span class="inp-box">
+                            <input type="radio" id="rd1" name="radios" />
+                            <label for="rd1">라디오</label>
+                        </span>
+                        <span class="inp-box">
+                            <input type="radio" id="rd2" checked name="radios" />
+                            <label for="rd2">라디오 ::checked</label>
+                        </span>
+                        <span class="inp-box">
+                            <input type="radio" id="rd3" disabled name="radios" />
+                            <label for="rd3">라디오 ::disabled</label>
+                        </span>
+                    </div>
+                    <div class="elem-set">
+                        <h3>Toggle</h3>
+                        <span class="inp-box">
+                            <input type="checkbox" class="toggle" id="tg1" />
+                            <label for="tg1">토글 ::off</label>
+                        </span>
+                        <span class="inp-box">
+                            <input type="checkbox" class="toggle" id="tg2" checked />
+                            <label for="tg2">토글 ::on</label>
+                        </span>
+                        <span class="inp-box">
+                            <input type="checkbox" class="toggle" id="tg3" disabled />
+                            <label for="tg3">토글 ::disabled</label>
+                        </span>
+                    </div>
+                </div>
+                <!-- <div data-tab-content="tab">tab</div> -->
                 <div data-tab-content="accordion">accordion</div>
                 <div data-tab-content="dropdown">dropdown</div>
                 <div data-tab-content="tooltip">tooltip</div>
