@@ -108,41 +108,6 @@ function mobileNavMenu() {
 }
 
 // tab menu (정상작동)
-// function tabMenuFunction() {
-//     const tabWrap = document.querySelectorAll('[data-tab-wrap]');
-//     const CLASS_ON = 'is-on';
-
-//     tabWrap.forEach(e => {
-//         const tabMenu = e.querySelector('[tab-menu-wrap]');
-//         const tabBtn = tabMenu.querySelectorAll('[data-tab-menu]');
-//         const tabContainer = e.querySelector('[tab-container]');
-//         const tabContent = tabContainer.querySelectorAll('[data-tab-content]');
-
-//         tabBtn.forEach(el => {
-//             el.addEventListener('click', () => {
-//                 const btnText = el.dataset.tabMenu;
-//                 const tabContentSelect = tabContainer.querySelector(`[data-tab-content=${btnText}]`);
-
-//                 // tab button class on/off
-//                 for (let i = 0; i < tabBtn.length; i++) {
-//                     tabBtn[i].classList.remove(CLASS_ON);
-//                 }
-//                 el.classList.add(CLASS_ON);
-
-//                 tabContent.forEach(elm => {
-//                     if (btnText === 'all') {
-//                         elm.style.display = 'block';
-//                     } else {
-//                         elm.style.display = 'none';
-//                         tabContentSelect.style.display = 'block';
-//                     }
-//                 });
-//             });
-//         });
-//     });
-// }
-
-// 각 wrap 안의 tab만 구동되게 작업 중
 function tabMenuFunction() {
     const tabWrap = document.querySelectorAll('[data-tab-wrap]');
     const CLASS_ON = 'is-on';
@@ -150,17 +115,52 @@ function tabMenuFunction() {
     tabWrap.forEach(e => {
         const tabMenu = e.querySelector('[tab-menu-wrap]');
         const tabBtn = tabMenu.querySelectorAll('[data-tab-menu]');
+        const tabContainer = e.querySelector('[tab-container]');
+        const tabContent = tabContainer.querySelectorAll('[data-tab-content]');
 
         tabBtn.forEach(el => {
-            const tabContainer = el.parentNode.nextElementSibling;
-            const tabContents = tabContainer.childNodes;
             el.addEventListener('click', () => {
                 const btnText = el.dataset.tabMenu;
                 const tabContentSelect = tabContainer.querySelector(`[data-tab-content=${btnText}]`);
+
+                // tab button class on/off
+                for (let i = 0; i < tabBtn.length; i++) {
+                    tabBtn[i].classList.remove(CLASS_ON);
+                }
+                el.classList.add(CLASS_ON);
+
+                tabContent.forEach(elm => {
+                    if (btnText === 'all') {
+                        elm.style.display = 'block';
+                    } else {
+                        elm.style.display = 'none';
+                        tabContentSelect.style.display = 'block';
+                    }
+                });
             });
         });
     });
 }
+
+// 각 wrap 안의 tab만 구동되게 작업 중
+// function tabMenuFunction() {
+//     const tabWrap = document.querySelectorAll('[data-tab-wrap]');
+//     const CLASS_ON = 'is-on';
+
+//     tabWrap.forEach(e => {
+//         const tabMenu = e.querySelector('[tab-menu-wrap]');
+//         const tabBtn = tabMenu.querySelectorAll('[data-tab-menu]');
+
+//         tabBtn.forEach(el => {
+//             const tabContainer = el.parentNode.nextElementSibling;
+//             const tabContents = tabContainer.childNodes;
+//             el.addEventListener('click', () => {
+//                 const btnText = el.dataset.tabMenu;
+//                 const tabContentSelect = tabContainer.querySelector(`[data-tab-content=${btnText}]`);
+//             });
+//         });
+//     });
+// }
 
 // accordion
 function accordion() {
