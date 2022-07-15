@@ -499,7 +499,7 @@ button {
         margin-bottom: 2rem;
         .cont {
             max-height: 30rem;
-            overflow-y: auto;
+            // overflow-y: auto;
             overflow-x: hidden;
         }
         .txt {
@@ -617,5 +617,15 @@ button {
         max-height: 0;
         overflow: hidden;
         transition: opacity 0.2s ease-out, max-height 0.2s ease-out;
+    }
+}
+[data-tab-wrap] {
+    [tab-menu-wrap] {
+        [data-tab-menu] {
+        }
+    }
+    [tab-container] {
+        [data-tab-content] {
+        }
     }
 }

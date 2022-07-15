@@ -515,6 +515,8 @@
 
 .pf-img {
     width: 100%;
+    max-height: 55rem;
+    overflow-y: auto;
     > img {
         width: 100%;
     }
@@ -522,6 +524,9 @@
 
 .tab-menu {
     font-size: 0;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
     > button {
         font-size: 1.6rem;
         @include fontType1;
@@ -542,6 +547,19 @@
         }
         &:last-of-type {
             margin-right: 0;
+        }
+    }
+    &::-webkit-scrollbar {
+        height: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: var(--black);
+        opacity: 0.3;
+    }
+    &-square {
+        [tab-menu-wrap] {
+        }
+        [tab-container] {
         }
     }
 }
@@ -590,14 +608,16 @@
     > li {
         font-size: 1.4rem;
         > button {
-            height: 4.4rem;
+            min-height: 4.4rem;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             width: 100%;
             text-align: left;
             @include fontType1;
             color: var(--gray);
-            padding: 0 2rem;
+            padding: 1rem 4rem 1rem 2rem;
             position: relative;
+            word-break: break-all;
+            @include flex(center, null);
             &:after {
                 content: '>';
                 position: absolute;
@@ -664,6 +684,9 @@
             }
         }
     }
+    // .accordion-set {
+    //     margin-bottom: 2rem;
+    // }
 }
 
 @import 'media'; // 반응형 css 가장 마지막에 compile되게 import 마지막에 시킴

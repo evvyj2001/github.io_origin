@@ -3,15 +3,15 @@
     <div class="popup-body tit-no">
         <!-- <p>여러가지 기능들을 확인해보세요!</p> -->
         <div data-tab-wrap>
-            <div class="tab-menu">
-                <button class="is-on">공통요소</button>
-                <!-- <button>tab</button> -->
-                <button>accordion</button>
-                <button>dropdown</button>
-                <button>tooltip</button>
-                <button>toast</button>
+            <div class="tab-menu" tab-menu-wrap>
+                <button class="is-on" data-tab-menu="공통요소">공통요소</button>
+                <button data-tab-menu="tab">tab</button>
+                <button data-tab-menu="accordion">accordion</button>
+                <button data-tab-menu="dropdown">dropdown</button>
+                <button data-tab-menu="tooltip">tooltip</button>
+                <button data-tab-menu="toast">toast popup</button>
             </div>
-            <div class="tab-container cont">
+            <div class="tab-container cont" tab-container>
                 <div data-tab-content="공통요소">
                     <div class="elem-set">
                         <h3>Checkbox</h3>
@@ -90,53 +90,113 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div data-tab-content="tab">tab</div> -->
+                <div data-tab-content="tab">
+                    <div class="elem-set">
+                        <h3>구현 화면</h3>
+                        <div data-tab-wrap class="tab-menu-square">
+                            <div class="" tab-menu-wrap>
+                                <button data-tab-menu="all" class="is-on">ALL</button>
+                                <button data-tab-menu="menu1">메뉴1</button>
+                                <button data-tab-menu="menu2">메뉴2</button>
+                                <button data-tab-menu="menu3">메뉴3</button>
+                                <button data-tab-menu="menu4">메뉴4</button>
+                            </div>
+                            <div class="" tab-container>
+                                <div data-tab-content="menu1" class="is-on">menu1 내용</div>
+                                <div data-tab-content="menu2">menu2 내용</div>
+                                <div data-tab-content="menu3">menu3 내용</div>
+                                <div data-tab-content="menu4">menu4 내용</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div data-tab-content="accordion">
-                    <ul class="accordion-set">
-                        <li data-accordion>
-                            <button accordion-trg>제목 아코디언입니다.1</button>
-                            <div accordion-cont>
-                                <p>
-                                    아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
-                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
-                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1 아코디언
-                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
-                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
-                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
-                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
-                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
-                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
-                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
-                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
-                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
-                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
-                                    내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1
-                                </p>
-                            </div>
-                        </li>
-                        <li data-accordion>
-                            <button accordion-trg>
-                                제목 아코디언입니다.2 아코디언입니다.2아코디언입니다.2아코디언입니다.2아코디언입니다.2
-                            </button>
-                            <div accordion-cont>
-                                <p>
-                                    아코디언 내용입니다.2아코디언 내용입니다.2아코디언 내용입니다.2아코디언
-                                    내용입니다.2아코디언 내용입니다.2아코디언 내용입니다.2
-                                </p>
-                            </div>
-                        </li>
-                        <li data-accordion>
-                            <button accordion-trg>제목 아코디언입니다.3</button>
-                            <div accordion-cont>
-                                <p>
-                                    아코디언 내용입니다.3아코디언 내용입니다.3아코디언 내용입니다.3아코디언
-                                    내용입니다.3아코디언 내용입니다.3아코디언 내용입니다.3아코디언 내용입니다.3아코디언
-                                    내용입니다.3아코디언 내용입니다.3아코디언 내용입니다.3아코디언 내용입니다.3아코디언
-                                    내용입니다.3아코디언 내용입니다.3
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
+                    <div class="elem-set">
+                        <h3>구현 화면</h3>
+                        <ul class="accordion-set">
+                            <li data-accordion>
+                                <button accordion-trg>제목 아코디언입니다.1</button>
+                                <div accordion-cont>
+                                    <p>
+                                        아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                        내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                        내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                        내용입니다.1아코디언 내용입니다.1 아코디언 내용입니다.1아코디언
+                                        내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                        내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                        내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                        내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                        내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                        내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                        내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                        내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                        내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                        내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                        내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                        내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                        내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언
+                                        내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1아코디언 내용입니다.1
+                                    </p>
+                                </div>
+                            </li>
+                            <li data-accordion>
+                                <button accordion-trg>
+                                    제목 아코디언입니다.2
+                                    아코디언입니다.2아코디언입니다.2아코디언입니다.2아코디언입니다.2
+                                </button>
+                                <div accordion-cont>
+                                    <p>
+                                        아코디언 내용입니다.2아코디언 내용입니다.2아코디언 내용입니다.2아코디언
+                                        내용입니다.2아코디언 내용입니다.2아코디언 내용입니다.2
+                                    </p>
+                                </div>
+                            </li>
+                            <li data-accordion>
+                                <button accordion-trg class="is-show">제목 아코디언입니다.3</button>
+                                <div accordion-cont class="is-show" style="max-height: fit-content">
+                                    <p>
+                                        아코디언 내용입니다.3아코디언 내용입니다.3아코디언 내용입니다.3아코디언
+                                        내용입니다.3아코디언 내용입니다.3아코디언 내용입니다.3아코디언
+                                        내용입니다.3아코디언 내용입니다.3아코디언 내용입니다.3아코디언
+                                        내용입니다.3아코디언 내용입니다.3아코디언 내용입니다.3아코디언 내용입니다.3
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="elem-set">
+                        <h3>상세 코드</h3>
+                        <pre data-lang="html" class="language-html">
+< !-- 1개만 펼쳐지면 되는 경우 (다중X) data-accordion="1" 추가 -- >
+< dl data-accordion="1">
+    < dt accordion-trg>제목1< /dt> < !-- 클릭 요소 는 accordion-trg 속성 추가 -- >
+    < dd accordion-cont> < !-- 펼쳐지는 요소는 accordion-cont 속성 추가 -- >
+        < p>
+            아코디언 내용입니다.
+        < /p>
+    < /dd>
+< /dl>
+< !-- 2개 이상 아코디언 -- >
+< ul>
+    < li data-accordion>< !-- 각 아코디언을 data-accordion으로 감쌈 -- >
+        < button accordion-trg>제목1< /button> < !-- 클릭 요소 는 accordion-trg 속성 추가 -- >
+        < div accordion-cont> < !-- 펼쳐지는 요소는 accordion-cont 속성 추가 -- >
+            < p>
+                아코디언 내용입니다.
+            < /p>
+        < /div>
+    < /li>
+    < li data-accordion>
+        < button accordion-trg>제목2< /button>
+        < div accordion-cont>
+            < p>
+                아코디언 내용입니다.
+            < /p>
+        < /div>
+    < /li>    
+< /ul></pre
+                        >
+                    </div>
                 </div>
                 <div data-tab-content="dropdown">dropdown</div>
                 <div data-tab-content="tooltip">tooltip</div>
