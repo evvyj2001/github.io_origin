@@ -424,7 +424,8 @@
 .skills {
     position: relative;
     .bg-text {
-        right: calc(-50% + 5rem);
+        // right: calc(-50% + 5rem);
+        left: 50%;
         transform: rotate(90deg) translateX(100rem);
         color: var(--white);
         -webkit-text-stroke-width: 2px;
@@ -558,8 +559,43 @@
     }
     &-square {
         [tab-menu-wrap] {
+            width: 100%;
+            display: flex;
+            border: 1px solid var(--gray);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            > [data-tab-menu] {
+                flex: 1;
+                font-size: 1.4rem;
+                font-weight: 700;
+                font-family: inherit;
+                color: var(--gray);
+                padding: 1.2rem 0;
+                &:last-of-type {
+                    padding-right: 0.2rem;
+                }
+                &.is-on {
+                    background: var(--gray);
+                    color: var(--white);
+                }
+                & + [data-tab-menu] {
+                    border-left: 1px solid var(--gray);
+                }
+            }
         }
         [tab-container] {
+            margin-top: 1rem;
+            [data-tab-content] {
+                font-size: 1.4rem;
+                line-height: 1.8;
+                &.is-on {
+                    & + .is-on {
+                        border-top: 1px dashed rgba(0, 0, 0, 0.1);
+                        margin-top: 1rem;
+                        padding-top: 1rem;
+                    }
+                }
+            }
         }
     }
 }
@@ -612,7 +648,9 @@
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             width: 100%;
             text-align: left;
-            @include fontType1;
+            // @include fontType1;
+            font-weight: 700;
+            font-family: inherit;
             color: var(--gray);
             padding: 1rem 4rem 1rem 2rem;
             position: relative;
@@ -620,6 +658,7 @@
             @include flex(center, null);
             &:after {
                 content: '>';
+                @include fontType1;
                 position: absolute;
                 right: 2rem;
                 transform: rotate(90deg);
@@ -669,12 +708,12 @@
         max-height: 45rem;
     }
     [data-tab-wrap] {
-        [data-tab-content] {
-            display: none;
-            &:first-child {
-                display: block;
-            }
-        }
+        // [data-tab-content] {
+        //     display: none;
+        //     &:first-child {
+        //         display: block;
+        //     }
+        // }
     }
     .view-detail {
         margin-top: 1.5rem;

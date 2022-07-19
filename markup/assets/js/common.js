@@ -108,41 +108,6 @@ function mobileNavMenu() {
 }
 
 // tab menu (정상작동)
-function tabMenuFunction() {
-    const tabWrap = document.querySelectorAll('[data-tab-wrap]');
-    const CLASS_ON = 'is-on';
-
-    tabWrap.forEach(e => {
-        const tabMenu = e.querySelector('[tab-menu-wrap]');
-        const tabBtn = tabMenu.querySelectorAll('[data-tab-menu]');
-        const tabContainer = e.querySelector('[tab-container]');
-        const tabContent = tabContainer.querySelectorAll('[data-tab-content]');
-
-        tabBtn.forEach(el => {
-            el.addEventListener('click', () => {
-                const btnText = el.dataset.tabMenu;
-                const tabContentSelect = tabContainer.querySelector(`[data-tab-content=${btnText}]`);
-
-                // tab button class on/off
-                for (let i = 0; i < tabBtn.length; i++) {
-                    tabBtn[i].classList.remove(CLASS_ON);
-                }
-                el.classList.add(CLASS_ON);
-
-                tabContent.forEach(elm => {
-                    if (btnText === 'all') {
-                        elm.style.display = 'block';
-                    } else {
-                        elm.style.display = 'none';
-                        tabContentSelect.style.display = 'block';
-                    }
-                });
-            });
-        });
-    });
-}
-
-// 각 wrap 안의 tab만 구동되게 작업 중
 // function tabMenuFunction() {
 //     const tabWrap = document.querySelectorAll('[data-tab-wrap]');
 //     const CLASS_ON = 'is-on';
@@ -150,17 +115,84 @@ function tabMenuFunction() {
 //     tabWrap.forEach(e => {
 //         const tabMenu = e.querySelector('[tab-menu-wrap]');
 //         const tabBtn = tabMenu.querySelectorAll('[data-tab-menu]');
+//         const tabContainer = e.querySelector('[tab-container]');
+//         const tabContent = tabContainer.querySelectorAll('[data-tab-content]');
 
 //         tabBtn.forEach(el => {
-//             const tabContainer = el.parentNode.nextElementSibling;
-//             const tabContents = tabContainer.childNodes;
 //             el.addEventListener('click', () => {
 //                 const btnText = el.dataset.tabMenu;
 //                 const tabContentSelect = tabContainer.querySelector(`[data-tab-content=${btnText}]`);
+
+//                 // tab button class on/off
+//                 for (let i = 0; i < tabBtn.length; i++) {
+//                     tabBtn[i].classList.remove(CLASS_ON);
+//                 }
+//                 el.classList.add(CLASS_ON);
+
+//                 tabContent.forEach(elm => {
+//                     if (btnText === 'all') {
+//                         elm.style.display = 'block';
+//                     } else {
+//                         elm.style.display = 'none';
+//                         tabContentSelect.style.display = 'block';
+//                     }
+//                 });
 //             });
 //         });
 //     });
 // }
+
+// 각 wrap 안의 tab만 구동되게 작업 중
+function tabMenuFunction() {
+    const tabWrap = document.querySelectorAll('[data-tab-wrap]');
+    const CLASS_ON = 'is-on';
+
+    for (let a = 0; a < tabWrap.length; a++) {
+        const tabMenu = tabWrap[a].querySelector('[tab-menu-wrap]');
+        const tabBtn = tabMenu.querySelectorAll('[data-tab-menu]');
+
+        tabBtn.forEach(e => {
+            const btnText = e.dataset.tabMenu;
+            const tabContainer = e.parentElement.nextElementSibling;
+            const tabContents = tabContainer.children;
+
+            // 초기 진입 시 all이 있을 경우 전부 노출, 아닐 경우 첫번째만 노출
+            if (btnText === 'all') {
+                for (let b = 0; b < tabContents.length; b++) {
+                    tabContents[b].classList.add(CLASS_ON);
+                }
+            } else {
+                tabContainer.firstElementChild.classList.add(CLASS_ON);
+            }
+
+            // tabBtn 클릭 이벤트
+            e.addEventListener('click', () => {
+                const tabContentSelect = tabContainer.querySelector(`[data-tab-content=${btnText}]`);
+
+                for (let c = 0; c < tabContents.length; c++) {
+                    tabContents[c].classList.remove(CLASS_ON);
+                }
+
+                for (let d = 0; d < tabBtn.length; d++) {
+                    tabBtn[d].classList.remove(CLASS_ON);
+                }
+
+                if (btnText === 'all') {
+                    for (let f = 0; f < tabContents.length; f++) {
+                        tabContents[f].classList.add(CLASS_ON);
+                    }
+                    for (let g = 0; g < tabBtn.length; g++) {
+                        tabBtn[g].classList.remove(CLASS_ON);
+                    }
+                } else {
+                    tabContentSelect.classList.add(CLASS_ON);
+                }
+
+                e.classList.add(CLASS_ON);
+            });
+        });
+    }
+}
 
 // accordion
 function accordion() {

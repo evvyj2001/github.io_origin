@@ -620,12 +620,16 @@ button {
     }
 }
 [data-tab-wrap] {
-    [tab-menu-wrap] {
-        [data-tab-menu] {
-        }
-    }
+    // [tab-menu-wrap] {
+    //     [data-tab-menu] {
+    //     }
+    // }
     [tab-container] {
         [data-tab-content] {
+            display: none;
+            &.is-on {
+                display: block;
+            }
         }
     }
 }
