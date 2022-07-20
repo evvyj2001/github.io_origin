@@ -41,6 +41,8 @@ function findScroll() {
     const section = document.querySelectorAll('.section');
     const sections = [];
 
+    const CLASS_IS = '__on';
+
     Array.prototype.forEach.call(section, e => {
         sections[e.id] = e.offsetTop;
     });
@@ -61,8 +63,8 @@ function findScroll() {
             lineMove.style.opacity = 1;
             lineMove.style.transform = `translateX(calc(${position}px + ${itemWidth}px - ${lineHalf}px))`;
 
-            document.querySelector('.is-on').classList.remove('is-on');
-            item.parentNode.classList.add('is-on');
+            document.querySelector(`.${CLASS_IS}`).classList.remove(CLASS_IS);
+            item.parentNode.classList.add(CLASS_IS);
         }
     }
 }
@@ -72,19 +74,20 @@ function mobileNav() {
     const navBtn = document.querySelector('.nav-btn');
     const navWrap = document.querySelector('.nav-wrap');
     const screenSize = document.body.clientWidth;
-    const CLASS_ON = 'is-on';
+    const CLASS_IS = '__on';
+
     navBtn.addEventListener('click', () => {
-        if (!navBtn.classList.contains(CLASS_ON)) {
-            navBtn.classList.add(CLASS_ON);
+        if (!navBtn.classList.contains(CLASS_IS)) {
+            navBtn.classList.add(CLASS_IS);
             navWrap.style.transform = `translateX(0)`;
         } else {
-            navBtn.classList.remove(CLASS_ON);
+            navBtn.classList.remove(CLASS_IS);
             navWrap.style.transform = `translateX(100%)`;
         }
     });
 
     if (screenSize > 690) {
-        navBtn.classList.remove(CLASS_ON);
+        navBtn.classList.remove(CLASS_IS);
         navWrap.style.transform = `translateX(100%)`;
     }
 }
@@ -92,17 +95,17 @@ function mobileNav() {
 // header mobile nav menu
 function mobileNavMenu() {
     const navList = document.querySelectorAll('.nav-wrap > ul > li');
-    const CLASS_ON = 'is-on';
+    const CLASS_IS = '__on';
 
     navList.forEach(el => {
         const item = el.querySelector('a');
 
         item.addEventListener('click', elm => {
             for (let i = 0; i < navList.length; i++) {
-                navList[i].classList.remove(CLASS_ON);
+                navList[i].classList.remove(CLASS_IS);
             }
 
-            elm.target.parentNode.classList.add(CLASS_ON);
+            elm.target.parentNode.classList.add(CLASS_IS);
         });
     });
 }
@@ -110,7 +113,7 @@ function mobileNavMenu() {
 // tab menu (정상작동)
 // function tabMenuFunction() {
 //     const tabWrap = document.querySelectorAll('[data-tab-wrap]');
-//     const CLASS_ON = 'is-on';
+//     const CLASS_IS = '__on';
 
 //     tabWrap.forEach(e => {
 //         const tabMenu = e.querySelector('[tab-menu-wrap]');
@@ -125,9 +128,9 @@ function mobileNavMenu() {
 
 //                 // tab button class on/off
 //                 for (let i = 0; i < tabBtn.length; i++) {
-//                     tabBtn[i].classList.remove(CLASS_ON);
+//                     tabBtn[i].classList.remove(CLASS_IS);
 //                 }
-//                 el.classList.add(CLASS_ON);
+//                 el.classList.add(CLASS_IS);
 
 //                 tabContent.forEach(elm => {
 //                     if (btnText === 'all') {
@@ -145,7 +148,7 @@ function mobileNavMenu() {
 // 각 wrap 안의 tab만 구동되게 작업 중
 function tabMenuFunction() {
     const tabWrap = document.querySelectorAll('[data-tab-wrap]');
-    const CLASS_ON = 'is-on';
+    const CLASS_IS = '__on';
 
     for (let a = 0; a < tabWrap.length; a++) {
         const tabMenu = tabWrap[a].querySelector('[tab-menu-wrap]');
@@ -159,10 +162,10 @@ function tabMenuFunction() {
             // 초기 진입 시 all이 있을 경우 전부 노출, 아닐 경우 첫번째만 노출
             if (btnText === 'all') {
                 for (let b = 0; b < tabContents.length; b++) {
-                    tabContents[b].classList.add(CLASS_ON);
+                    tabContents[b].classList.add(CLASS_IS);
                 }
             } else {
-                tabContainer.firstElementChild.classList.add(CLASS_ON);
+                tabContainer.firstElementChild.classList.add(CLASS_IS);
             }
 
             // tabBtn 클릭 이벤트
@@ -170,25 +173,26 @@ function tabMenuFunction() {
                 const tabContentSelect = tabContainer.querySelector(`[data-tab-content=${btnText}]`);
 
                 for (let c = 0; c < tabContents.length; c++) {
-                    tabContents[c].classList.remove(CLASS_ON);
+                    tabContents[c].classList.remove(CLASS_IS);
                 }
 
                 for (let d = 0; d < tabBtn.length; d++) {
-                    tabBtn[d].classList.remove(CLASS_ON);
+                    tabBtn[d].classList.remove(CLASS_IS);
                 }
 
                 if (btnText === 'all') {
                     for (let f = 0; f < tabContents.length; f++) {
-                        tabContents[f].classList.add(CLASS_ON);
+                        tabContents[f].classList.add(CLASS_IS);
                     }
                     for (let g = 0; g < tabBtn.length; g++) {
-                        tabBtn[g].classList.remove(CLASS_ON);
+                        tabBtn[g].classList.remove(CLASS_IS);
                     }
                 } else {
-                    tabContentSelect.classList.add(CLASS_ON);
+                    tabContentSelect.classList.add(CLASS_IS);
+                    tabContentSelect.parentElement.scrollTop = 0;
                 }
 
-                e.classList.add(CLASS_ON);
+                e.classList.add(CLASS_IS);
             });
         });
     }
@@ -197,7 +201,7 @@ function tabMenuFunction() {
 // accordion
 function accordion() {
     const accordionWrap = document.querySelectorAll('[data-accordion]');
-    const CLASS_SHOW = 'is-show';
+    const CLASS_IS = '__show';
 
     accordionWrap.forEach(e => {
         const accordionBtn = e.querySelector('[accordion-trg]');
@@ -210,8 +214,8 @@ function accordion() {
             const cont = btn.nextElementSibling;
 
             if (stat === '1') {
-                btn.classList.toggle(CLASS_SHOW);
-                cont.classList.toggle(CLASS_SHOW);
+                btn.classList.toggle(CLASS_IS);
+                cont.classList.toggle(CLASS_IS);
 
                 if (accordionCont.style.maxHeight) {
                     accordionCont.style.maxHeight = null;
@@ -225,13 +229,13 @@ function accordion() {
             } else {
                 const accordions = parent.parentElement.querySelectorAll('[data-accordion]');
 
-                if (!btn.classList.contains(CLASS_SHOW)) {
+                if (!btn.classList.contains(CLASS_IS)) {
                     accordions.forEach(el => {
                         const otherTrg = el.querySelector('[accordion-trg]');
                         const otherCont = el.querySelector('[accordion-cont]');
 
-                        otherTrg.classList.remove(CLASS_SHOW);
-                        otherCont.classList.remove(CLASS_SHOW);
+                        otherTrg.classList.remove(CLASS_IS);
+                        otherCont.classList.remove(CLASS_IS);
                         otherCont.style.maxHeight = null;
                         setTimeout(() => {
                             otherCont.style.padding = 0;
@@ -240,12 +244,12 @@ function accordion() {
                     });
 
                     // cont.style.paddingTop = `2rem 0`;
-                    btn.classList.add(CLASS_SHOW);
-                    cont.classList.add(CLASS_SHOW);
+                    btn.classList.add(CLASS_IS);
+                    cont.classList.add(CLASS_IS);
                     cont.style.maxHeight = `${cont.scrollHeight}px`;
                 } else {
-                    btn.classList.remove(CLASS_SHOW);
-                    cont.classList.remove(CLASS_SHOW);
+                    btn.classList.remove(CLASS_IS);
+                    cont.classList.remove(CLASS_IS);
                     cont.style.maxHeight = null;
                 }
             }
@@ -301,26 +305,30 @@ function scrollParalle() {
     container.addEventListener('scroll', () => {
         document.querySelectorAll('[paralle]').forEach(el => {
             let position;
+            let y;
+
             if (el.dataset.top) {
                 position = el.dataset.top;
-                const y = ((container.scrollTop - el.scrollTop) * position) / 50;
+                y = ((container.scrollTop - el.scrollTop) * position) / 50;
                 el.style.top = `${y}px`;
             }
             if (el.dataset.left) {
                 position = el.dataset.left;
-                const y = ((container.scrollTop - el.scrollTop) * position) / 50;
+                y = ((container.scrollTop - el.scrollTop) * position) / 50;
                 el.style.left = `${y}px`;
             }
         });
         document.querySelectorAll('.shake').forEach(elm => {
+            const CLASS_IS = '__active';
             const offset = elm.offsetTop;
             // console.log(`offset: ${offset}, scroll: ${container.scrollTop}`);
+            // console.dir(elm);
             if (offset - 200 >= container.scrollTop) {
                 setTimeout(() => {
-                    elm.classList.add('is-active');
+                    elm.classList.add(CLASS_IS);
                 }, 300);
             } else {
-                elm.classList.remove('is-active');
+                elm.classList.remove(CLASS_IS);
             }
         });
     });
@@ -361,20 +369,20 @@ function popOpen(el) {
     const popDimmed = document.createElement('div');
     popDimmed.classList.add('popup-dimmed');
     const popupId = document.getElementById(`${el}`);
-    const popupShow = document.querySelectorAll('.popup.is-show');
+    const popupShow = document.querySelectorAll('.popup.__show');
 
     if (popupShow.length > 0) {
         // console.log(`${popupShow.length}개의 팝업이 열려있음`);
         popupShow.forEach(e => {
-            e.classList.remove('is-show');
+            e.classList.remove('__show');
         });
     } else {
         popupId.before(popDimmed);
     }
 
     setTimeout(() => {
-        popDimmed.classList.add('is-show');
-        popupId.classList.add('is-show');
+        popDimmed.classList.add('__show');
+        popupId.classList.add('__show');
     }, 100);
 }
 
@@ -383,8 +391,8 @@ function popClose(el) {
     const popup = el.target.closest('.popup');
     const popDimmed = document.querySelector('.popup-dimmed');
 
-    popDimmed.classList.remove('is-show');
-    popup.classList.remove('is-show');
+    popDimmed.classList.remove('__show');
+    popup.classList.remove('__show');
     setTimeout(() => {
         popDimmed.remove();
     }, 500);
@@ -402,7 +410,7 @@ const introLayer = setTimeout(() => {
 // 메인 상단 텍스트
 function quoteChange() {
     const textWrap = document.querySelector('.text-greeting > h1');
-    const quotes = ['성유진', '웹퍼블리셔', '웹개발자💻', '성실한사람']; // 5글자 이하로
+    const quotes = ['성유진', '웹퍼블리셔', '💻웹개발자', '성실한사람']; // 5글자 이하로
     let i = 0;
     let span;
     const timeOut = () => {
@@ -495,6 +503,56 @@ function dragScroll() {
     });
 }
 
+// selectbox === dropdown
+function dropdown() {
+    const dropdownElem = document.querySelectorAll('[data-selectbox]');
+    const CLASS_IS = '__open';
+    const bodyEl = document.querySelector('body');
+    dropdownElem.forEach(e => {
+        const trigger = e.querySelector('[selectbox-trg]');
+        const list = e.querySelector('[selectbox-list]');
+
+        bodyEl.addEventListener('click', el => {
+            if (el.target === el.currentTarget.querySelector('[selectbox-trg]')) {
+                // body 클릭 시 클릭 영역이 selectbox-trg 영역이면
+                // if (el.target === el.currentTarget.querySelector('[selectbox-list]')) {
+
+                // }
+                if (!e.classList.contains(CLASS_IS)) {
+                    // data-dropdown에 __open이 붙어있지 않다면
+                    trigger.parentElement.classList.add(CLASS_IS);
+                    list.style.maxHeight = `${list.scrollHeight}px`;
+                    list.style.borderWidth = `0 0.5px 0.5px`;
+                } else {
+                    // __open 붙어있으면
+                    trigger.parentElement.classList.remove(CLASS_IS);
+                    list.style.maxHeight = 0;
+                    setTimeout(() => {
+                        list.style.borderWidth = 0;
+                    }, 150);
+                }
+            } else {
+                // body 클릭 영역이 selectbox-trg 외 영역이라면
+                // if (e.classList.contains(CLASS_IS)) {
+                //     // __open이 붙어있는 경우에만
+                //     trigger.parentElement.classList.remove(CLASS_IS);
+                //     list.style.maxHeight = 0;
+                //     setTimeout(() => {
+                //         list.style.borderWidth = 0;
+                //     }, 150);
+                // } else {
+                //     console.log('ddd');
+                // }
+                trigger.parentElement.classList.remove(CLASS_IS);
+                list.style.maxHeight = 0;
+                setTimeout(() => {
+                    list.style.borderWidth = 0;
+                }, 150);
+            }
+        });
+    });
+}
+
 // load
 window.addEventListener('DOMContentLoaded', () => {
     const scrollContent = document.querySelector('.container');
@@ -526,6 +584,7 @@ window.addEventListener('DOMContentLoaded', () => {
     dragScroll();
     tabMenuFunction();
     accordion();
+    dropdown();
 
     // top button
     topBtn.addEventListener('click', () => {
@@ -536,8 +595,10 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // window.addEventListener('click', e => {
-    //     console.log(e.target);
+    // document.addEventListener('click', e => {
+    //     console.dir(e.target);
+    //     console.dir(e.currentTarget);
+    //     // console.log(`target: ${e.target}, currentTarget: ${e.currentTarget}`);
     // });
 });
 

@@ -136,6 +136,12 @@ pre[data-lang] {
     line-height: 1.2;
     width: 100%;
     overflow-x: auto;
+    > span {
+        &.comment {
+            opacity: 0.3;
+            font-size: 0.9em;
+        }
+    }
     &::-webkit-scrollbar {
         height: 5px;
     }
@@ -163,14 +169,29 @@ pre[data-lang='css'] {
     &:before {
         background: var(--subPointColor);
     }
+    > span {
+        &.comment {
+            color: var(--subPointColor);
+        }
+    }
 }
 pre[data-lang='html'] {
     &:before {
         background: var(--lightGreen);
     }
+    > span {
+        &.comment {
+            color: var(--lightGreen);
+        }
+    }
 }
 pre[data-lang='js'] {
     &:before {
         background: var(--lightMainColor);
+    }
+    > span {
+        &.comment {
+            color: var(--lightMainColor);
+        }
     }
 }

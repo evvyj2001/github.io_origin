@@ -4,12 +4,12 @@
         <!-- <p>여러가지 기능들을 확인해보세요!</p> -->
         <div data-tab-wrap>
             <div class="tab-menu" tab-menu-wrap>
-                <button class="is-on" data-tab-menu="공통요소">공통요소</button>
-                <button data-tab-menu="tab">tab</button>
+                <button class="__on" data-tab-menu="공통요소">공통요소</button>
+                <button data-tab-menu="tab">Tab</button>
                 <button data-tab-menu="accordion">accordion</button>
-                <button data-tab-menu="dropdown">dropdown</button>
+                <button data-tab-menu="selectbox">select Box</button>
                 <button data-tab-menu="tooltip">tooltip</button>
-                <button data-tab-menu="toast">toast popup</button>
+                <button data-tab-menu="toast">toast Popup</button>
             </div>
             <div class="tab-container cont" tab-container>
                 <div data-tab-content="공통요소">
@@ -95,49 +95,68 @@
                         <h3>구현 화면</h3>
                         <div data-tab-wrap class="tab-menu-square">
                             <div class="" tab-menu-wrap>
-                                <button data-tab-menu="all" class="is-on">모두보기</button>
+                                <button data-tab-menu="all" class="__on">모두 보기</button>
                                 <button data-tab-menu="menu1">메뉴1</button>
                                 <button data-tab-menu="menu2">메뉴2</button>
                                 <button data-tab-menu="menu3">메뉴3</button>
                             </div>
                             <div class="" tab-container>
-                                <div data-tab-content="menu1" class="is-on">
+                                <div data-tab-content="menu1" class="__on">
                                     <strong>menu1 내용입니다.</strong> Lorem ipsum, dolor sit amet consectetur
-                                    adipisicing elit. Dolorem vitae voluptas repellat sit eveniet! Eius laudantium quia,
-                                    ad officiis tempore ducimus repudiandae velit iure itaque, et illo debitis, cum
-                                    quam.
+                                    adipisicing elit. Dolorem vitae voluptas quam.
                                 </div>
                                 <div data-tab-content="menu2">
                                     <strong>menu2 내용입니다. Lorem ipsum,</strong> dolor sit amet consectetur
                                     adipisicing elit. Dolorem vitae voluptas repellat sit eveniet! Eius laudantium quia,
                                     ad officiis tempore ducimus repudiandae velit iure itaque, et illo debitis, cum
-                                    quam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem vitae
-                                    voluptas repellat sit eveniet! Eius laudantium quia, ad officiis tempore ducimus
-                                    repudiandae velit iure itaque, et illo debitis, cum quamrepudiandae velit iure
-                                    itaque, et illo debitis, cum quam.Lorem ipsum, dolor sit amet consectetur
-                                    adipisicing elit. Dolorem vitae voluptas repellat sit eveniet! Eius laudantium quia,
-                                    ad officiis tempore ducimus repudiandae velit iure itaque, et illo debitis, cum
-                                    quam.
+                                    quam.Lorem ipsum, dolor sit amet consectetur adipisicing
                                 </div>
                                 <div data-tab-content="menu3">
                                     <strong>menu3 내용입니다. Lorem ipsum, dolor sit amet</strong> consectetur
                                     adipisicing elit. Dolorem vitae voluptas repellat sit eveniet! Eius laudantium quia,
                                     ad officiis tempore ducimus repudiandae velit iure itaque, et illo debitis, cum
-                                    quam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem vitae
-                                    voluptas repellat sit eveniet! Eius laudantium quia, ad officiis tempore ducimus
-                                    repudiandae velit iure itaque, et illo debitis, cum quamrepudiandae velit iure
-                                    itaque, et illo debitis, cum quam.Lorem ipsum, dolor sit amet consectetur
-                                    adipisicing elit. Dolorem vitae voluptas repellat sit eveniet! Eius laudantium quia,
-                                    ad officiis tempore ducimus repudiandae velit iure itaque, et illo debitis, cum
-                                    quamrepudiandae velit iure itaque, et illo debitis, cum quam.Lorem ipsum, dolor sit
-                                    amet consectetur adipisicing elit. Dolorem vitae voluptas repellat sit eveniet! Eius
-                                    laudantium quia, ad officiis tempore ducimus repudiandae velit iure itaque, et illo
-                                    debitis, cum quam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem
-                                    vitae voluptas repellat sit eveniet! Eius laudantium quia, ad officiis tempore
-                                    ducimus repudiandae velit iure itaque, et illo debitis, cum quam.
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="elem-set">
+                        <h3>상세 코드</h3>
+                        <pre data-lang="html" class="language-html">
+<span class="comment">< !-- 탭메뉴와 탭컨텐츠를 감싸는 태그에 [data-tab-wrap] 속성 추가 --></span>                            
+< div data-tab-wrap> 
+    < div tab-menu-wrap> <span class="comment">< !-- 탭메뉴를 감싸는 태그에 [tab-menu-wrap] 속성 추가 --></span>                          
+        < button data-tab-menu="all" class="__on">모두 보기< /button> 
+        <span class="comment">< !-- '모두 보기' 기능을 추가해야하는 경우 해당 탭에 [data-tab-menu="all"] 추가 --></span>
+        < button data-tab-menu="menu1">메뉴1< /button>        
+        <span class="comment">< !-- 탭메뉴의 각각의 탭에 [data-tab-menu] 속성을 추가하고 
+            속성값으로는 연결할 탭컨텐츠의 [data-tab-content]의 속성값과 동일한 값 추가 --></span>
+        < button data-tab-menu="menu2">메뉴2< /button>
+        < button data-tab-menu="menu3">메뉴3< /button>
+    < /div>
+    < div tab-container> <span class="comment">< !-- 탭컨텐츠를 감싸는 태그에 [tab-container] 속성 추가 --></span>
+        < div data-tab-content="menu1"> <span class="comment">< !-- 각각의 탭컨텐츠마다 [data-tab-content] 
+            속성 추가 및 속성 값으로는 연결한 탭메뉴의 [data-tab-menu]값을 부여 --></span>
+            menu1 내용입니다.
+        < /div>
+        < div data-tab-content="menu2">
+            menu2 내용입니다.
+        < /div>
+        < div data-tab-content="menu3">
+            menu3 내용입니다.
+        < /div>
+    < /div>
+< /div>
+</pre>
+                    </div>
+                    <div class="elem-set">
+                        <h3>유의사항</h3>
+                        <ul class="list-dot __blk">
+                            <li>
+                                각 항목의 active 상태의 스타일링이 별도로 필요한 경우
+                                <strong>__on 클래스를 사용</strong>하여 css를 추가해주세요.<br />
+                                ex) [data-tab-menu].__on { ... }
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div data-tab-content="accordion">
@@ -147,17 +166,7 @@
                             <li data-accordion>
                                 <button accordion-trg>제목 아코디언입니다.1</button>
                                 <div accordion-cont>
-                                    <p>
-                                        아코디언 내용입니다.1 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Commodi quibusdam ullam itaque corporis, earum aliquam iusto, ipsa nulla magni
-                                        reprehenderit, ratione iste! Minus dolor neque, laudantium incidunt nemo iure
-                                        velit.Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quibusdam
-                                        ullam itaque corporis, earum aliquam iusto, ipsa nulla magni reprehenderit,
-                                        ratione iste! Minus dolor neque, laudantium incidunt nemo iure velit.Lorem ipsum
-                                        dolor sit amet consectetur adipisicing elit. Commodi quibusdam ullam itaque
-                                        corporis, earum aliquam iusto, ipsa nulla magni reprehenderit, ratione iste!
-                                        Minus dolor neque, laudantium incidunt nemo iure velit.
-                                    </p>
+                                    <p>아코디언 내용입니다.1</p>
                                 </div>
                             </li>
                             <li data-accordion>
@@ -181,18 +190,7 @@
                                         아코디언 내용입니다.3Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                         Commodi quibusdam ullam itaque corporis, earum aliquam iusto, ipsa nulla magni
                                         reprehenderit, ratione iste! Minus dolor neque, laudantium incidunt nemo iure
-                                        velit.Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quibusdam
-                                        ullam itaque corporis, earum aliquam iusto, ipsa nulla magni reprehenderit,
-                                        ratione iste! Minus dolor neque, laudantium incidunt nemo iure velit.Lorem ipsum
-                                        dolor sit amet consectetur adipisicing elit. Commodi quibusdam ullam itaque
-                                        corporis, earum aliquam iusto, ipsa nulla magni reprehenderit, ratione iste!
-                                        Minus dolor neque, laudantium incidunt nemo iure velit.Lorem ipsum dolor sit
-                                        amet consectetur adipisicing elit. Commodi quibusdam ullam itaque corporis,
-                                        earum aliquam iusto, ipsa nulla magni reprehenderit, ratione iste! Minus dolor
-                                        neque, laudantium incidunt nemo iure velit.Lorem ipsum dolor sit amet
-                                        consectetur adipisicing elit. Commodi quibusdam ullam itaque corporis, earum
-                                        aliquam iusto, ipsa nulla magni reprehenderit, ratione iste! Minus dolor neque,
-                                        laudantium incidunt nemo iure velit.
+                                        velit.Lorem ipsum dolor sit
                                     </p>
                                 </div>
                             </li>
@@ -201,20 +199,20 @@
                     <div class="elem-set">
                         <h3>상세 코드</h3>
                         <pre data-lang="html" class="language-html">
-< !-- 1개만 펼쳐지면 되는 경우 (다중X) data-accordion="1" 추가 -- >
+<span class="comment">< !-- 1개만 펼쳐지면 되는 경우 (다중X) data-accordion="1" 추가 -- ></span>
 < dl data-accordion="1">
-    < dt accordion-trg>제목1< /dt> < !-- 클릭 요소 는 accordion-trg 속성 추가 -- >
-    < dd accordion-cont> < !-- 펼쳐지는 요소는 accordion-cont 속성 추가 -- >
+    < dt accordion-trg>제목1< /dt> <span class="comment">< !-- 클릭 요소 는 accordion-trg 속성 추가 -- ></span>
+    < dd accordion-cont> <span class="comment">< !-- 펼쳐지는 요소는 accordion-cont 속성 추가 -- ></span>
         < p>
             아코디언 내용입니다.
         < /p>
     < /dd>
 < /dl>
-< !-- 2개 이상 아코디언 -- >
+<span class="comment">< !-- 2개 이상 아코디언 -- ></span>
 < ul>
-    < li data-accordion>< !-- 각 아코디언을 data-accordion으로 감쌈 -- >
-        < button accordion-trg>제목1< /button> < !-- 클릭 요소 는 accordion-trg 속성 추가 -- >
-        < div accordion-cont> < !-- 펼쳐지는 요소는 accordion-cont 속성 추가 -- >
+    < li data-accordion> <span class="comment">< !-- 각 아코디언을 data-accordion으로 감쌈 -- ></span>
+        < button accordion-trg>제목1< /button> <span class="comment">< !-- 클릭 요소 는 accordion-trg 속성 추가 -- ></span>
+        < div accordion-cont> <span class="comment">< !-- 펼쳐지는 요소는 accordion-cont 속성 추가 -- ></span>
             < p>
                 아코디언 내용입니다.
             < /p>
@@ -228,11 +226,35 @@
             < /p>
         < /div>
     < /li>    
-< /ul></pre
-                        >
+< /ul></pre>
+                    </div>
+                    <div class="elem-set">
+                        <h3>유의사항</h3>
+                        <ul class="list-dot __blk">
+                            <li>
+                                각 항목의 active 상태의 스타일링이 별도로 필요한 경우
+                                <strong>__show 클래스를 사용</strong>하여 css를 추가해주세요. <br />
+                                ex) [accordion-trg].__show { ... }
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div data-tab-content="dropdown">dropdown</div>
+                <div data-tab-content="selectbox">
+                    <div class="elem-set">
+                        <h3>구현 화면</h3>
+                        <!-- 드롭다운 -->
+                        <div data-selectbox style="margin-bottom: 200px">
+                            <button selectbox-trg>드롭다운</button>
+                            <ul selectbox-list>
+                                <li><button>옵션1</button></li>
+                                <li><button>옵션2</button></li>
+                                <li><button>옵션3</button></li>
+                                <li><button>옵션4</button></li>
+                            </ul>
+                        </div>
+                        <!-- //드롭다운 -->
+                    </div>
+                </div>
                 <div data-tab-content="tooltip">tooltip</div>
                 <div data-tab-content="toast">toast popup</div>
             </div>

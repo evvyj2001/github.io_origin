@@ -109,7 +109,7 @@ h3 {
                             display: inline-block;
                         }
                     }
-                    &.is-on {
+                    &.__on {
                         > a {
                             color: var(--mainColor);
                         }
@@ -121,7 +121,7 @@ h3 {
                                 display: inline-block;
                             }
                         }
-                        &.is-on {
+                        &.__on {
                             > a {
                                 &:after {
                                     animation: shake 0.3s ease-in 0.5s;
@@ -183,7 +183,7 @@ h3 {
                 left: 0.4rem;
             }
         }
-        &.is-on {
+        &.__on {
             > span {
                 background: transparent;
                 &:before {
@@ -239,7 +239,7 @@ h3 {
                         display: inline-block;
                     }
                 }
-                &.is-on {
+                &.__on {
                     a {
                         &:before {
                             width: 100%;
@@ -256,7 +256,7 @@ h3 {
                             display: inline-block;
                         }
                     }
-                    &.is-on {
+                    &.__on {
                         > a {
                             &:after {
                                 animation: shake 0.3s ease-in 0.5s;
@@ -328,9 +328,7 @@ button {
         height: 3.2rem;
         min-width: 6rem;
         padding: 0 1rem;
-        // border-radius: 0.5rem;
         transition: 0.2s;
-        // overflow: hidden;
         position: relative;
         &:before {
             @include pseudo;
@@ -339,7 +337,6 @@ button {
             top: -1px;
             z-index: -1;
             transition: 0.2s;
-            // border-radius: 0.5rem;
         }
         &[class*='bg-'] {
             color: var(--white);
@@ -455,7 +452,7 @@ button {
     background: rgba(0, 0, 0, 0.5);
     opacity: 0;
     transition: 0.4s;
-    &.is-show {
+    &.__show {
         opacity: 1;
         z-index: 5;
     }
@@ -467,7 +464,6 @@ button {
     height: fit-content;
     background: var(--white);
     border-radius: 1.5rem;
-    // overflow: hidden;
     width: calc(100% - 4rem);
     opacity: 0;
     transform: scale(0);
@@ -506,8 +502,6 @@ button {
             font-size: 1.6rem;
             line-height: 1.6;
         }
-        // p:not(.popup-tit) {
-        //     }
         .btn-wrap {
             margin-top: 3rem;
         }
@@ -543,7 +537,6 @@ button {
     &-tool {
         display: flex;
         font-size: 1.4rem;
-        // margin: 2rem 0;
         margin-bottom: 2rem;
         > li {
             background: var(--lightGray);
@@ -554,7 +547,7 @@ button {
             }
         }
     }
-    &.is-show {
+    &.__show {
         transform: scale(1);
         opacity: 1;
         z-index: 10;
@@ -563,32 +556,7 @@ button {
         margin-top: 4rem;
         padding-top: 0;
         > p {
-            // padding-top: 4rem;
             text-align: center;
-        }
-        // .btn-wrap {
-        //     margin-top: auto;
-        // }
-    }
-    .do-list {
-        margin-top: 2rem;
-        > li {
-            font-size: 1.4rem;
-            padding-left: 2rem;
-            position: relative;
-            color: var(--gray);
-            &:before {
-                content: '';
-                width: 0.4rem;
-                height: 0.4rem;
-                border-radius: 100%;
-                background: var(--gray);
-                @include absolute(top 50% left 0.5rem);
-                margin-top: -2px;
-            }
-            & + li {
-                margin-top: 1rem;
-            }
         }
     }
 }
@@ -610,6 +578,37 @@ button {
     letter-spacing: 0.6rem;
 }
 
+// 리스트
+.list-dot {
+    > li {
+        font-size: 1.4rem;
+        line-height: 1.6;
+        padding-left: 1.6rem;
+        position: relative;
+        color: var(--gray);
+        &:before {
+            content: '';
+            width: 0.4rem;
+            height: 0.4rem;
+            border-radius: 100%;
+            background: var(--gray);
+            @include absolute(top 0.8rem left 0.4rem);
+        }
+        & + li {
+            margin-top: 0.5rem;
+        }
+    }
+    &.__blk {
+        > li {
+            color: var(--black);
+            &:before {
+                background: var(--black);
+            }
+        }
+    }
+}
+
+// accordion
 [data-accordion] {
     [accordion-cont] {
         width: 100%;
@@ -619,17 +618,83 @@ button {
         transition: opacity 0.2s ease-out, max-height 0.2s ease-out;
     }
 }
+
+// tab
 [data-tab-wrap] {
-    // [tab-menu-wrap] {
-    //     [data-tab-menu] {
-    //     }
-    // }
     [tab-container] {
         [data-tab-content] {
             display: none;
-            &.is-on {
+            &.__on {
                 display: block;
             }
+        }
+    }
+}
+
+// dropdown
+[data-selectbox] {
+    font-size: 1.4rem;
+    width: fit-content;
+    position: relative;
+    display: inline-block;
+    [selectbox-trg] {
+        border: 1px solid var(--gray);
+        min-width: 12rem;
+        min-height: 3.6rem;
+        border-radius: 0.5rem;
+        position: relative;
+        transition: 0.3s;
+        padding-right: 3.5rem;
+        > span {
+            margin-right: 3rem;
+        }
+        &:after {
+            content: '>';
+            @include fontType1;
+            @include absolute(top 1.2rem right 1.4rem);
+            line-height: 1;
+            transform: rotate(90deg);
+        }
+    }
+    [selectbox-list] {
+        position: absolute;
+        top: 3.6rem;
+        width: 100%;
+        overflow: hidden;
+        border-width: 0;
+        border-style: solid;
+        border-color: var(--gray);
+        max-height: 0;
+        transition: max-height 0.3s;
+
+        > li {
+            & + li {
+                border-top: 1px solid var(--lightGray);
+            }
+        }
+        button {
+            min-height: 3.6rem;
+            word-break: break-all;
+            padding: 1rem;
+        }
+    }
+    button,
+    a {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        text-align: left;
+        padding: 0 1rem;
+    }
+    &.__open {
+        [selectbox-trg] {
+            border-radius: 0.5rem 0.5rem 0 0;
+            &:after {
+                transform: rotate(-90deg);
+            }
+        }
+        [selectbox-list] {
+            border-radius: 0 0 0.5rem 0.5rem;
         }
     }
 }
