@@ -3,7 +3,7 @@
     <div class="popup-body tit-no">
         <!-- <p>여러가지 기능들을 확인해보세요!</p> -->
         <div data-tab-wrap>
-            <div class="tab-menu" tab-menu-wrap>
+            <div class="tab-menu __default" tab-menu-wrap>
                 <button class="__on" data-tab-menu="공통요소">공통요소</button>
                 <button data-tab-menu="tab">Tab</button>
                 <button data-tab-menu="accordion">accordion</button>
@@ -30,7 +30,7 @@
                         <!-- accordion wrap으로 accordion-trg과 accordion-cont 감싸야함 -->
                         <div class="view-detail" data-accordion="1">
                             <button accordion-trg>자세히보기</button>
-                            <div class="cont" accordion-cont>
+                            <div accordion-cont>
                                 <pre data-lang="html" class="language-html">
 < input type="checkbox" id="chb1" />
 < label for="chb1">체크박스< /label>
@@ -55,7 +55,7 @@
                         </span>
                         <div class="view-detail" data-accordion="1">
                             <button accordion-trg>자세히보기</button>
-                            <div class="cont" accordion-cont>
+                            <div accordion-cont>
                                 <pre data-lang="html" class="language-html">
 < input type="radio" id="rd1" name="radios" />
 < label for="rd1">라디오< /label>
@@ -80,7 +80,7 @@
                         </span>
                         <div class="view-detail" data-accordion="1">
                             <button accordion-trg>자세히보기</button>
-                            <div class="cont" accordion-cont>
+                            <div accordion-cont>
                                 <pre data-lang="html" class="language-html">
 < input type="checkbox" class="toggle" id="tg1" />
 < label for="tg1">토글 ::off< /label>
@@ -93,14 +93,14 @@
                 <div data-tab-content="tab">
                     <div class="elem-set">
                         <h3>구현 화면</h3>
-                        <div data-tab-wrap class="tab-menu-square">
-                            <div class="" tab-menu-wrap>
+                        <div data-tab-wrap>
+                            <div class="tab-menu __full" tab-menu-wrap>
                                 <button data-tab-menu="all" class="__on">모두 보기</button>
                                 <button data-tab-menu="menu1">메뉴1</button>
                                 <button data-tab-menu="menu2">메뉴2</button>
                                 <button data-tab-menu="menu3">메뉴3</button>
                             </div>
-                            <div class="" tab-container>
+                            <div tab-container>
                                 <div data-tab-content="menu1" class="__on">
                                     <strong>menu1 내용입니다.</strong> Lorem ipsum, dolor sit amet consectetur
                                     adipisicing elit. Dolorem vitae voluptas quam.
@@ -153,7 +153,7 @@
                         <ul class="list-dot __blk">
                             <li>
                                 각 항목의 active 상태의 스타일링이 별도로 필요한 경우
-                                <strong>__on 클래스를 사용</strong>하여 css를 추가해주세요.<br />
+                                <strong>__on 클래스를 사용</strong>하여 css를 추가.<br />
                                 ex) [data-tab-menu].__on { ... }
                             </li>
                         </ul>
@@ -233,7 +233,7 @@
                         <ul class="list-dot __blk">
                             <li>
                                 각 항목의 active 상태의 스타일링이 별도로 필요한 경우
-                                <strong>__show 클래스를 사용</strong>하여 css를 추가해주세요. <br />
+                                <strong>__show 클래스를 사용</strong>하여 css를 추가. <br />
                                 ex) [accordion-trg].__show { ... }
                             </li>
                         </ul>
@@ -242,17 +242,61 @@
                 <div data-tab-content="selectbox">
                     <div class="elem-set">
                         <h3>구현 화면</h3>
-                        <!-- 드롭다운 -->
-                        <div data-selectbox style="margin-bottom: 200px">
-                            <button selectbox-trg>드롭다운</button>
-                            <ul selectbox-list>
-                                <li><button>옵션1</button></li>
-                                <li><button>옵션2</button></li>
-                                <li><button>옵션3</button></li>
-                                <li><button>옵션4</button></li>
-                            </ul>
+                        <h4>옵션 선택 시 내용 노출</h4>
+                        <div class="flex-box" style="justify-content: flex-start">
+                            <!-- 드롭다운 -->
+                            <div data-selectbox>
+                                <button selectbox-trg>드롭다운1</button>
+                                <!-- selectbox-list > li > button 클릭 항목의 text가 selectbox-trg에 출력됨 -->
+                                <ul selectbox-list>
+                                    <li><button>옵션1</button></li>
+                                    <li><button>옵션2</button></li>
+                                    <li><button>옵션3</button></li>
+                                    <li><button>옵션4</button></li>
+                                </ul>
+                            </div>
+                            <!-- //드롭다운 -->
+                            <!-- 드롭다운 -->
+                            <div data-selectbox style="min-width: 200px">
+                                <button selectbox-trg>드롭다운2222222222</button>
+                                <ul selectbox-list>
+                                    <li><button>옵션1내용입니다</button></li>
+                                    <li><button>옵션2내용입니다</button></li>
+                                    <li><button>옵션3내용입니다</button></li>
+                                    <li><button>옵션4내용입니다내용입니다</button></li>
+                                    <li><button>옵션5내용입니다내용입니다</button></li>
+                                </ul>
+                            </div>
+                            <!-- //드롭다운 -->
                         </div>
-                        <!-- //드롭다운 -->
+                    </div>
+                    <div class="elem-set">
+                        <h3>상세 코드</h3>
+                        <pre data-lang="html" class="language-html">
+<span class="comment">< !-- 최상단 태그에 data-selectbox 속성 추가 -- ></span>
+< div data-selectbox> 
+    <span class="comment">< !-- 클릭 요소에 selectbox-trg 속성 추가 -- ></span>
+    < button selectbox-trg>드롭다운< /button>
+    < ul selectbox-list> 
+        <span class="comment">< !-- trigger 클릭 시 노출되는 리스트 요소에 selectbox-list 속성 추가
+            리스트 내 버튼 클릭하면 그 text가 trigger에 노출됨 -- ></span>
+        < li>< button>선택1< /button>< /li>
+        < li>< button>선택2< /button>< /li>
+        < li>< button>선택3< /button>< /li>
+        < li>< button>선택4< /button>< /li>
+    < /ul>
+< /div></pre>
+                    </div>
+                    <div class="elem-set">
+                        <h3>유의사항</h3>
+                        <ul class="list-dot __blk">
+                            <li>
+                                각 항목의 active 상태의 스타일링이 별도로 필요한 경우
+                                <strong>__on 클래스를 사용</strong>하여 css를 추가.<br />
+                                ex) [selectbox-list] > li > button.__on { ... }
+                            </li>
+                            <li>dropdown 영역 외의 영역 클릭 시 리스트 닫힘 기능은 차후 추가 예정</li>
+                        </ul>
                     </div>
                 </div>
                 <div data-tab-content="tooltip">tooltip</div>

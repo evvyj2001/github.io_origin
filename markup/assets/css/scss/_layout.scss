@@ -26,7 +26,6 @@ h3 {
     width: 100%;
     position: relative;
     border-bottom: 1px solid var(--lightGray);
-    // filter: drop-shadow(1px 0.5px 6px rgba(0, 0, 0, 0.1));
     background: var(--white);
     @include fixed(top 0 left 0);
     .scroll-indicator {
@@ -42,114 +41,116 @@ h3 {
             vertical-align: top;
             height: 0.4rem;
             @include absolute(top 0 left 0);
-            background: var(--gray);
+            background: var(--subPointColor);
             transition: 0.2s;
         }
     }
-    .header-inner {
-        height: 6rem;
-        padding: 0 4rem;
-        @include flex(center, space-between);
-        h1 {
-            > a {
-                display: block;
-                width: fit-content;
-                font-size: 2rem;
-                position: relative;
-                padding-right: 2rem;
-                &::first-letter {
-                    color: var(--mainColor);
-                }
-                i {
-                    display: inline-block;
+}
+
+.header-inner {
+    height: 6rem;
+    padding: 0 4rem;
+    @include flex(center, space-between);
+    h1 {
+        > a {
+            display: block;
+            width: fit-content;
+            font-size: 2rem;
+            position: relative;
+            padding-right: 2rem;
+            &::first-letter {
+                color: var(--mainColor);
+            }
+            i {
+                display: inline-block;
+                width: 0.5rem;
+                height: 0.5rem;
+                background: var(--mainColor);
+                border-radius: 100%;
+                right: 1rem;
+                top: 2rem;
+                animation: logoAnimation 1s;
+                animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+                animation-delay: 14s;
+                position: absolute;
+                transform: translateY(0);
+                &:after {
+                    @include pseudo;
                     width: 0.5rem;
                     height: 0.5rem;
-                    background: var(--mainColor);
-                    border-radius: 100%;
-                    right: 1rem;
-                    top: 2rem;
-                    animation: logoAnimation 1s;
-                    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-                    animation-delay: 14s;
-                    position: absolute;
-                    transform: translateY(0);
-                    &:after {
-                        @include pseudo;
-                        width: 0.5rem;
-                        height: 0.5rem;
-                        background: var(--white);
-                        right: 0;
-                        top: 0;
-                        opacity: 0;
-                        animation: dotOpacity 1.2s ease-in-out 16s infinite;
-                    }
+                    background: var(--white);
+                    right: 0;
+                    top: 0;
+                    opacity: 0;
+                    animation: dotOpacity 1.2s ease-in-out 16s infinite;
                 }
             }
         }
-        nav {
-            position: relative;
-            > ul {
-                display: flex;
-                height: 6rem;
-                width: max-content;
-                > li {
-                    min-width: 10rem;
+    }
+    nav {
+        position: relative;
+        > ul {
+            display: flex;
+            height: 6rem;
+            width: max-content;
+            > li {
+                min-width: 10rem;
+                > a {
+                    display: block;
+                    text-align: center;
+                    padding: 0 2rem;
+                    height: 100%;
+                    line-height: 6rem;
+                    font-size: 1.8rem;
+                    // font-weight: 700;
+                    color: var(--gray);
+                    transition: 0.3s;
+                    @include fontType1;
+                    > i {
+                        display: inline-block;
+                    }
+                }
+                &.__on {
                     > a {
-                        display: block;
-                        text-align: center;
-                        padding: 0 2rem;
-                        height: 100%;
-                        line-height: 6rem;
-                        font-size: 1.8rem;
-                        // font-weight: 700;
-                        color: var(--gray);
-                        transition: 0.3s;
-                        @include fontType1;
-                        > i {
+                        color: var(--mainColor);
+                    }
+                }
+                &:first-child {
+                    > a {
+                        &:after {
+                            content: '🖐';
                             display: inline-block;
                         }
                     }
                     &.__on {
                         > a {
-                            color: var(--mainColor);
-                        }
-                    }
-                    &:first-child {
-                        > a {
                             &:after {
-                                content: '🖐';
-                                display: inline-block;
-                            }
-                        }
-                        &.__on {
-                            > a {
-                                &:after {
-                                    animation: shake 0.3s ease-in 0.5s;
-                                }
+                                animation: shake 0.3s ease-in 0.5s;
                             }
                         }
                     }
-                }
-            }
-            .line-bottom {
-                height: 3px;
-                @include absolute(bottom 0 left 0);
-                overflow: hidden;
-                > span {
-                    display: inline-block;
-                    width: 3rem;
-                    height: 100%;
-                    background: var(--mainColor);
-                    position: absolute;
-                    top: 0;
-                    transform: translateX(0);
-                    transition: 0.2s transform;
-                    opacity: 0;
                 }
             }
         }
     }
+    .line-bottom {
+        height: 3px;
+        @include absolute(bottom 0 left 0);
+        overflow: hidden;
+        > span {
+            display: inline-block;
+            width: 3rem;
+            height: 100%;
+            background: var(--mainColor);
+            position: absolute;
+            top: 0;
+            transform: translateX(0);
+            transition: 0.2s transform;
+            opacity: 0;
+        }
+    }
 }
+
 .nav {
     &-btn {
         width: 2.6rem;
@@ -179,7 +180,7 @@ h3 {
                 left: -0.4rem;
             }
             &:after {
-                bottom: 0.5rem;
+                bottom: 0.3rem;
                 left: 0.4rem;
             }
         }
@@ -279,7 +280,7 @@ h3 {
                     margin-bottom: 1rem;
                     @include fontType1;
                     &::first-letter {
-                        color: var(--mainColor);
+                        color: darken($mainColor, 20%);
                     }
                 }
                 dd,
@@ -566,14 +567,14 @@ button {
         display: inline-block;
     }
     .day-night {
-        margin: 0 0.5rem;
+        margin-left: 0.5rem;
     }
 }
 .text-side {
     @include fixed(right 2rem top 9rem);
     writing-mode: vertical-rl;
     font-size: 1rem;
-    line-height: 1.6;
+    line-height: 1;
     text-transform: uppercase;
     letter-spacing: 0.6rem;
 }
@@ -621,12 +622,22 @@ button {
 
 // tab
 [data-tab-wrap] {
-    [tab-container] {
-        [data-tab-content] {
-            display: none;
-            &.__on {
-                display: block;
-            }
+    [tab-menu-wrap] {
+        font-size: 0;
+        white-space: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        [data-tab-menu] {
+            font-size: 1.6rem;
+            @include fontType1;
+        }
+    }
+    // [tab-container] {
+    // }
+    [data-tab-content] {
+        display: none;
+        &.__on {
+            display: block;
         }
     }
 }
@@ -666,8 +677,15 @@ button {
         border-color: var(--gray);
         max-height: 0;
         transition: max-height 0.3s;
-
+        z-index: 10;
+        background: var(--white);
         > li {
+            &:hover {
+                button {
+                    background: var(--lightGray);
+                    color: var(--black);
+                }
+            }
             & + li {
                 border-top: 1px solid var(--lightGray);
             }
@@ -676,6 +694,10 @@ button {
             min-height: 3.6rem;
             word-break: break-all;
             padding: 1rem;
+            &.__on {
+                color: var(--white);
+                background: darken($dark, 20%);
+            }
         }
     }
     button,
@@ -695,6 +717,46 @@ button {
         }
         [selectbox-list] {
             border-radius: 0 0 0.5rem 0.5rem;
+        }
+    }
+}
+[paralle] {
+    position: relative;
+}
+[data-tooltip] {
+    position: relative;
+    cursor: pointer;
+    > span {
+        display: block;
+        position: absolute;
+        backdrop-filter: blur(3px);
+        background: darken($dark, 10%);
+        color: var(--white);
+        font-size: 1.4rem;
+        top: -4.2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0.8rem 1rem;
+        border-radius: 0.5rem;
+        width: max-content;
+        display: none;
+        z-index: 5;
+        &:after {
+            @include pseudo;
+            width: 0;
+            height: 0;
+            border-bottom: 0.8rem solid transparent;
+            border-left: 0.6rem solid transparent;
+            border-right: 0.6rem solid transparent;
+            border-top: 0.8rem solid darken($dark, 10%);
+            bottom: -1.4rem;
+            left: 50%;
+            margin-left: -0.6rem;
+        }
+    }
+    &.star {
+        span {
+            color: rgb(255, 255, 0);
         }
     }
 }

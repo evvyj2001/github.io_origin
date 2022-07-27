@@ -120,6 +120,9 @@
     .popup {
         &-body {
             max-height: 40rem;
+            .cont {
+                max-height: none;
+            }
         }
     }
 }
