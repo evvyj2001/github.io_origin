@@ -299,7 +299,42 @@
                         </ul>
                     </div>
                 </div>
-                <div data-tab-content="tooltip">tooltip</div>
+                <div data-tab-content="tooltip">
+                    <div class="elem-set">
+                        <h3>구현 화면</h3>
+                        <p>아래의 텍스트에 마우스를 올려보세요.</p>
+                        <h4>텍스트 툴팁</h4>
+                        <ul>
+                            <li data-tooltip="텍스트 툴팁1">텍스트 툴팁1</li>
+                            <li data-tooltip="텍스트 툴팁2">텍스트 툴팁2</li>
+                            <li data-tooltip="텍스트 툴팁3">텍스트 툴팁3</li>
+                        </ul>
+                        <h4>★툴팁</h4>
+                        <ul>
+                            <li class="star" data-tooltip="1">★하나</li>
+                            <li class="star" data-tooltip="2">★둘</li>
+                            <li class="star" data-tooltip="3">★셋</li>
+                        </ul>
+                    </div>
+                    <div class="elem-set">
+                        <h3>상세 코드</h3>
+                        <pre data-lang="html" class="language-html">
+<span class="comment">< !-- 텍스트 툴팁 -- ></span>
+< ul>
+    <span class="comment">< !-- 툴팁 요소에 data-tooltip="노출 내용" 추가 -- ></span>
+    < li data-tooltip="텍스트 툴팁1">텍스트 툴팁1< /li>
+    < li data-tooltip="텍스트 툴팁2">텍스트 툴팁2< /li>
+    < li data-tooltip="텍스트 툴팁3">텍스트 툴팁3< /li>
+< /ul>
+<span class="comment">< !-- ★툴팁 -- ></span>
+< ul>
+    <span class="comment">< !-- 툴팁 요소에 class="star" 추가 및 data-tooltip="★갯수" 추가 -- ></span>                        
+    < li class="star" data-tooltip="1">★하나< /li>
+    < li class="star" data-tooltip="2">★2< /li>
+    < li class="star" data-tooltip="3">★3< /li>
+< /ul></pre>
+                    </div>
+                </div>
                 <div data-tab-content="toast">toast popup</div>
             </div>
         </div>

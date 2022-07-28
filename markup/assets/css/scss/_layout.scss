@@ -485,6 +485,15 @@ button {
             font-size: 1.4rem;
             font-weight: 400;
         }
+        > a {
+            display: inline-block;
+            margin-left: 0.5rem;
+            font-size: 1.6rem;
+            vertical-align: middle;
+            &:hover {
+                opacity: 0.6;
+            }
+        }
     }
     &-body {
         height: 100%;
@@ -502,6 +511,9 @@ button {
         .txt {
             font-size: 1.6rem;
             line-height: 1.6;
+            & + .list-dot {
+                margin-top: 2rem;
+            }
         }
         .btn-wrap {
             margin-top: 3rem;

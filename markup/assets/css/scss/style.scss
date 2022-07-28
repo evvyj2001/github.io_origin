@@ -423,6 +423,18 @@
             }
         }
     }
+    .project-wrap {
+        margin-top: 3rem;
+        > div {
+            a {
+                width: 14rem;
+                height: 14rem;
+                > p {
+                    transform: translateY(14rem);
+                }
+            }
+        }
+    }
 }
 
 .project-wrap {
@@ -453,26 +465,36 @@
             overflow: hidden;
             font-size: 1.4rem;
             > img {
-                width: 10rem;
+                width: 100%;
                 height: auto;
                 @include absolute(top 50%);
                 transform: translateY(-50%);
             }
-            > span {
+            > p {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                transition: 0.3s;
                 height: 100%;
+                width: 100%;
                 transform: translateY(10rem);
                 background: rgba(79, 32, 250, 0);
+                transition: 0.3s;
+                @include fontType1;
+                line-height: 1;
+                opacity: 0;
             }
             &:hover {
                 background: rgba(0, 0, 0, 0.6);
                 color: var(--white);
-                > span {
+                > p {
+                    opacity: 1;
                     transform: translateY(0);
                     background: rgba(0, 0, 0, 0.4);
+                    > span {
+                        &::first-letter {
+                            color: var(--mainColor);
+                        }
+                    }
                 }
             }
         }
@@ -658,11 +680,11 @@
 }
 
 /* popup custom style */
-#popupCareer {
-    .list-dot {
-        margin-top: 2rem;
-    }
-}
+// #popupCareer {
+//     .list-dot {
+//         margin-top: 2rem;
+//     }
+// }
 
 #popupModule {
     .tab-menu {
@@ -682,6 +704,32 @@
     .tab-container {
         margin-top: 2rem;
         max-height: 45rem;
+        [data-tab-content='tooltip'] {
+            .elem-set {
+                p {
+                    font-size: 1.4rem;
+                }
+                h4 {
+                    margin-top: 2rem;
+                }
+            }
+            ul {
+                @include flex(null, center);
+                flex-wrap: wrap;
+                font-size: 1.4rem;
+                gap: 1rem 2rem;
+                background: var(--lightGray);
+                padding: 2rem 1rem;
+                li {
+                    border-bottom: 1px dashed var(--lightGray);
+                    font-weight: 700;
+                    line-height: 1;
+                    &:hover {
+                        border-color: var(--black);
+                    }
+                }
+            }
+        }
     }
     .inp-box {
         margin-bottom: 0.5rem;
