@@ -549,7 +549,7 @@ button {
     }
     &-tool {
         display: flex;
-        font-size: 1.4rem;
+        font-size: 1.3rem;
         margin-bottom: 2rem;
         > li {
             background: var(--lightGray);
@@ -558,6 +558,21 @@ button {
             & + li {
                 margin-left: 1rem;
             }
+        }
+    }
+    &-tool-tit {
+        display: inline-block;
+        font-size: 1.4rem;
+        color: darken($gray, 15%);
+        font-weight: 700;
+        margin-right: 2rem;
+        > i {
+            margin-right: 0.5rem;
+            font-size: 1.5rem;
+            opacity: 0.5;
+        }
+        & + .popup-tool {
+            display: inline-flex;
         }
     }
     &.__show {
