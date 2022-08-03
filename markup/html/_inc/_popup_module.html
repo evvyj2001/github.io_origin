@@ -344,7 +344,30 @@
                         </ul>
                     </div>
                 </div>
-                <div data-tab-content="toast">toast popup</div>
+                <div data-tab-content="toast">
+                    <div class="elem-set">
+                        <h3>구현 화면</h3>
+                        <p>아래의 버튼을 클릭해주세요.</p>
+                        <button class="btn-toast" onclick="toast('토스트 팝업입니다.');">토스트 팝업 호출</button>
+                    </div>
+                    <div class="elem-set">
+                        <h3>상세 코드</h3>
+                        <pre data-lang="html" class="language-html">
+<span class="comment">< !-- 클릭 이벤트로 호출할 경우 클릭 element에 toast함수에 노출내용을 매개변수로 하여 추가 -- ></span>                            
+< button class="btn-toast" onclick="toast('노출될 내용');">
+    토스트 팝업 호출
+< /button></pre>
+                    </div>
+                    <div class="elem-set">
+                        <h3>유의사항</h3>
+                        <ul class="list-dot __blk">
+                            <li>
+                                토스트 팝업 요소는 js에서 생성되기에 이벤트 호출 시 불러올 노출 문구만 작성해주세요.
+                            </li>
+                            <li>단순 문구 노출이 아닌 UI가 추가된 토스트 팝업의 경우 별도로 작업이 필요합니다.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- <div class="cont">

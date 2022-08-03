@@ -458,6 +458,27 @@ function popClose(el) {
     }, 500);
 }
 
+// toast popup
+function toast(el) {
+    const CLASS_ON = '__show';
+    const elem = document.createElement('div');
+    const footer = document.querySelector('#footer');
+    elem.classList.add('popup-toast');
+    elem.innerText = `${el}`;
+    footer.after(elem);
+    setTimeout(() => {
+        elem.classList.add(CLASS_ON);
+        setTimeout(() => {
+            elem.classList.remove(CLASS_ON);
+            setTimeout(() => {
+                elem.remove();
+            }, 500);
+        }, 2000);
+    }, 200);
+
+    // console.log(el);
+}
+
 // 페이지 진입 시 뜨는 layer
 const introLayer = setTimeout(() => {
     const layer = document.getElementById('introLayer');

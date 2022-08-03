@@ -595,6 +595,28 @@ button {
         }
     }
 }
+// toast popup
+.popup-toast {
+    @include absolute(left 50%);
+    top: 55%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    transition: 0.2s;
+    background: rgba(0, 0, 0, 0.7);
+    color: var(--white);
+    font-size: 1.4rem;
+    max-width: 32rem;
+    width: calc(100% - 4rem);
+    // margin: 0 2rem;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 1rem;
+    opacity: 0;
+    &.__show {
+        top: 50%;
+        opacity: 1;
+    }
+}
 .now {
     line-height: inherit;
     * {

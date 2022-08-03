@@ -29,7 +29,7 @@
     justify-content: center;
     transition: 0.3s;
     @include fontType1;
-    // display: none;
+    display: none;
     .intro-text {
         font-size: 4rem;
         color: var(--white);
@@ -471,6 +471,7 @@
                 transform: translateY(-50%);
             }
             > p {
+                text-align: center;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -480,8 +481,9 @@
                 background: rgba(79, 32, 250, 0);
                 transition: 0.3s;
                 @include fontType1;
-                line-height: 1;
+                line-height: 1.2;
                 opacity: 0;
+                padding: 0 1rem;
             }
             &:hover {
                 background: rgba(0, 0, 0, 0.6);
@@ -606,11 +608,11 @@
         font-size: 1.4rem;
         font-weight: 700;
         margin-bottom: 1rem;
-        &:before {
-            content: '#';
-            display: inline-block;
-            margin-right: 0.7rem;
-        }
+        // &:before {
+        //     content: '#';
+        //     display: inline-block;
+        //     margin-right: 0.7rem;
+        // }
     }
     & + .elem-set {
         margin-top: 2rem;
@@ -704,11 +706,25 @@
     .tab-container {
         margin-top: 2rem;
         max-height: 45rem;
-        [data-tab-content='tooltip'] {
+        [data-tab-content] {
             .elem-set {
                 p {
                     font-size: 1.4rem;
                 }
+            }
+        }
+        [data-tab-content='toast'] {
+            .btn-toast {
+                font-size: 1.4rem;
+                margin-top: 2rem;
+                padding: 1rem 1.5rem;
+                background: var(--gray);
+                color: var(--white);
+                border-radius: 1rem;
+            }
+        }
+        [data-tab-content='tooltip'] {
+            .elem-set {
                 h4 {
                     margin-top: 2rem;
                 }
