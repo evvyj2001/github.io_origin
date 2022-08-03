@@ -587,6 +587,13 @@ button {
             text-align: center;
         }
     }
+    .img-wrap {
+        margin-top: 1.5rem;
+        width: 100%;
+        > img {
+            max-width: 100%;
+        }
+    }
 }
 .now {
     line-height: inherit;

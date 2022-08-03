@@ -581,7 +581,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    quoteChange();
+    // quoteChange();
     setScreenHeight();
     navBottom();
     isNow();

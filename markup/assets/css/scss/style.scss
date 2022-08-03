@@ -713,7 +713,7 @@
                     margin-top: 2rem;
                 }
             }
-            ul {
+            .elem-list-vtl {
                 @include flex(null, center);
                 flex-wrap: wrap;
                 font-size: 1.4rem;
@@ -743,5 +743,12 @@
         }
     }
 }
+
+// #popupMomentum {
+//     .cont {
+//         border-top: 1px dashed var(--lightGray);
+//         padding-top: 1.5rem;
+//     }
+// }
 
 @import 'media'; // 반응형 css 가장 마지막에 compile되게 import 마지막에 시킴
