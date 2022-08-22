@@ -16,6 +16,7 @@ $lightGreen: rgb(140, 248, 176);
 $lightMainColor: #70fdff;
 $subPointColor: #fff291;
 $dark: rgb(20, 33, 61);
+$red: #ff3223;
 
 // 기타 요소
 $vh100: calc(var(--vh) * 100);
@@ -31,4 +32,5 @@ $vh100: calc(var(--vh) * 100);
     --lightMainColor: #{$lightMainColor};
     --subPointColor: #{$subPointColor};
     --dark: #{$dark};
+    --red: #{$red};
 }

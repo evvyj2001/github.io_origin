@@ -1,5 +1,3 @@
-// const { list } = require('postcss');
-
 // screen height
 function setScreenHeight() {
     const vh = window.innerHeight * 0.01;
@@ -636,6 +634,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // resize
 window.addEventListener('resize', () => {
+    navBottom();
     setScreenHeight();
 });
 
@@ -646,8 +645,8 @@ window.addEventListener('touchend', () => {
 // mousemove
 window.addEventListener('mousemove', el => {
     const circle = document.querySelector('#cursor');
-    const mouseX = el.clientX - 15;
-    const mouseY = el.clientY - 15;
+    const mouseX = el.clientX - 20;
+    const mouseY = el.clientY - 20;
 
     circle.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
 });
