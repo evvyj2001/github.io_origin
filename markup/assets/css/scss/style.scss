@@ -64,6 +64,7 @@
     z-index: 2;
     background: var(--white);
     padding: 1rem;
+    font-size: 0;
     button {
         text-transform: capitalize;
         font-size: 1.2rem;
@@ -71,7 +72,6 @@
         color: var(--white);
         width: 3rem;
         height: 3rem;
-        border-radius: 50%;
         filter: grayscale(1);
         opacity: 0.6;
         &[class*='green'] {
@@ -87,9 +87,9 @@
             filter: grayscale(0);
             opacity: 1;
         }
-        & + button {
-            margin-left: 0.5rem;
-        }
+        // & + button {
+        //     margin-left: 0.5rem;
+        // }
     }
 }
 

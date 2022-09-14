@@ -215,7 +215,7 @@ function dropdown() {
     const dropdownElem = document.querySelectorAll('[data-selectbox]');
     const CLASS_IS = '__open';
     const CLASS_ON = '__on';
-    const bodyEl = document.querySelector('body');
+    // const bodyEl = document.querySelector('body');
 
     for (let g = 0; g < dropdownElem.length; g++) {
         const trigger = dropdownElem[g].querySelector('[selectbox-trg]');
@@ -225,38 +225,17 @@ function dropdown() {
             const parentElems = trg.target.parentNode;
             const eachBtn = list.querySelectorAll('button');
 
-            const removeEvent = () => {
-                parentElems.classList.remove(CLASS_IS, '__up', '__down');
-                list.style.maxHeight = 0;
-
-                setTimeout(() => {
-                    list.style.borderWidth = 0;
-                }, 150);
-
-                // 체크박스
-                if (parentElems.classList.contains('check')) {
-                    const checkedInput = list.querySelectorAll('input[type=checkbox]:checked + label');
-                    const checkCount = checkedInput.length;
-
-                    let textIn;
-
-                    if (checkCount === 0) {
-                        textIn = `선택해주세요.`;
-                    } else if (checkCount === 1) {
-                        textIn = checkedInput[0].innerText;
-                    } else if (checkCount >= 2) {
-                        textIn = `${checkedInput[0].innerText} 외 ${checkCount - 1}건`;
-                    }
-                    trg.target.innerText = textIn;
-                }
-            };
-
-            if (!parentElems.classList.contains(CLASS_IS)) {
-                parentElems.classList.add(CLASS_IS);
-
+            const openEvent = () => {
                 // 위치에 따라 방향
                 const winHeight = window.innerHeight / 2;
                 const targetTop = parentElems.getBoundingClientRect().top;
+
+                // 나머지 드롭다운 리스트 닫힘
+                dropdownElem.forEach(e => {
+                    e.classList.remove(CLASS_IS, '__down', '__up');
+                    e.querySelector('[selectbox-list]').style.maxHeight = 0;
+                    e.querySelector('[selectbox-list]').style.border = 0;
+                });
 
                 if (targetTop < winHeight) {
                     // 리스트 아래로
@@ -275,10 +254,49 @@ function dropdown() {
                         top: auto
                     `;
                 }
+
+                parentElems.classList.add(CLASS_IS);
+
                 list.style.maxHeight = `${list.scrollHeight}px`;
+                list.style.zIndex = 15;
+            };
+
+            const removeEvent = () => {
+                parentElems.classList.remove(CLASS_IS, '__up', '__down');
+                list.style.maxHeight = 0;
+                list.style.zIndex = 10;
+                setTimeout(() => {
+                    list.style.borderWidth = 0;
+                }, 150);
+                if (parentElems.classList.contains('check')) {
+                    checkEvent();
+                }
+            };
+
+            const checkEvent = () => {
+                // 체크박스
+                // const list = ele.querySelector('[selectbox-list]');
+                const checkedInput = list.querySelectorAll('input[type=checkbox]:checked + label');
+                const checkCount = checkedInput.length;
+
+                let textIn;
+
+                if (checkCount === 0) {
+                    textIn = `선택해주세요.`;
+                } else if (checkCount === 1) {
+                    textIn = checkedInput[0].innerText;
+                } else if (checkCount >= 2) {
+                    textIn = `${checkedInput[0].innerText} 외 ${checkCount - 1}건`;
+                }
+                trg.target.innerText = textIn;
+            };
+
+            if (!parentElems.classList.contains(CLASS_IS)) {
+                openEvent();
             } else {
                 removeEvent();
             }
+
             // 텍스트 출력
             eachBtn.forEach(ev => {
                 ev.addEventListener('click', () => {
@@ -301,40 +319,6 @@ function dropdown() {
     //         console.log('닫힘O');
     //         // removeEvent();
     //     }
-    // });
-
-    // dropdownElem.forEach(e => {
-    //     const trigger = e.querySelector('[selectbox-trg]');
-    //     const list = e.querySelector('[selectbox-list]');
-
-    //     bodyEl.addEventListener('click', el => {
-    //         if (el.target === el.currentTarget.querySelector('[selectbox-trg]')) {
-    //             // body 클릭 시 클릭 영역이 selectbox-trg 영역이면
-    //             if (!e.classList.contains(CLASS_IS)) {
-    //                 // data-dropdown에 __open이 붙어있지 않다면
-    //                 trigger.parentElement.classList.add(CLASS_IS);
-    //                 list.style.maxHeight = `${list.scrollHeight}px`;
-    //                 list.style.borderWidth = `0 0.5px 0.5px`;
-    //             } else {
-    //                 // __open 붙어있으면
-    //                 trigger.parentElement.classList.remove(CLASS_IS);
-    //                 list.style.maxHeight = 0;
-    //                 setTimeout(() => {
-    //                     list.style.borderWidth = 0;
-    //                 }, 150);
-    //             }
-    //             list.addEventListener('click', val => {
-    //                 trigger.innerText = val.target.textContent;
-    //             });
-    //         } else {
-    //             // body 클릭 영역이 selectbox-trg 외 영역이라면
-    //             trigger.parentElement.classList.remove(CLASS_IS);
-    //             list.style.maxHeight = 0;
-    //             setTimeout(() => {
-    //                 list.style.borderWidth = 0;
-    //             }, 150);
-    //         }
-    //     });
     // });
 }
 
