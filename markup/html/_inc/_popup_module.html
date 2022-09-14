@@ -271,6 +271,22 @@
                         </div>
                     </div>
                     <div class="elem-set">
+                        <h4>checked 개수 노출</h4>
+                        <div class="flex-box">
+                            <!-- 드롭다운 -->
+                            <div data-selectbox class="check">
+                                <button selectbox-trg>체크박스 있는 드롭다운</button>
+                                <ul selectbox-list>
+                                    <li><input type="checkbox" id="check1" /><label for="check1">체크박스1</label></li>
+                                    <li><input type="checkbox" id="check2" /><label for="check2">체크박스2</label></li>
+                                    <li><input type="checkbox" id="check3" /><label for="check3">체크박스3</label></li>
+                                    <li><input type="checkbox" id="check4" /><label for="check4">체크박스4</label></li>
+                                </ul>
+                            </div>
+                            <!-- //드롭다운 -->
+                        </div>
+                    </div>
+                    <div class="elem-set">
                         <h3>상세 코드</h3>
                         <pre data-lang="html" class="language-html">
 <span class="comment">< !-- 최상단 태그에 data-selectbox 속성 추가 -- ></span>
@@ -295,6 +311,7 @@
                                 <strong>__on 클래스를 사용</strong>하여 css를 추가.<br />
                                 ex) [selectbox-list] > li > button.__on { ... }
                             </li>
+                            <li>디바이스 중앙 기준 상, 하단으로 나누어 드롭다운 리스트 노출 방향이 다르게 설정</li>
                             <li>dropdown 영역 외의 영역 클릭 시 리스트 닫힘 기능은 차후 추가 예정</li>
                         </ul>
                     </div>

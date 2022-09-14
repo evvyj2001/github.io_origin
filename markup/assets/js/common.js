@@ -226,22 +226,60 @@ function dropdown() {
             const eachBtn = list.querySelectorAll('button');
 
             const removeEvent = () => {
-                parentElems.classList.remove(CLASS_IS);
+                parentElems.classList.remove(CLASS_IS, '__up', '__down');
                 list.style.maxHeight = 0;
 
                 setTimeout(() => {
                     list.style.borderWidth = 0;
                 }, 150);
+
+                // 체크박스
+                if (parentElems.classList.contains('check')) {
+                    const checkedInput = list.querySelectorAll('input[type=checkbox]:checked + label');
+                    const checkCount = checkedInput.length;
+
+                    let textIn;
+
+                    if (checkCount === 0) {
+                        textIn = `선택해주세요.`;
+                    } else if (checkCount === 1) {
+                        textIn = checkedInput[0].innerText;
+                    } else if (checkCount >= 2) {
+                        textIn = `${checkedInput[0].innerText} 외 ${checkCount - 1}건`;
+                    }
+                    trg.target.innerText = textIn;
+                }
             };
 
             if (!parentElems.classList.contains(CLASS_IS)) {
                 parentElems.classList.add(CLASS_IS);
+
+                // 위치에 따라 방향
+                const winHeight = window.innerHeight / 2;
+                const targetTop = parentElems.getBoundingClientRect().top;
+
+                if (targetTop < winHeight) {
+                    // 리스트 아래로
+                    parentElems.classList.add('__down');
+                    list.style.cssText = `
+                        border-width: 0 0.5px 0.5px;
+                        top: ${parentElems.scrollHeight}px;
+                        bottom: auto
+                    `;
+                } else {
+                    // 리스트 위로
+                    parentElems.classList.add('__up');
+                    list.style.cssText = `
+                        border-width: 0.5px 0.5px 0;
+                        bottom: ${parentElems.scrollHeight}px;
+                        top: auto
+                    `;
+                }
                 list.style.maxHeight = `${list.scrollHeight}px`;
-                list.style.borderWidth = `0 0.5px 0.5px`;
             } else {
                 removeEvent();
             }
-
+            // 텍스트 출력
             eachBtn.forEach(ev => {
                 ev.addEventListener('click', () => {
                     trg.target.innerText = ev.textContent;
