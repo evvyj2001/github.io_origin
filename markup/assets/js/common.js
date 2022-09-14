@@ -110,6 +110,43 @@ function mobileNavMenu() {
     });
 }
 
+// 모드 변경
+function changeMode() {
+    const selectBtns = document.querySelectorAll('.theme-select > button');
+    const CLASS_ON = '__on';
+
+    selectBtns.forEach(el => {
+        const $CLASS = el.classList;
+        let mainColor;
+        let lightMainColor;
+        let darkMainColor;
+
+        el.addEventListener('click', () => {
+            for (let i = 0; i < selectBtns.length; i++) {
+                selectBtns[i].classList.remove(CLASS_ON);
+            }
+            $CLASS.add(CLASS_ON);
+
+            if ($CLASS.contains('btn-green')) {
+                mainColor = '#00c73c';
+                lightMainColor = '#a2fbbd';
+                darkMainColor = '#03862a';
+            } else if ($CLASS.contains('btn-red')) {
+                mainColor = 'var(--red)';
+                lightMainColor = '#ffa0a0';
+                darkMainColor = '#a21005';
+            } else if ($CLASS.contains('btn-blue')) {
+                mainColor = 'var(--blue)';
+                lightMainColor = '#8787ff';
+                darkMainColor = '#1212ad';
+            }
+            document.documentElement.style.setProperty('--mainColor', `${mainColor}`);
+            document.documentElement.style.setProperty('--lightMainColor', `${lightMainColor}`);
+            document.documentElement.style.setProperty('--darkenMainColor', `${darkMainColor}`);
+        });
+    });
+}
+
 // header indicator
 function scrollIndicator() {
     const winScroll = document.querySelector('.container').scrollTop;
@@ -410,7 +447,8 @@ function tooltip() {
             span.style.display = 'block';
         });
         el.addEventListener('mouseout', () => {
-            const span = el.childNodes[1];
+            // const span = el.childNodes[1];
+            const span = el.querySelector('span');
             span.remove();
         });
     });
@@ -443,17 +481,23 @@ function popOpen(el) {
     }, 100);
 }
 
+// popup_dimmed remove
+function popDimmedRemove() {
+    const CLASS_IS = '__show';
+    const popDimmed = document.querySelector('.popup-dimmed');
+
+    popDimmed.classList.remove(CLASS_IS);
+    setTimeout(() => {
+        popDimmed.remove();
+    }, 500);
+}
+
 // popup close
 function popClose(el) {
     const CLASS_IS = '__show';
     const popup = el.target.closest('.popup');
-    const popDimmed = document.querySelector('.popup-dimmed');
-
-    popDimmed.classList.remove(CLASS_IS);
+    popDimmedRemove();
     popup.classList.remove(CLASS_IS);
-    setTimeout(() => {
-        popDimmed.remove();
-    }, 500);
 }
 
 // toast popup
@@ -473,8 +517,6 @@ function toast(el) {
             }, 500);
         }, 2000);
     }, 200);
-
-    // console.log(el);
 }
 
 // 페이지 진입 시 뜨는 layer
@@ -615,6 +657,7 @@ window.addEventListener('DOMContentLoaded', () => {
     tabMenuFunction();
     accordion();
     dropdown();
+    changeMode();
 
     // top button
     topBtn.addEventListener('click', () => {
@@ -630,6 +673,15 @@ window.addEventListener('DOMContentLoaded', () => {
     //     console.dir(e.currentTarget);
     //     // console.log(`target: ${e.target}, currentTarget: ${e.currentTarget}`);
     // });
+    document.addEventListener('keyup', e => {
+        const CLASS_IS = '__show';
+        // esc 누르면 팝업 닫기
+        if (e.keyCode === 27) {
+            const popupId = e.target.querySelector('.popup.__show');
+            popupId.classList.remove(CLASS_IS);
+            popDimmedRemove();
+        }
+    });
 });
 
 // resize

@@ -280,7 +280,7 @@ h3 {
                     margin-bottom: 1rem;
                     @include fontType1;
                     &::first-letter {
-                        color: darken($mainColor, 20%);
+                        color: var(--darkenMainColor);
                     }
                 }
                 dd,
@@ -311,6 +311,7 @@ h3 {
             color: var(--gray);
         }
         .l-right {
+            text-align: right;
             > a {
                 display: block;
                 color: var(--gray);
@@ -435,7 +436,7 @@ button {
         }
     }
     &:hover {
-        background: darken($mainColor, 10%);
+        background: var(--darkenMainColor);
         // > i {
         //     &:before,
         //     &:after {
@@ -543,7 +544,7 @@ button {
         &:hover {
             &:before,
             &:after {
-                background: lighten($mainColor, 15%);
+                background: var(--lightMainColor);
             }
         }
     }

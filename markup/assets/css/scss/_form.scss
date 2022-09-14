@@ -33,10 +33,9 @@ input {
         }
         &:checked {
             &:before {
-                // background: var(--mainColor);
                 z-index: -1;
-                border-color: darken($mainColor, 15%);
-                background: darken($mainColor, 15%);
+                border-color: var(--darkenMainColor);
+                background: var(--darkenMainColor);
             }
             &:after {
                 display: block;
@@ -64,7 +63,7 @@ input {
             }
             &:checked {
                 &:before {
-                    background: darken($mainColor, 15%);
+                    background: var(--darkenMainColor);
                 }
                 &:after {
                     transform: translateX(calc(100% - 0.1rem));
@@ -81,21 +80,21 @@ input {
         }
         &:after {
             @include pseudo;
-            width: 8px;
-            height: 8px;
-            background: darken($mainColor, 15%);
+            width: 9px;
+            height: 9px;
+            background: var(--darkenMainColor);
             border-radius: 50%;
             transition: 0.2s;
             transform: scale(0);
             top: 50%;
             left: 50%;
             // margin: -4px;
-            margin-top: -4px;
-            margin-left: -4px;
+            margin-top: -4.5px;
+            margin-left: -4.5px;
         }
         &:checked {
             &:before {
-                border-color: darken($mainColor, 15%);
+                border-color: var(--darkenMainColor);
             }
             &:after {
                 transform: scale(1);

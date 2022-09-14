@@ -45,9 +45,6 @@
     .section {
         padding: 10rem 2rem;
         min-height: auto;
-        & + .section {
-            border-top: 1px solid var(--white);
-        }
     }
     .intro {
         padding-top: 12rem;
