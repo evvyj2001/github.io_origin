@@ -89,6 +89,44 @@
                             </div>
                         </div>
                     </div>
+                    <div class="elem-set">
+                        <h3>텍스트필드</h3>
+                        <p>입력 시 삭제버튼 노출 및 삭제 기능 추가</p>
+                        <br />
+                        <!-- del btn 노출 텍스트필드 -->
+                        <div class="inp-box __del">
+                            <input type="text" placeholder="텍스트 입력" />
+                        </div>
+                        <div class="inp-box __del">
+                            <input type="number" placeholder="숫자 입력" />
+                        </div>
+                        <div class="view-detail" data-accordion="1">
+                            <button accordion-trg>자세히보기</button>
+                            <div accordion-cont>
+                                <pre data-lang="html" class="language-html">
+< div class="inp-box __del">
+    < input type="text" placeholder="텍스트 입력">
+< /div>
+</pre
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="elem-set">
+                        <h3>Range</h3>
+                        <div style="margin-bottom: 10px">
+                            <input type="range" value="70" min="0" max="100" style="background-size: 70% 100%" />
+                        </div>
+                        <div class="view-detail" data-accordion="1">
+                            <button accordion-trg>자세히보기</button>
+                            <div accordion-cont>
+                                <pre data-lang="html" class="language-html">
+< input type="range" value="70" min="0" max="100" style="background-size: 70% 100%;" / >
+</pre
+                                >
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div data-tab-content="tab">
                     <div class="elem-set">
@@ -242,7 +280,7 @@
                 <div data-tab-content="selectbox">
                     <div class="elem-set">
                         <h3>구현 화면</h3>
-                        <h4>옵션 선택 시 내용 노출</h4>
+                        <h4>단일 선택 시 내용 노출</h4>
                         <div class="flex-box" style="justify-content: flex-start">
                             <!-- 드롭다운 -->
                             <div data-selectbox>
@@ -271,7 +309,7 @@
                         </div>
                     </div>
                     <div class="elem-set">
-                        <h4>checked 개수 노출</h4>
+                        <h4>다중 선택 시 선택 항목 '외 n건'으로 노출</h4>
                         <div class="flex-box">
                             <!-- 드롭다운 -->
                             <div data-selectbox class="check">
@@ -285,6 +323,27 @@
                             </div>
                             <!-- //드롭다운 -->
                         </div>
+                    </div>
+                    <div class="elem-set">
+                        <h4>다중 선택 시 선택 항목 모두 노출</h4>
+                        <!-- 드롭다운 -->
+                        <div data-selectbox class="text" style="min-width: 15rem">
+                            <button selectbox-trg>선택해주세요.</button>
+                            <ul selectbox-list>
+                                <li><input type="checkbox" id="op1" /><label for="op1">옵션1</label></li>
+                                <li><input type="checkbox" id="op2" /><label for="op2">옵션2</label></li>
+                                <li><input type="checkbox" id="op3" /><label for="op3">옵션3</label></li>
+                                <li><input type="checkbox" id="op4" /><label for="op4">옵션4</label></li>
+                                <li class="textfield">
+                                    <input type="checkbox" id="custom" onclick="dropdownText(event)" /><label
+                                        for="custom"
+                                        >기타</label
+                                    >
+                                    <input type="text" placeholder="기타 입력" disabled />
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- //드롭다운 -->
                     </div>
                     <div class="elem-set">
                         <h3>상세 코드</h3>

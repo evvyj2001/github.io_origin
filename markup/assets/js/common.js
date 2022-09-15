@@ -110,6 +110,15 @@ function mobileNavMenu() {
     });
 }
 
+// header indicator
+function scrollIndicator() {
+    const winScroll = document.querySelector('.container').scrollTop;
+    const height =
+        document.querySelector('.container').scrollHeight - document.querySelector('.container').clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.querySelector('.scroll-indicator > span').style.width = scrolled + '%';
+}
+
 // 모드 변경
 function changeMode() {
     const selectBtns = document.querySelectorAll('.theme-select > button');
@@ -145,15 +154,6 @@ function changeMode() {
             document.documentElement.style.setProperty('--darkenMainColor', `${darkMainColor}`);
         });
     });
-}
-
-// header indicator
-function scrollIndicator() {
-    const winScroll = document.querySelector('.container').scrollTop;
-    const height =
-        document.querySelector('.container').scrollHeight - document.querySelector('.container').clientHeight;
-    const scrolled = (winScroll / height) * 100;
-    document.querySelector('.scroll-indicator > span').style.width = scrolled + '%';
 }
 
 // tab menu
@@ -210,12 +210,73 @@ function tabMenuFunction() {
     }
 }
 
+// input text del-btn
+function delBtn() {
+    // const inputWrap = document.querySelectorAll('.inp-box.__del > input');
+
+    // inputWrap.forEach(inp => {
+    //     inp.addEventListener('focus', () => {
+    //         const $btn = document.createElement('button');
+    //         $btn.innerText = '삭제';
+    //         $btn.classList.add('btn-del');
+    //         $btn.after(inp);
+    //         console.log(inp);
+    //     });
+    // });
+    const inputWrap = document.querySelectorAll('.inp-box.__del');
+    inputWrap.forEach(e => {
+        const inputElem = e.querySelector('input');
+        const $btn = document.createElement('button');
+        $btn.innerText = 'X';
+        $btn.classList.add('btn-del');
+        inputElem.parentElement.appendChild($btn);
+
+        inputElem.addEventListener('keyup', () => {
+            if (inputElem.value) {
+                $btn.style.display = 'block';
+            } else {
+                $btn.style.display = 'none';
+            }
+        });
+
+        $btn.addEventListener('click', el => {
+            inputElem.value = '';
+            el.target.style.display = 'none';
+        });
+    });
+}
+
+// input range
+function inputRange() {
+    const rangeInputs = document.querySelectorAll('input[type="range"]');
+    rangeInputs.forEach(inp => {
+        inp.addEventListener('input', () => {
+            const { min } = inp;
+            const { max } = inp;
+            const val = inp.value;
+
+            inp.style.backgroundSize = ((val - min) * 100) / (max - min) + '% 100%';
+        });
+    });
+}
+
+// 드롭다운 내 기타 텍스트 필드
+function dropdownText(e) {
+    const label = e.target.nextElementSibling;
+    const textField = label.nextElementSibling;
+
+    if (e.target.checked) {
+        textField.disabled = false;
+    } else {
+        textField.disabled = true;
+    }
+}
+
 // selectbox === dropdown
 function dropdown() {
     const dropdownElem = document.querySelectorAll('[data-selectbox]');
     const CLASS_IS = '__open';
     const CLASS_ON = '__on';
-    // const bodyEl = document.querySelector('body');
 
     for (let g = 0; g < dropdownElem.length; g++) {
         const trigger = dropdownElem[g].querySelector('[selectbox-trg]');
@@ -254,11 +315,14 @@ function dropdown() {
                         top: auto
                     `;
                 }
-
                 parentElems.classList.add(CLASS_IS);
-
-                list.style.maxHeight = `${list.scrollHeight}px`;
                 list.style.zIndex = 15;
+                if (list.scrollHeight > 160) {
+                    list.style.maxHeight = `160px`;
+                    list.style.overflowY = 'scroll';
+                } else {
+                    list.style.maxHeight = `${list.scrollHeight}px`;
+                }
             };
 
             const removeEvent = () => {
@@ -270,6 +334,8 @@ function dropdown() {
                 }, 150);
                 if (parentElems.classList.contains('check')) {
                     checkEvent();
+                } else if (parentElems.classList.contains('text')) {
+                    textEvent();
                 }
             };
 
@@ -289,6 +355,27 @@ function dropdown() {
                     textIn = `${checkedInput[0].innerText} 외 ${checkCount - 1}건`;
                 }
                 trg.target.innerText = textIn;
+            };
+
+            const textEvent = () => {
+                // 체크된 항목 다 보이게
+                const checkedInput = list.querySelectorAll('input[type=checkbox]:checked + label');
+                // const checkArray = new Array();
+                const checkArray = [];
+
+                for (let i = 0; i < checkedInput.length; i++) {
+                    const checkedText = ` ${checkedInput[i].innerHTML}`;
+                    checkArray.push(checkedText);
+                }
+
+                // if (checkedInput.length !== 0) {
+                //     trg.target.innerHTML = checkArray;
+                // }
+                if (checkedInput.length === 0) {
+                    trg.target.innerText = `선택해주세요.`;
+                } else {
+                    trg.target.innerHTML = checkArray;
+                }
             };
 
             if (!parentElems.classList.contains(CLASS_IS)) {
@@ -680,6 +767,8 @@ window.addEventListener('DOMContentLoaded', () => {
     accordion();
     dropdown();
     changeMode();
+    inputRange();
+    delBtn();
 
     // top button
     topBtn.addEventListener('click', () => {

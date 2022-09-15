@@ -5,14 +5,23 @@
 #cursor {
     position: absolute;
     z-index: 100;
+    &:before,
     &:after {
         content: '';
-        transition: 0.5s filter;
         border-left: 1rem solid transparent;
         border-right: 1rem solid transparent;
-        border-bottom: 1.7rem solid var(--mainColor);
         position: absolute;
-        mix-blend-mode: exclusion;
+        transform-origin: center;
+    }
+    &:before {
+        transition: 0.3s;
+        border-bottom: 1.7rem solid var(--lightMainColor);
+        animation: circleRotate 5s infinite reverse;
+    }
+    &:after {
+        transition: 0.5s;
+        border-bottom: 1.7rem solid var(--mainColor);
+        mix-blend-mode: overlay;
         animation: circleRotate 5s infinite linear;
     }
     &.__hover {
@@ -674,6 +683,11 @@
             border-left: 0.7rem solid var(--black);
             @include absolute(left 0 top 0.7rem);
         }
+        > span {
+            font-size: 1.2rem;
+            margin-left: 0.6rem;
+            color: var(--gray);
+        }
     }
     h4 {
         font-size: 1.4rem;
@@ -815,6 +829,9 @@
     }
     .inp-box {
         margin-bottom: 0.5rem;
+        &.__del {
+            margin-bottom: 0;
+        }
     }
     .view-detail {
         margin-top: 1rem;
