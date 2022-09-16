@@ -102,7 +102,7 @@ h3 {
                     height: 100%;
                     line-height: 6rem;
                     font-size: 1.8rem;
-                    // font-weight: 700;
+                    // font-weight: 800;
                     color: var(--gray);
                     transition: 0.3s;
                     @include fontType1;
@@ -274,7 +274,7 @@ h3 {
                 display: inline-block;
                 dt,
                 dd {
-                    font-weight: 700;
+                    font-weight: 800;
                 }
                 dt {
                     margin-bottom: 1rem;
@@ -315,7 +315,7 @@ h3 {
             > a {
                 display: block;
                 color: var(--gray);
-                font-weight: 700;
+                font-weight: 800;
             }
         }
     }
@@ -326,7 +326,7 @@ a,
 button {
     &.btn {
         font-size: 1.2em;
-        font-weight: 700;
+        font-weight: 800;
         height: 3.2rem;
         min-width: 6rem;
         padding: 0 1rem;
@@ -478,7 +478,7 @@ button {
         padding: 0 3rem 2rem 0;
         border-bottom: 1px solid var(--lightGray);
         // margin-bottom: 2rem;
-        font-weight: 700;
+        font-weight: 800;
         > span {
             display: inline-block;
             margin-left: 1rem;
@@ -565,7 +565,7 @@ button {
         display: inline-block;
         font-size: 1.4rem;
         color: darken($gray, 15%);
-        font-weight: 700;
+        font-weight: 800;
         margin-right: 2rem;
         > i {
             margin-right: 0.5rem;
@@ -612,10 +612,24 @@ button {
     padding: 1rem;
     text-align: center;
     border-radius: 1rem;
+    line-height: 1;
     opacity: 0;
     &.__show {
         top: 50%;
         opacity: 1;
+    }
+    > i {
+        margin-right: 0.5rem;
+        width: 1.4rem;
+        height: 1.4rem;
+        display: inline-block;
+        vertical-align: top;
+        background: var(--white);
+        color: var(--black);
+        border-radius: 50%;
+        @include fontType1;
+        line-height: 1.6rem;
+        font-size: 1.2rem;
     }
 }
 .now {

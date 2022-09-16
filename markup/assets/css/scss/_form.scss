@@ -200,6 +200,30 @@ input {
         display: inline-block;
     }
 }
+// input range에 텍스트 출력되게
+.flag-mode {
+    position: relative;
+    padding-top: 30px;
+    > span {
+        @include absolute(top 0 left 0);
+        width: 5rem;
+        // height: 2.6rem;
+        // transform: translateX(-50%);
+        margin-left: -2.5rem;
+        font-size: 1.4rem;
+        font-weight: 600;
+        background: var(--darkenMainColor);
+        color: var(--white);
+        padding: 0.3rem 0;
+        line-height: 1.4rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        &:after {
+            content: '%';
+            font-size: 1.2rem;
+        }
+    }
+}
 
 .inp-box {
     display: inline-block;
@@ -214,7 +238,7 @@ input {
         }
         .btn-del {
             color: var(--white);
-            font-weight: 700;
+            font-weight: 800;
             @include absolute(right 1rem top 50%);
             transform: translateY(-50%);
             width: 1.8rem;
@@ -255,7 +279,7 @@ pre[data-lang] {
         content: attr(data-lang);
         display: block;
         color: var(--black);
-        font-weight: 700;
+        font-weight: 800;
         padding: 0 1.5rem;
         height: 2.6rem;
         line-height: 2.6rem;

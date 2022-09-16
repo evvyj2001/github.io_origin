@@ -43,11 +43,11 @@
         top: 10rem;
     }
     .section {
-        padding: 10rem 2rem;
+        padding: 14rem 2rem;
         min-height: auto;
     }
     .intro {
-        padding-top: 12rem;
+        // padding-top: 12rem;
         .text {
             &-sub {
                 font-size: 2.2rem;
@@ -93,14 +93,20 @@
         }
     }
     .contact {
-        .contact-wrap {
-            flex-direction: column;
-            li {
-                & + li {
-                    margin-left: 0;
-                }
-            }
+        > p {
+            margin-top: 2rem;
+            line-height: 1.4;
+            word-break: keep-all;
+            padding: 0 2rem;
         }
+        // .contact-wrap {
+        //     flex-direction: column;
+        //     li {
+        //         & + li {
+        //             margin-left: 0;
+        //         }
+        //     }
+        // }
     }
     .tab-menu {
         > button {

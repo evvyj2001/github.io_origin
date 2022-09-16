@@ -123,12 +123,54 @@ function scrollIndicator() {
 function changeMode() {
     const selectBtns = document.querySelectorAll('.theme-select > button');
     const CLASS_ON = '__on';
+    const THEME_STYLE = 'Theme';
+    const savedTheme = localStorage.getItem(THEME_STYLE);
+    let mainColor;
+    let lightMainColor;
+    let darkMainColor;
+
+    const painting = () => {
+        document.documentElement.style.setProperty('--mainColor', `${mainColor}`);
+        document.documentElement.style.setProperty('--lightMainColor', `${lightMainColor}`);
+        document.documentElement.style.setProperty('--darkenMainColor', `${darkMainColor}`);
+    };
+
+    const greenTheme = () => {
+        mainColor = '#00c73c';
+        lightMainColor = '#a2fbbd';
+        darkMainColor = '#03862a';
+    };
+    const redTheme = () => {
+        mainColor = 'var(--red)';
+        lightMainColor = '#ffa0a0';
+        darkMainColor = '#a21005';
+    };
+    const blueTheme = () => {
+        mainColor = 'var(--blue)';
+        lightMainColor = '#8787ff';
+        darkMainColor = '#1212ad';
+    };
+
+    if (savedTheme === 'green') {
+        greenTheme();
+    } else if (savedTheme === 'red') {
+        redTheme();
+    } else if (savedTheme === 'blue') {
+        blueTheme();
+    }
+
+    if (!savedTheme) {
+        document.querySelector('.btn-green').classList.add(CLASS_ON);
+        greenTheme();
+    } else {
+        document.querySelector(`.btn-${savedTheme}`).classList.add(CLASS_ON);
+    }
+
+    painting();
 
     selectBtns.forEach(el => {
         const $CLASS = el.classList;
-        let mainColor;
-        let lightMainColor;
-        let darkMainColor;
+        const $TITLE = el.title;
 
         el.addEventListener('click', () => {
             for (let i = 0; i < selectBtns.length; i++) {
@@ -136,22 +178,16 @@ function changeMode() {
             }
             $CLASS.add(CLASS_ON);
 
+            localStorage.setItem(THEME_STYLE, $TITLE);
+
             if ($CLASS.contains('btn-green')) {
-                mainColor = '#00c73c';
-                lightMainColor = '#a2fbbd';
-                darkMainColor = '#03862a';
+                greenTheme();
             } else if ($CLASS.contains('btn-red')) {
-                mainColor = 'var(--red)';
-                lightMainColor = '#ffa0a0';
-                darkMainColor = '#a21005';
+                redTheme();
             } else if ($CLASS.contains('btn-blue')) {
-                mainColor = 'var(--blue)';
-                lightMainColor = '#8787ff';
-                darkMainColor = '#1212ad';
+                blueTheme();
             }
-            document.documentElement.style.setProperty('--mainColor', `${mainColor}`);
-            document.documentElement.style.setProperty('--lightMainColor', `${lightMainColor}`);
-            document.documentElement.style.setProperty('--darkenMainColor', `${darkMainColor}`);
+            painting();
         });
     });
 }
@@ -212,17 +248,6 @@ function tabMenuFunction() {
 
 // input text del-btn
 function delBtn() {
-    // const inputWrap = document.querySelectorAll('.inp-box.__del > input');
-
-    // inputWrap.forEach(inp => {
-    //     inp.addEventListener('focus', () => {
-    //         const $btn = document.createElement('button');
-    //         $btn.innerText = '삭제';
-    //         $btn.classList.add('btn-del');
-    //         $btn.after(inp);
-    //         console.log(inp);
-    //     });
-    // });
     const inputWrap = document.querySelectorAll('.inp-box.__del');
     inputWrap.forEach(e => {
         const inputElem = e.querySelector('input');
@@ -250,11 +275,24 @@ function delBtn() {
 function inputRange() {
     const rangeInputs = document.querySelectorAll('input[type="range"]');
     rangeInputs.forEach(inp => {
+        const parentElem = inp.parentElement;
+        const flag = parentElem.querySelector('span');
         inp.addEventListener('input', () => {
             const { min } = inp;
             const { max } = inp;
             const val = inp.value;
 
+            if (parentElem.classList.contains('flag-mode')) {
+                flag.innerText = val;
+
+                if (val < 4) {
+                    flag.style.left = `25px`;
+                } else if (val > 96) {
+                    flag.style.left = `calc(100% - 25px)`;
+                } else {
+                    flag.style.left = `${val}%`;
+                }
+            }
             inp.style.backgroundSize = ((val - min) * 100) / (max - min) + '% 100%';
         });
     });
@@ -615,7 +653,7 @@ function toast(el) {
     const elem = document.createElement('div');
     const footer = document.querySelector('#footer');
     elem.classList.add('popup-toast');
-    elem.innerText = `${el}`;
+    elem.innerHTML = `${el}`;
     footer.after(elem);
     setTimeout(() => {
         elem.classList.add(CLASS_ON);
@@ -640,7 +678,7 @@ const introLayer = setTimeout(() => {
 // 메인 상단 텍스트
 function quoteChange() {
     const textWrap = document.querySelector('.text-greeting > h1');
-    const quotes = ['성유진', '웹퍼블리셔', '💻웹개발자', '성실한사람']; // 5글자 이하로
+    const quotes = ['성유진의', '퍼블리싱', '성실한', '웹퍼블리셔']; // 5글자 이하로
     let i = 0;
     let span;
     const timeOut = () => {
@@ -769,6 +807,7 @@ window.addEventListener('DOMContentLoaded', () => {
     changeMode();
     inputRange();
     delBtn();
+    // themeChange();
 
     // top button
     topBtn.addEventListener('click', () => {
