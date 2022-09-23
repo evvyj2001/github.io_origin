@@ -18,7 +18,6 @@
         "isMobile": true,
         "AOS": true,
         "gsap": true,
-        "numberCount": true,
         "quoteChange": true
     },
     "extends": ["eslint:recommended", "airbnb-base", "prettier"], //airbnb-base 포맷 사용

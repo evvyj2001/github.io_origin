@@ -44,7 +44,12 @@
     }
     .section {
         padding: 14rem 2rem;
-        min-height: auto;
+        // min-height: auto;
+    }
+    .btn-top {
+        width: 4.5rem;
+        height: 4.5rem;
+        right: 2rem;
     }
     .intro {
         // padding-top: 12rem;
@@ -86,6 +91,11 @@
         // }
     }
     .skills {
+        .tab-menu {
+            width: calc(100% + 4rem);
+            margin-left: -2rem;
+            padding: 0 2rem;
+        }
         .flex-box {
             .list-set {
                 width: 100% !important;

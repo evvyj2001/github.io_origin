@@ -57,7 +57,7 @@ h3 {
             width: fit-content;
             font-size: 2rem;
             position: relative;
-            padding-right: 2rem;
+            padding-right: 1rem;
             &::first-letter {
                 color: var(--mainColor);
             }
@@ -67,8 +67,8 @@ h3 {
                 height: 0.5rem;
                 background: var(--mainColor);
                 border-radius: 100%;
-                right: 1rem;
-                top: 2rem;
+                right: 0;
+                bottom: 0.4rem;
                 animation: logoAnimation 1s;
                 animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
                 animation-delay: 14s;

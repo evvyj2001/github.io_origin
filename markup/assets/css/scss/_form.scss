@@ -200,6 +200,19 @@ input {
         display: inline-block;
     }
 }
+textarea {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    border: 1px solid var(--lightGray);
+    border-radius: 0.5rem;
+    padding: 1rem 1rem 2.5rem;
+    // width: 100%;
+    resize: none;
+    &:focus {
+        outline: none;
+        border: 1px solid var(--darkenMainColor);
+    }
+}
 // input range에 텍스트 출력되게
 .flag-mode {
     position: relative;
@@ -246,6 +259,18 @@ input {
             border-radius: 50%;
             background: var(--gray);
             display: none;
+        }
+    }
+    &.__count {
+        position: relative;
+    }
+    .text-count {
+        // font-size: 1.2rem !important;
+        display: inline-block;
+        // @include absolute(right 1rem bottom 1rem);
+        color: var(--gray);
+        > span {
+            color: var(--darkenMainColor);
         }
     }
 }

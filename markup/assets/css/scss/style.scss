@@ -42,29 +42,32 @@
     @include fontType1;
     // display: none;
     .intro-text {
-        font-size: 4rem;
+        font-size: 0;
         color: var(--white);
         position: relative;
         font-weight: 800;
+        > span:not(.intro-text-dot) {
+            font-size: 4rem;
+            position: relative;
+            transition: 0.3s all;
+            animation: introTextMove 2s infinite;
+        }
+        @for $i from 1 to 15 {
+            > span:not(.intro-text-dot):nth-child(#{$i}) {
+                animation-delay: ($i * 0.07s) - 0.07s;
+            }
+        }
         &-dot {
             width: 1rem;
             height: 1rem;
             display: inline-block;
             background: var(--mainColor);
-            border-radius: 100%;
+            border-radius: 50%;
             position: absolute;
-            top: calc(50% + 1.5rem);
-            left: calc(50% + 18.5rem);
+            bottom: 0.5rem;
+            right: -1.5rem;
             opacity: 1;
-            animation: dotMove 6s;
-            &:after {
-                @include pseudo;
-                width: 1rem;
-                height: 1rem;
-                background: var(--black);
-                opacity: 0;
-                animation: dotOpacity 1.2s ease-in-out 6s infinite;
-            }
+            animation: dotMove 2s infinite;
         }
     }
 }
@@ -452,16 +455,17 @@
     position: relative;
     .bg-text {
         left: 50%;
-
-        // color: var(--white);
-        filter: drop-shadow(0.5rem 1rem 0 rgba(0, 0, 0, 0.05));
         &:first-of-type {
             transform: rotate(90deg) translateX(100rem);
             -webkit-text-stroke-width: 2px;
             -webkit-text-stroke-color: rgba(0, 0, 0, 0.05);
+            filter: drop-shadow(0.5rem 1rem 0 rgba(0, 0, 0, 0.05));
         }
         &:nth-of-type(2) {
-            top: 70rem;
+            top: 75rem;
+            -webkit-text-stroke-width: 2px;
+            -webkit-text-stroke-color: rgba(255, 255, 255, 0.5);
+            color: transparent;
         }
     }
     .tab-menu {
@@ -866,6 +870,12 @@
         margin-bottom: 0.5rem;
         &.__del {
             margin-bottom: 0;
+        }
+        &.__count {
+            .text-count {
+                vertical-align: bottom;
+                margin-left: 1rem;
+            }
         }
     }
     .view-detail {

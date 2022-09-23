@@ -250,7 +250,7 @@ function tabMenuFunction() {
 function delBtn() {
     const inputWrap = document.querySelectorAll('.inp-box.__del');
     inputWrap.forEach(e => {
-        const inputElem = e.querySelector('input');
+        const inputElem = e.querySelector('input, textarea');
         const $btn = document.createElement('button');
         $btn.innerText = 'X';
         $btn.classList.add('btn-del');
@@ -292,8 +292,22 @@ function inputRange() {
                 } else {
                     flag.style.left = `${val}%`;
                 }
+                // flag.style.left = `calc(${val}% + 1.9rem)`;
             }
             inp.style.backgroundSize = ((val - min) * 100) / (max - min) + '% 100%';
+        });
+    });
+}
+
+// textcounting
+function textCount() {
+    const textfield = document.querySelectorAll('.inp-box.__count');
+    textfield.forEach(elm => {
+        const area = elm.querySelector('input, textarea');
+        area.addEventListener('input', () => {
+            const { length } = area.value;
+            const cnt = area.nextElementSibling.querySelector('span');
+            cnt.innerText = length;
         });
     });
 }
@@ -655,14 +669,16 @@ function toast(el) {
     elem.classList.add('popup-toast');
     elem.innerHTML = `${el}`;
     footer.after(elem);
+    document.querySelector('#wrap').style.pointerEvents = 'none';
     setTimeout(() => {
         elem.classList.add(CLASS_ON);
         setTimeout(() => {
             elem.classList.remove(CLASS_ON);
+            document.querySelector('#wrap').style.pointerEvents = 'visible';
             setTimeout(() => {
                 elem.remove();
             }, 500);
-        }, 2000);
+        }, 1500);
     }, 200);
 }
 
@@ -673,7 +689,7 @@ const introLayer = setTimeout(() => {
     setTimeout(() => {
         layer.remove();
     }, 200);
-}, 13000);
+}, 10000);
 
 // 메인 상단 텍스트
 function quoteChange() {
@@ -774,12 +790,15 @@ function dragScroll() {
 
 // load
 window.addEventListener('DOMContentLoaded', () => {
+    // scroll event
     const scrollContent = document.querySelector('.container');
     const topBtn = document.querySelector('.btn-top');
+
     scrollContent.addEventListener('scroll', () => {
         scrollIndicator();
         findScroll();
 
+        // top-btn
         if (scrollContent.scrollTop < 300) {
             topBtn.style.opacity = 0;
             topBtn.style.zIndex = -1;
@@ -808,6 +827,7 @@ window.addEventListener('DOMContentLoaded', () => {
     inputRange();
     delBtn();
     // themeChange();
+    textCount();
 
     // top button
     topBtn.addEventListener('click', () => {
@@ -826,12 +846,27 @@ window.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keyup', e => {
         const CLASS_IS = '__show';
         // esc 누르면 팝업 닫기
-        if (e.keyCode === 27) {
-            const popupId = e.target.querySelector('.popup.__show');
-            popupId.classList.remove(CLASS_IS);
-            popDimmedRemove();
+        const popupId = document.querySelector('.popup.__show');
+        if (document.body.contains(popupId)) {
+            // body에 .popup.__show있는지 여부 확인
+            if (e.keyCode === 27) {
+                popupId.classList.remove(CLASS_IS);
+                popDimmedRemove();
+            }
         }
     });
+});
+
+// scroll up/down
+window.addEventListener('wheel', e => {
+    const scrollY = e.deltaY;
+    // const scrollX = e.deltaX;
+
+    if (scrollY < 0) {
+        console.log('scroll up!');
+    } else {
+        console.log('scroll down!');
+    }
 });
 
 // resize
@@ -846,9 +881,9 @@ window.addEventListener('touchend', () => {
 
 // mousemove
 window.addEventListener('mousemove', el => {
-    const circle = document.querySelector('#cursor');
+    const cursor = document.querySelector('#cursor');
     const mouseX = el.clientX - 20;
     const mouseY = el.clientY - 20;
 
-    circle.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+    cursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
 });
