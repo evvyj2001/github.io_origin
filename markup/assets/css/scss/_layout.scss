@@ -206,7 +206,8 @@ h3 {
         width: 100%;
         height: calc(var(--vh100) - 6rem);
         margin-top: 6.1rem;
-        background: var(--white);
+        // background: var(--white);
+        backdrop-filter: blur(1.5rem);
         padding: 2rem 4rem;
         z-index: 10;
         transform: translateX(100%);
@@ -454,6 +455,7 @@ button {
     background: rgba(0, 0, 0, 0.5);
     opacity: 0;
     transition: 0.4s;
+    backdrop-filter: blur(0.2rem);
     &.__show {
         opacity: 1;
         z-index: 5;

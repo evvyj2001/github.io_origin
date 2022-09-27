@@ -1,4 +1,6 @@
+<!-- cursor -->
 <div id="cursor"></div>
+<!-- header -->
 <header id="header">
     <div class="scroll-indicator">
         <span></span>
@@ -12,10 +14,7 @@
         </h1>
         <nav>
             <ul>
-                <li class="__on">
-                    <!-- <a href="javascript:;" data-scroll="tab1">Hi<i>🖐</i></a> -->
-                    <a href="javascript:;" data-scroll="tab1">Hi</a>
-                </li>
+                <li class="__on"><a href="javascript:;" data-scroll="tab1">Hi</a></li>
                 <li><a href="javascript:;" data-scroll="tab2">About me</a></li>
                 <li><a href="javascript:;" data-scroll="tab3">Skills</a></li>
                 <li><a href="javascript:;" data-scroll="tab4">Contact</a></li>
@@ -52,11 +51,12 @@
 </div>
 <!-- theme 선택 fixed bar -->
 <div class="theme-select">
+    <div>
+        <p class="tit">모드 선택</p>
+        <button class="reset" onclick="localStorage.removeItem('Theme')">Reset</button>
+    </div>
     <button class="btn-green" title="green">g</button>
     <button class="btn-red" title="red">r</button>
     <button class="btn-blue" title="blue">b</button>
-    <div>
-        <button class="reset" onclick="localStorage.removeItem('Theme')">Reset</button>
-    </div>
 </div>
 <!--#include file="_intro_layer.html"-->

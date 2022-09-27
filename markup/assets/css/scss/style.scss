@@ -78,13 +78,30 @@
     background: var(--white);
     padding: 1rem;
     font-size: 0;
+    > div {
+        @include flex(center, space-between);
+        margin-bottom: 1rem;
+        * {
+            line-height: 1;
+        }
+    }
+    .tit {
+        font-size: 1.4rem;
+        display: inline-block;
+        font-weight: 700;
+    }
+    button.reset {
+        font-size: 1.2rem;
+        color: var(--blue);
+        text-decoration: underline;
+    }
     > button {
         text-transform: capitalize;
         font-size: 1.2rem;
         font-weight: 800;
         color: var(--white);
-        width: 3rem;
-        height: 3rem;
+        width: 2.8rem;
+        height: 2.8rem;
         filter: grayscale(1);
         opacity: 0.6;
         &[class*='green'] {
@@ -99,13 +116,9 @@
         &.__on {
             filter: grayscale(0);
             opacity: 1;
+            width: 3.2rem;
+            height: 3.2rem;
         }
-    }
-    button.reset {
-        font-size: 1.2rem;
-        color: var(--blue);
-        text-decoration: underline;
-        margin-top: 0.5rem;
     }
 }
 
@@ -329,6 +342,26 @@
         }
         &-desc {
             margin-top: 5rem;
+            > i {
+                position: relative;
+                &:before {
+                    content: '';
+                    display: inline-block;
+                    width: 1px;
+                    height: 1.5rem;
+                    @include absolute(bottom 0 left 0);
+                    z-index: -1;
+                    transition: 0.5s width;
+                }
+            }
+            &:hover {
+                > i {
+                    &:before {
+                        width: calc(100% + 0.5rem);
+                        background: var(--subPointColor);
+                    }
+                }
+            }
         }
         &-greeting {
             font-size: 6rem;
@@ -584,9 +617,11 @@
             font-size: 1.4rem;
             > img {
                 width: 100%;
-                height: auto;
-                @include absolute(top 50%);
-                transform: translateY(-50%);
+                height: 100%;
+                object-fit: cover;
+                position: absolute;
+                // @include absolute(top 50%);
+                // transform: translateY(-50%);
             }
             > p {
                 text-align: center;
@@ -603,6 +638,11 @@
                 line-height: 1.2;
                 opacity: 0;
                 padding: 0 1rem;
+                > span {
+                    &::first-letter {
+                        color: var(--mainColor);
+                    }
+                }
             }
             &:hover {
                 background: rgba(0, 0, 0, 0.6);
@@ -611,11 +651,6 @@
                     opacity: 1;
                     transform: translateY(0);
                     background: rgba(0, 0, 0, 0.4);
-                    > span {
-                        &::first-letter {
-                            color: var(--mainColor);
-                        }
-                    }
                 }
             }
         }

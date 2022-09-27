@@ -297,7 +297,7 @@ pre[data-lang] {
         height: 5px;
     }
     &::-webkit-scrollbar-thumb {
-        background: var(--black);
+        background: var(--darkenMainColor);
         opacity: 0.3;
     }
     &:before {

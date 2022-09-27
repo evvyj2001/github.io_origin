@@ -48,11 +48,6 @@ function findScroll() {
     });
     const scrollPosition = document.documentElement.scrollTop || document.querySelector('.container').scrollTop;
 
-    // eslint-disable-next-line no-restricted-syntax
-    // for (const i in sections) {
-
-    // }
-
     for (const i of Object.keys(sections)) {
         if (sections[i] <= scrollPosition + 100) {
             const item = document.querySelector(`a[data-scroll="${i}"]`);
