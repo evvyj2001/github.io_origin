@@ -14,11 +14,12 @@
         "fadeOut": true,
         "popOpen": true,
         "popClose": true,
-        "Swiper": true,
+        // "Swiper": true,
         "isMobile": true,
-        "AOS": true,
-        "gsap": true,
-        "quoteChange": true
+        // "AOS": true,
+        // "gsap": true,
+        "quoteChange": true,
+        "subPageFunction": true
     },
     "extends": ["eslint:recommended", "airbnb-base", "prettier"], //airbnb-base 포맷 사용
     // "parser": "babel-eslint",

@@ -20,6 +20,14 @@ h3 {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    &.sub {
+        .text-side {
+            display: none;
+        }
+        .theme-select {
+            display: none;
+        }
+    }
 }
 
 #header {

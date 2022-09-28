@@ -26,42 +26,58 @@ function tabMove() {
 // header nav bottom border effect
 function navBottom() {
     const nav = document.querySelector('nav > ul');
-    const navWidth = nav.clientWidth;
     const lineBottom = document.querySelector('.line-bottom');
 
-    lineBottom.style.width = `${navWidth}px`;
+    if (document.body.contains(nav)) {
+        const navWidth = nav.clientWidth;
+        lineBottom.style.width = `${navWidth}px`;
+    }
 }
 
 // scroll spy
 function findScroll() {
     const nav = document.querySelector('nav > ul');
-    const lineBottom = document.querySelector('.line-bottom');
-    const lineMove = lineBottom.querySelector('span');
+    if (document.body.contains(nav)) {
+        const lineBottom = document.querySelector('.line-bottom');
+        const lineMove = lineBottom.querySelector('span');
 
-    const section = document.querySelectorAll('.section');
-    const sections = [];
+        const section = document.querySelectorAll('.section');
+        const sections = [];
 
-    const CLASS_IS = '__on';
+        const CLASS_IS = '__on';
 
-    Array.prototype.forEach.call(section, e => {
-        sections[e.id] = e.offsetTop;
-    });
-    const scrollPosition = document.documentElement.scrollTop || document.querySelector('.container').scrollTop;
+        Array.prototype.forEach.call(section, e => {
+            sections[e.id] = e.offsetTop;
+        });
+        const scrollPosition = document.documentElement.scrollTop || document.querySelector('.container').scrollTop;
 
-    for (const i of Object.keys(sections)) {
-        if (sections[i] <= scrollPosition + 100) {
-            const item = document.querySelector(`a[data-scroll="${i}"]`);
-            const itemWidth = item.clientWidth / 2;
-            const position = item.offsetLeft - nav.offsetLeft;
-            const lineHalf = lineMove.clientWidth / 2;
+        for (const i of Object.keys(sections)) {
+            if (sections[i] <= scrollPosition + 100) {
+                const item = document.querySelector(`a[data-scroll="${i}"]`);
+                const itemWidth = item.clientWidth / 2;
+                const position = item.offsetLeft - nav.offsetLeft;
+                const lineHalf = lineMove.clientWidth / 2;
 
-            lineMove.style.opacity = 1;
-            lineMove.style.transform = `translateX(calc(${position}px + ${itemWidth}px - ${lineHalf}px))`;
+                lineMove.style.opacity = 1;
+                lineMove.style.transform = `translateX(calc(${position}px + ${itemWidth}px - ${lineHalf}px))`;
 
-            document.querySelector(`.${CLASS_IS}`).classList.remove(CLASS_IS);
-            item.parentNode.classList.add(CLASS_IS);
+                document.querySelector(`.${CLASS_IS}`).classList.remove(CLASS_IS);
+                item.parentNode.classList.add(CLASS_IS);
+            }
         }
     }
+}
+
+// mobile size
+function isMobile() {
+    const screenSize = document.body.clientWidth;
+
+    if (screenSize < 690) {
+        // console.log('모바일 맞음');
+        return true;
+    }
+    // console.log('모바일 아님');
+    return false;
 }
 
 // header mobile nav
@@ -81,10 +97,15 @@ function mobileNav() {
         }
     });
 
-    if (screenSize > 690) {
+    if (isMobile !== true && document.body.contains(navWrap)) {
         navBtn.classList.remove(CLASS_IS);
         navWrap.style.transform = `translateX(100%)`;
     }
+
+    // if (screenSize > 690) {
+    //     navBtn.classList.remove(CLASS_IS);
+    //     navWrap.style.transform = `translateX(100%)`;
+    // }
 }
 
 // header mobile nav menu
@@ -540,8 +561,10 @@ function isNow() {
         dayNight.innerText = '지금은 오전';
     }
 
-    dateElem.innerText = `오늘은 ${year}년 ${month}월 ${date}일 ${week[day]}요일`;
-    clockElem.innerText = `${hour}시 ${minutes}분 ${seconds}초 입니다.`;
+    if (document.body.contains(dateElem)) {
+        dateElem.innerText = `오늘은 ${year}년 ${month}월 ${date}일 ${week[day]}요일`;
+        clockElem.innerText = `${hour}시 ${minutes}분 ${seconds}초 입니다.`;
+    }
 }
 
 setInterval(() => {
@@ -684,7 +707,7 @@ const introLayer = setTimeout(() => {
     setTimeout(() => {
         layer.remove();
     }, 200);
-}, 10000);
+}, 6000);
 
 // 메인 상단 텍스트
 function quoteChange() {
@@ -783,6 +806,14 @@ function dragScroll() {
     });
 }
 
+// sub page nav 미노출
+function subPageFunction() {
+    const nav = document.querySelectorAll('nav, .nav-wrap');
+    nav.forEach(e => {
+        e.remove();
+    });
+}
+
 // load
 window.addEventListener('DOMContentLoaded', () => {
     // scroll event
@@ -813,7 +844,6 @@ window.addEventListener('DOMContentLoaded', () => {
     tooltip();
     scrollParalle();
     cursorEvent();
-    popOpen('popupIntro');
     dragScroll();
     tabMenuFunction();
     accordion();
@@ -823,6 +853,7 @@ window.addEventListener('DOMContentLoaded', () => {
     delBtn();
     // themeChange();
     textCount();
+    isMobile();
 
     // top button
     topBtn.addEventListener('click', () => {
@@ -853,16 +884,16 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // scroll up/down
-window.addEventListener('wheel', e => {
-    const scrollY = e.deltaY;
-    // const scrollX = e.deltaX;
+// window.addEventListener('wheel', e => {
+//     const scrollY = e.deltaY;
+//     // const scrollX = e.deltaX;
 
-    if (scrollY < 0) {
-        console.log('scroll up!');
-    } else {
-        console.log('scroll down!');
-    }
-});
+//     if (scrollY < 0) {
+//         console.log('scroll up!');
+//     } else {
+//         console.log('scroll down!');
+//     }
+// });
 
 // resize
 window.addEventListener('resize', () => {

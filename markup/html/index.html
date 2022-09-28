@@ -164,10 +164,16 @@
                         </div>
                         <div scroll-drag class="project-wrap">
                             <div>
-                                <a href="javascript:popOpen('popupMomentum');">
+                                <a href="javascript:popOpen('popup_momentum');">
                                     <img src="/assets/img/index/thum_momentum.jpg" alt="" />
                                     <p>
                                         <span>Momentum</span>
+                                    </p>
+                                </a>
+                                <a href="javascript:popOpen('popup_momentum2');">
+                                    <img src="/assets/img/index/img_default.jpg" alt="" />
+                                    <p>
+                                        <span>Momentum2</span>
                                     </p>
                                 </a>
                             </div>
@@ -202,6 +208,59 @@
         </div>
         <script>
             quoteChange();
+            popOpen('popupIntro');
+
+            // json 이용해서 skills 내 기술 리스트 팝업 처리
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState === 4 && xhttp.status === 200) {
+                    jsonfunc(this.responseText); // this = xhttp
+                    //		jsonfunc(xhttp.responseText); // 둘다 가능
+                }
+            };
+            xhttp.open('GET', 'portfolio.json', true); // 불러올 json파일
+            xhttp.send();
+
+            function jsonfunc(jsonText) {
+                const json = JSON.parse(jsonText); // String -> json으로 변환
+                let popupContent = '';
+
+                // 접근법2
+                for (let i = 0; i < json.length; i++) {
+                    popupContent += `
+                <div class="popup" id="popup_${json[i].id}">
+                    <p class="popup-head">
+                        ${json[i].id}
+                        <a href="/${json[i].id}/" target="_blank" title="${json[i].id} 바로가기">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </p>
+                    <div class="popup-body">
+                        <p class="popup-tool-tit"><i class="fa-solid fa-gear"></i>관련 기술</p>
+                        <ul class="popup-tool">
+                            ${json[i].tool}
+                        </ul>
+                        <div class="cont">
+                            <p class="txt">
+                                ${json[i].description}
+                            </p>
+                            <ul class="list-dot">
+                                ${json[i].list}
+                            </ul>
+                            <div class="img-wrap">
+                                <img src="${json[i].img}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-wrap">
+                        <button class="btn bg-dark" onclick="popClose(event)">닫기</button>
+                    </div>
+                    <button class="popup-btn-close" title="닫기" onclick="popClose(event)"></button>
+                </div>
+                `;
+                }
+                document.getElementById('skillPopup').innerHTML = popupContent;
+            }
         </script>
     </body>
 </html>
