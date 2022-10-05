@@ -20,7 +20,7 @@
         // "gsap": true,
         "quoteChange": true,
         "subPageFunction": true,
-        "THREE": true
+        "THREE": true // three.js
     },
     "extends": ["eslint:recommended", "airbnb-base", "prettier"], //airbnb-base 포맷 사용
     // "parser": "babel-eslint",
