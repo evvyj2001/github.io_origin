@@ -19,7 +19,8 @@
         // "AOS": true,
         // "gsap": true,
         "quoteChange": true,
-        "subPageFunction": true
+        "subPageFunction": true,
+        "THREE": true
     },
     "extends": ["eslint:recommended", "airbnb-base", "prettier"], //airbnb-base 포맷 사용
     // "parser": "babel-eslint",
@@ -39,7 +40,7 @@
         // "properties": "never",
         // "no-shadow": "off",
         "vars-on-top": "off",
-        // "no-underscore-dangle": "off", // var _foo;
+        "no-underscore-dangle": "off", // var _foo;
         // "comma-dangle": "off",
         "func-names": "off", // setTimeout(function () {}, 0);
         "prefer-template": "off",

@@ -2,7 +2,7 @@
     {
         "id": "momentum",
         "tool": "<li>HTML5</li><li>CSS3</li><li>Javascript</li>",
-        "description": "개인 포트폴리오용 작업입니다. 순수 자바스크립트로만 기능을 구현하였으며, 위치 정보 API 등을 활용하여 다양한 기능들을 구현하였습니다.",
+        "description": "개인 포트폴리오용 작업입니다. 순수 자바스크립트로만 기능을 구현하였으며, 위치 정보 API 등을 활용하여 날씨 정보도 확인할 수 있습니다. ",
         "list": " <li>반응형 웹사이트</li><li>위치 정보(좌표)를 기반으로 한 날씨 API 사용 및 영문 -&gt; 한글화 및 현재 날씨 확인 가능</li><li>날짜, 시간 확인 가능</li><li>로그인 기능 (LocalStorage 저장으로 정보 유지)</li><li><strong>To Do ist</strong> <br>- 사용자 정보 저장<br>- 모두 / 남은 일 / 완료한 일 등 일정 현황 확인 가능<br>- 일정 등록, 일정 수정, 일정 삭제, 일정 일괄 삭제 등의 기능 (위의 정보는 모두 LocalStorage 저장으로 정보 유지)</li><li>'낮과 밤'을 테마로 사용자 요구에 따른 화면 UI 변환 (LocalStorage 저장으로 모드값 유지)</li>",
         "img": "/assets/img/index/img_screenshot.jpg"
     },
