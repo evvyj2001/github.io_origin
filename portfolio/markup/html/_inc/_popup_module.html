@@ -34,8 +34,7 @@
                                 <pre data-lang="html" class="language-html">
 < input type="checkbox" id="chb1" />
 < label for="chb1">체크박스< /label>
-</pre
-                                >
+</pre>
                             </div>
                         </div>
                     </div>
@@ -59,8 +58,7 @@
                                 <pre data-lang="html" class="language-html">
 < input type="radio" id="rd1" name="radios" />
 < label for="rd1">라디오< /label>
-</pre
-                                >
+</pre>
                             </div>
                         </div>
                     </div>
@@ -84,8 +82,7 @@
                                 <pre data-lang="html" class="language-html">
 < input type="checkbox" class="toggle" id="tg1" />
 < label for="tg1">토글 ::off< /label>
-</pre
-                                >
+</pre>
                             </div>
                         </div>
                     </div>
@@ -104,14 +101,8 @@
                         <p>텍스트 카운팅 실시간 반영</p>
                         <br />
                         <div class="inp-box __count">
-                            <textarea
-                                name=""
-                                id=""
-                                rows="5"
-                                placeholder="텍스트 입력"
-                                maxlength="250"
-                                style="min-width: 21rem"
-                            ></textarea>
+                            <textarea name="" id="" rows="5" placeholder="텍스트 입력" maxlength="250"
+                                style="min-width: 21rem"></textarea>
                             <!-- <input type="text" placeholder="텍스트입력" maxlength="250"> -->
                             <p class="text-count"><span>0</span> / 250</p>
                         </div>
@@ -129,8 +120,7 @@
     < textarea name="" id="" cols="50" rows="5" placeholder="텍스트 입력" maxlength="250">< /textarea>
     < p class="text-count">< span>0< /span> / 250< /p>
 < /div>
-</pre
-                                >
+</pre>
                             </div>
                         </div>
                     </div>
@@ -138,13 +128,15 @@
                         <h3>Range Silder</h3>
                         <p>flag 내 value값 실시간 반영</p>
                         <br />
-                        <div class="flag-mode">
+                        <div class="flag-mode range-wrap">
                             <input type="range" value="0" min="0" max="100" style="background-size: 0% 100%" />
-                            <span style="left: 25px">0</span>
+                            <div class="result-wrap">
+                                <span style="left: 25px">0</span>
+                            </div>
                         </div>
                         <br />
                         <p>일반 Range Silder</p>
-                        <div>
+                        <div class="range-wrap">
                             <input type="range" value="70" min="0" max="100" style="background-size: 70% 100%" />
                         </div>
                         <div class="view-detail" data-accordion="1">
@@ -152,8 +144,7 @@
                             <div accordion-cont>
                                 <pre data-lang="html" class="language-html">
 < input type="range" value="70" min="0" max="100" style="background-size: 70% 100%;" / >
-</pre
-                                >
+</pre>
                             </div>
                         </div>
                     </div>
@@ -276,6 +267,7 @@
         < /p>
     < /dd>
 < /dl>
+
 <span class="comment">< !-- 2개 이상 아코디언 -- ></span>
 < ul>
     < li data-accordion> <span class="comment">< !-- 각 아코디언을 data-accordion으로 감쌈 -- ></span>
@@ -366,9 +358,7 @@
                                 <li><input type="checkbox" id="op4" /><label for="op4">옵션4</label></li>
                                 <li class="textfield">
                                     <input type="checkbox" id="custom" onclick="dropdownText(event)" /><label
-                                        for="custom"
-                                        >기타</label
-                                    >
+                                        for="custom">기타</label>
                                     <input type="text" placeholder="기타 입력" disabled />
                                 </li>
                             </ul>

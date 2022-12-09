@@ -58,5 +58,8 @@
         "postcss": "^8.4.6",
         "prettier": "2.5.1",
         "sass": "^1.49.7"
+    },
+    "eslintConfig": {
+        "extends": "mdcs"
     }
 }

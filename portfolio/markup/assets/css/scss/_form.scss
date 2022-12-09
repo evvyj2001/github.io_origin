@@ -217,25 +217,48 @@ textarea {
 .flag-mode {
     position: relative;
     padding-top: 30px;
-    > span {
-        @include absolute(top 0 left 0);
-        width: 5rem;
-        // height: 2.6rem;
-        // transform: translateX(-50%);
-        margin-left: -2.5rem;
-        font-size: 1.4rem;
-        font-weight: 600;
-        background: var(--darkenMainColor);
-        color: var(--white);
-        padding: 0.3rem 0;
-        line-height: 1.4rem;
-        border-radius: 0.5rem;
-        text-align: center;
-        &:after {
-            content: '%';
-            font-size: 1.2rem;
+    .result-wrap {
+        width: 100%;
+        position: relative;
+        height: 4rem;
+        span {
+            @include absolute(top 0 left 0);
+            width: 5rem;
+            margin-left: -2.5rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            background: var(--darkenMainColor);
+            color: var(--white);
+            padding: 0.3rem 0;
+            line-height: 1.4rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            left: 0;
+            top: 1.5rem;
+            &:before {
+                content: '';
+                display: inline-block;
+                width: 0.5rem;
+                height: 0.5rem;
+                border-style: solid;
+                border-width: 0 0 1px 1px;
+                border-color: transparent;
+                position: absolute;
+                top: -0.3rem;
+                left: 50%;
+                margin-left: -0.3rem;
+                transform: rotate(135deg);
+                background: var(--darkenMainColor);
+            }
+            &:after {
+                content: '%';
+                font-size: 1.2rem;
+            }
         }
     }
+}
+.range-wrap {
+    padding: 0 1.5rem;
 }
 
 .inp-box {
@@ -290,7 +313,7 @@ pre[data-lang] {
     > span {
         &.comment {
             opacity: 0.3;
-            font-size: 0.9em;
+            // font-size: 0.9em;
         }
     }
     &::-webkit-scrollbar {

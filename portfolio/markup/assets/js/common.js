@@ -292,23 +292,29 @@ function inputRange() {
     const rangeInputs = document.querySelectorAll('input[type="range"]');
     rangeInputs.forEach(inp => {
         const parentElem = inp.parentElement;
-        const flag = parentElem.querySelector('span');
-        inp.addEventListener('input', () => {
-            const { min } = inp;
-            const { max } = inp;
-            const val = inp.value;
+
+        inp.addEventListener('input', e => {
+            const { min } = e.target;
+            const { max } = e.target;
+            const val = e.target.value;
+            const move = `${(e.target.offsetWidth / 100) * val}`;
+            let more = `${2.5 * (val / 10) - 12.5}`;
+            let moveResult;
 
             if (parentElem.classList.contains('flag-mode')) {
+                const flagWrap = parentElem.querySelector('.result-wrap');
+                const flag = flagWrap.querySelector('span'); // 텍스트 출력 및 위치 이동 요소
+                // console.dir(flag);
                 flag.innerText = val;
 
-                if (val < 4) {
-                    flag.style.left = `25px`;
-                } else if (val > 96) {
-                    flag.style.left = `calc(100% - 25px)`;
+                if (more < 0) {
+                    more = Math.abs(more);
                 } else {
-                    flag.style.left = `${val}%`;
+                    more = more * -1;
                 }
-                // flag.style.left = `calc(${val}% + 1.9rem)`;
+
+                moveResult = Number(move) + Number(more);
+                flag.style = `transform: translateX(${moveResult}px)`;
             }
             inp.style.backgroundSize = ((val - min) * 100) / (max - min) + '% 100%';
         });
@@ -712,7 +718,7 @@ const introLayer = setTimeout(() => {
 // 메인 상단 텍스트
 function quoteChange() {
     const textWrap = document.querySelector('.text-greeting > h1');
-    const quotes = ['성유진의', '퍼블리싱', '성실한', '웹퍼블리셔']; // 5글자 이하로
+    const quotes = ['성유진의', '퍼블리싱', '성실한', '웹퍼블리셔', '프론트엔드']; // 5글자 이하로
     let i = 0;
     let span;
     const timeOut = () => {
