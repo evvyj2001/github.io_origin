@@ -820,6 +820,59 @@ function subPageFunction() {
     });
 }
 
+// circle effect
+function circeEffect() {
+    const circleWrap = document.querySelectorAll('.circle-pregress');
+    circleWrap.forEach(e => {
+        const pauseBtn = e.querySelector('.btn-pause');
+        const leftBar = e.querySelector('.left .bar');
+        const rightBar = e.querySelector('.right .bar');
+
+        pauseBtn.addEventListener('click', el => {
+            let txt = el.target.innerText;
+            if (txt == 'paused') {
+                el.target.innerText = 'running';
+            } else {
+                el.target.innerText = 'paused';
+            }
+
+            leftBar.style.animationPlayState = txt;
+            rightBar.style.animationPlayState = txt;
+        });
+    });
+}
+
+// circle svg effect
+function svgCircle() {
+    const circleWrap = document.querySelectorAll('.circle-progress-wrap');
+    circleWrap.forEach(e => {
+        const control = e.querySelector('#control');
+        const bar = e.querySelector('.bar');
+        const value = e.querySelector('.value');
+
+        const RADIUS = 54;
+        const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+
+        const progress = per => {
+            let progress = per / 100;
+            let dashoffset = CIRCUMFERENCE * (1 - progress);
+
+            value.innerHTML = per + '%';
+            bar.style.strokeDashoffset = dashoffset;
+        };
+
+        control.addEventListener('input', event => {
+            progress(event.target.valueAsNumber);
+        });
+        control.addEventListener('change', event => {
+            progress(event.target.valueAsNumber);
+            console.log('change ');
+        });
+        bar.style.strokeDasharray = CIRCUMFERENCE;
+        progress(60);
+    });
+}
+
 // load
 window.addEventListener('DOMContentLoaded', () => {
     // scroll event
@@ -860,6 +913,8 @@ window.addEventListener('DOMContentLoaded', () => {
     // themeChange();
     textCount();
     isMobile();
+    circeEffect();
+    svgCircle();
 
     // top button
     topBtn.addEventListener('click', () => {

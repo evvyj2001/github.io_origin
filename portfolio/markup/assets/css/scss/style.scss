@@ -931,4 +931,170 @@
 //     }
 // }
 
+// circle animation control
+$size: 16rem;
+$circleColor: var(--gray);
+$progressBackgroundColor: var(--lightGray);
+$progressColor: var(--mainColor);
+
+@mixin animation($animate...) {
+    $max: length($animate);
+    $animations: '';
+    @for $i from 1 through $max {
+        $animations: #{$animations + nth($animate, $i)};
+        @if $i < $max {
+            $animations: #{$animations + ', '};
+        }
+    }
+    animation: $animations;
+}
+
+@mixin frame($type) {
+    @if ($type == 'circle-progress') {
+        position: relative;
+        width: $size;
+        height: $size;
+        background-color: $circleColor;
+    } @else {
+        position: absolute;
+    }
+
+    @if ($type == 'left') or ($type == 'right') {
+        top: 0;
+        left: 0;
+        width: $size;
+        height: $size;
+    } @else if ($type == 'left-bar') or ($type == 'right-bar') {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    } @else if ($type == 'value') {
+        top: $size * 0.1;
+        left: $size * 0.1;
+        right: $size * 0.1;
+        bottom: $size * 0.1;
+        line-height: $size * 0.8;
+        font-size: 16px;
+        color: #888;
+        text-align: center;
+    }
+    border-radius: 50%;
+
+    @if ($type == 'left') or ($type == 'right-bar') {
+        clip: rect(0, calc($size/2), $size, 0);
+    } @else if ($type == 'right') or ($type == 'left-bar') {
+        clip: rect(0, $size, $size, calc($size/2));
+    }
+    @if ($type == 'left') or ($type == 'right') {
+        background-color: $progressBackgroundColor;
+    } @else if($type == 'left-bar') or ($type == 'right-bar') {
+        background-color: $progressColor;
+    } @else if($type == 'value') {
+        background-color: $circleColor;
+    }
+    @if ($type == 'left-bar') {
+        @include animation(left 5s linear 0s infinite);
+    } @else if($type == 'right-bar') {
+        @include animation(right 5s linear 0s infinite);
+    }
+}
+
+.circle-pregress {
+    @include frame('circle-progress');
+    .left {
+        @include frame('left');
+        .bar {
+            @include frame('left-bar');
+        }
+    }
+    .right {
+        @include frame('right');
+        .bar {
+            @include frame('right-bar');
+        }
+    }
+    .value {
+        @include frame('value');
+    }
+    .btn-pause {
+        width: 10rem;
+        height: 4rem;
+        line-height: 1.5rem;
+        margin-top: 1rem;
+        padding: 1rem 0;
+        text-align: center;
+    }
+}
+@keyframes left {
+    0% {
+        transform: rotate(0);
+    }
+    25% {
+        transform: rotate(0);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    75% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes right {
+    0% {
+        transform: rotate(0);
+    }
+    25% {
+        transform: rotate(180deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    75% {
+        transform: rotate(360deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+// circle-progress svg
+.circle-progress-wrap {
+    &.svg {
+        width: 30rem;
+        height: 12rem;
+        position: relative;
+    }
+    .circle-progress {
+        transform: rotate(-90deg);
+        margin-bottom: 20px;
+    }
+    .frame,
+    .bar {
+        fill: none;
+    }
+    .frame {
+        stroke: var(--lightGray);
+        // stroke-linecap: round;
+    }
+    .bar {
+        stroke: var(--mainColor);
+        stroke-linecap: round;
+    }
+    .value {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+        color: var(--gray);
+        font-size: 1.6rem;
+        line-height: 12rem;
+    }
+}
+
 @import 'media'; // 반응형 css 가장 마지막에 compile되게 import 마지막에 시킴
