@@ -48,12 +48,21 @@
                     <!-- SVG circle -->
                     <div class="circle-progress-wrap svg">
                         <svg class="circle-progress" width="120" height="120" viewBox="0 0 120 120">
-                            <circle class="frame" cx="60" cy="60" r="54" stroke-width="1" />
-                            <circle class="bar" cx="60" cy="60" r="54" stroke-width="1" />
+                            <!-- gradient 추가의 경우 defs로 -->
+                            <defs>
+                                <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="rgba(34,193,195,1)" />
+                                    <stop offset="100%" stop-color="rgba(229,253,45,1)" />
+                                </linearGradient>
+                            </defs>
+                            <circle class="frame" cx="60" cy="60" r="54" stroke-width="10" fill="none" />
+                            <circle class="bar" cx="60" cy="60" r="54" stroke-width="10" stroke="url(#gradient)"
+                                fill="none" />
                         </svg>
                         <input id="control" type="range" value="60" min="0" max="100"
                             style="background-size: 60% 100%" />
                         <strong class="value"></strong>
+
                     </div>
                     <!-- 
                             stroke-dasharray = svg모양의 획에 dash를 만드는 데 사용. 숫자가 클수록 대시 사이에 공간이 넓어짐.
