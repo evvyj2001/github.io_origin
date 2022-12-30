@@ -229,7 +229,11 @@ function tabMenuFunction() {
                     tabContents[b].classList.add(CLASS_IS);
                 }
             } else {
-                tabContainer.firstElementChild.classList.add(CLASS_IS);
+                // tabContainer의 하위 요소 중 e.dataset.tabMenu와 동일한 네이밍을 가지고 있는 tabContents에게 add(CLASS_IS);
+                // tabContainer.firstElementChild.classList.add(CLASS_IS);
+                tabContainer.querySelectorAll(`[data-tab-content=${btnText}]`).forEach(elem => {
+                    elem.classList.add(CLASS_IS);
+                });
             }
 
             // tabBtn 클릭 이벤트
@@ -238,18 +242,13 @@ function tabMenuFunction() {
 
                 for (let c = 0; c < tabContents.length; c++) {
                     tabContents[c].classList.remove(CLASS_IS);
-                }
-
-                for (let d = 0; d < tabBtn.length; d++) {
-                    tabBtn[d].classList.remove(CLASS_IS);
+                    tabBtn[c].classList.remove(CLASS_IS);
                 }
 
                 if (btnText === 'all') {
                     for (let f = 0; f < tabContents.length; f++) {
                         tabContents[f].classList.add(CLASS_IS);
-                    }
-                    for (let g = 0; g < tabBtn.length; g++) {
-                        tabBtn[g].classList.remove(CLASS_IS);
+                        tabBtn[f].classList.remove(CLASS_IS);
                     }
                 } else {
                     tabContentSelect.classList.add(CLASS_IS);
@@ -845,32 +844,35 @@ function circeEffect() {
 // circle svg effect
 function svgCircle() {
     const circleWrap = document.querySelectorAll('.circle-progress-wrap');
-    circleWrap.forEach(e => {
-        const control = e.querySelector('#control');
-        const bar = e.querySelector('.bar');
-        const value = e.querySelector('.value');
 
-        const RADIUS = 54;
-        const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+    if (circleWrap) {
+        circleWrap.forEach(e => {
+            const control = e.querySelector('#control');
+            const bar = e.querySelector('.bar');
+            const value = e.querySelector('.value');
 
-        const progress = per => {
-            let progress = per / 100;
-            let dashoffset = CIRCUMFERENCE * (1 - progress);
+            const RADIUS = 54;
+            const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
-            value.innerHTML = per + '%';
-            bar.style.strokeDashoffset = dashoffset;
-        };
+            const progress = per => {
+                let progress = per / 100;
+                let dashoffset = CIRCUMFERENCE * (1 - progress);
 
-        control.addEventListener('input', event => {
-            progress(event.target.valueAsNumber);
+                value.innerHTML = per + '%';
+                bar.style.strokeDashoffset = dashoffset;
+            };
+
+            control.addEventListener('input', event => {
+                progress(event.target.valueAsNumber);
+            });
+            control.addEventListener('change', event => {
+                progress(event.target.valueAsNumber);
+                console.log('change ');
+            });
+            bar.style.strokeDasharray = CIRCUMFERENCE;
+            progress(60);
         });
-        control.addEventListener('change', event => {
-            progress(event.target.valueAsNumber);
-            console.log('change ');
-        });
-        bar.style.strokeDasharray = CIRCUMFERENCE;
-        progress(60);
-    });
+    }
 }
 
 // load
