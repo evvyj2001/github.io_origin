@@ -128,6 +128,13 @@
     height: calc(var(--vh) * 100);
 }
 
+// sprite bg set
+@mixin spriteBackground($url, $x, $y, $width, $height) {
+    background-image: url($url);
+    background-position: ($x) ($y);
+    background-size: $width $height;
+}
+
 // box-shadow
 // @mixin box-shadow($x: 0px, $y: 3px, $blur: 6px, $spread: 0px, $color: rgba(0, 0, 0, 0.25)) {
 //     box-shadow: $x $y $blur $spread $color !important;

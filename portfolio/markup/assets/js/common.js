@@ -309,7 +309,7 @@ function inputRange() {
                 if (more < 0) {
                     more = Math.abs(more);
                 } else {
-                    more = more * -1;
+                    more *= -1;
                 }
 
                 moveResult = Number(move) + Number(more);
@@ -828,8 +828,8 @@ function circeEffect() {
         const rightBar = e.querySelector('.right .bar');
 
         pauseBtn.addEventListener('click', el => {
-            let txt = el.target.innerText;
-            if (txt == 'paused') {
+            const txt = el.target.innerText;
+            if (txt === 'paused') {
                 el.target.innerText = 'running';
             } else {
                 el.target.innerText = 'paused';
@@ -855,8 +855,8 @@ function svgCircle() {
             const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
             const progress = per => {
-                let progress = per / 100;
-                let dashoffset = CIRCUMFERENCE * (1 - progress);
+                const progressCal = per / 100;
+                const dashoffset = CIRCUMFERENCE * (1 - progressCal);
 
                 value.innerHTML = per + '%';
                 bar.style.strokeDashoffset = dashoffset;
