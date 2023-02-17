@@ -1,0 +1,17 @@
+{
+    "author": "Yujin.Seong",
+    "name": "svelte-package",
+    "type": "module",
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "^24.0.1",
+        "autoprefixer": "^10.4.13",
+        "postcss": "^8.4.21",
+        "prettier": "^2.8.4",
+        "prettier-plugin-svelte": "^2.9.0",
+        "svelte-preprocess": "^5.0.1"
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions"
+    ]
+}
