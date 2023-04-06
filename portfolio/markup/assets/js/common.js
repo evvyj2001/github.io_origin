@@ -137,199 +137,257 @@ function scrollIndicator() {
 
 // 모드 변경
 function changeMode() {
-    const selectBtns = document.querySelectorAll('.theme-select > button');
-    const CLASS_ON = '__on';
     const THEME_STYLE = 'Theme';
     const savedTheme = localStorage.getItem(THEME_STYLE);
-    let mainColor;
-    let lightMainColor;
-    let darkMainColor;
 
-    const painting = () => {
-        document.documentElement.style.setProperty('--mainColor', `${mainColor}`);
-        document.documentElement.style.setProperty('--lightMainColor', `${lightMainColor}`);
-        document.documentElement.style.setProperty('--darkenMainColor', `${darkMainColor}`);
-    };
-
-    const greenTheme = () => {
-        mainColor = '#00c73c';
-        lightMainColor = '#a2fbbd';
-        darkMainColor = '#03862a';
-    };
-    const redTheme = () => {
-        mainColor = 'var(--red)';
-        lightMainColor = '#ffa0a0';
-        darkMainColor = '#a21005';
-    };
-    const blueTheme = () => {
-        mainColor = 'var(--blue)';
-        lightMainColor = '#8787ff';
-        darkMainColor = '#1212ad';
-    };
-
-    if (savedTheme === 'green') {
-        greenTheme();
-    } else if (savedTheme === 'red') {
-        redTheme();
-    } else if (savedTheme === 'blue') {
-        blueTheme();
-    }
-
-    if (!savedTheme) {
-        document.querySelector('.btn-green').classList.add(CLASS_ON);
-        greenTheme();
+    if (savedTheme) {
+        document.querySelector(`.btn-${savedTheme}`).classList.add('__on');
     } else {
-        document.querySelector(`.btn-${savedTheme}`).classList.add(CLASS_ON);
+        document.querySelector('.btn-green').classList.add('__on');
+        localStorage.setItem(THEME_STYLE, 'green');
     }
 
-    painting();
+    const themeColors = {
+        green: ['#00c73c', '#a2fbbd', '#03862a'],
+        red: ['var(--red)', '#ffa0a0', '#a21005'],
+        blue: ['var(--blue)', '#8787ff', '#1212ad'],
+    };
 
-    selectBtns.forEach(el => {
-        const $CLASS = el.classList;
-        const $TITLE = el.title;
+    function setTheme(theme) {
+        const [mainColor, lightMainColor, darkMainColor] = themeColors[theme];
+        document.documentElement.style.setProperty('--mainColor', mainColor);
+        document.documentElement.style.setProperty('--lightMainColor', lightMainColor);
+        document.documentElement.style.setProperty('--darkenMainColor', darkMainColor);
+    }
 
+    setTheme(savedTheme || 'green');
+
+    document.querySelectorAll('.theme-select > button').forEach(el => {
+        const theme = el.title;
         el.addEventListener('click', () => {
-            for (let i = 0; i < selectBtns.length; i++) {
-                selectBtns[i].classList.remove(CLASS_ON);
-            }
-            $CLASS.add(CLASS_ON);
-
-            localStorage.setItem(THEME_STYLE, $TITLE);
-
-            if ($CLASS.contains('btn-green')) {
-                greenTheme();
-            } else if ($CLASS.contains('btn-red')) {
-                redTheme();
-            } else if ($CLASS.contains('btn-blue')) {
-                blueTheme();
-            }
-            painting();
+            document.querySelector('.theme-select > button.__on').classList.remove('__on');
+            el.classList.add('__on');
+            localStorage.setItem(THEME_STYLE, theme);
+            setTheme(theme);
         });
     });
 }
+// function changeMode() {
+//     const selectBtns = document.querySelectorAll('.theme-select > button');
+//     const CLASS_ON = '__on';
+//     const THEME_STYLE = 'Theme';
+//     const savedTheme = localStorage.getItem(THEME_STYLE);
+//     let mainColor;
+//     let lightMainColor;
+//     let darkMainColor;
 
-// tab menu
-// 각 wrap 안의 tab만 구동되게 작업 중
+//     const painting = () => {
+//         document.documentElement.style.setProperty('--mainColor', `${mainColor}`);
+//         document.documentElement.style.setProperty('--lightMainColor', `${lightMainColor}`);
+//         document.documentElement.style.setProperty('--darkenMainColor', `${darkMainColor}`);
+//     };
+
+//     const greenTheme = () => {
+//         mainColor = '#00c73c';
+//         lightMainColor = '#a2fbbd';
+//         darkMainColor = '#03862a';
+//     };
+//     const redTheme = () => {
+//         mainColor = 'var(--red)';
+//         lightMainColor = '#ffa0a0';
+//         darkMainColor = '#a21005';
+//     };
+//     const blueTheme = () => {
+//         mainColor = 'var(--blue)';
+//         lightMainColor = '#8787ff';
+//         darkMainColor = '#1212ad';
+//     };
+
+//     if (savedTheme === 'green') {
+//         greenTheme();
+//     } else if (savedTheme === 'red') {
+//         redTheme();
+//     } else if (savedTheme === 'blue') {
+//         blueTheme();
+//     }
+
+//     if (!savedTheme) {
+//         document.querySelector('.btn-green').classList.add(CLASS_ON);
+//         greenTheme();
+//     } else {
+//         document.querySelector(`.btn-${savedTheme}`).classList.add(CLASS_ON);
+//     }
+
+//     painting();
+
+//     selectBtns.forEach(el => {
+//         const $CLASS = el.classList;
+//         const $TITLE = el.title;
+
+//         el.addEventListener('click', () => {
+//             for (let i = 0; i < selectBtns.length; i++) {
+//                 selectBtns[i].classList.remove(CLASS_ON);
+//             }
+//             $CLASS.add(CLASS_ON);
+
+//             localStorage.setItem(THEME_STYLE, $TITLE);
+
+//             if ($CLASS.contains('btn-green')) {
+//                 greenTheme();
+//             } else if ($CLASS.contains('btn-red')) {
+//                 redTheme();
+//             } else if ($CLASS.contains('btn-blue')) {
+//                 blueTheme();
+//             }
+//             painting();
+//         });
+//     });
+// }
+
+// tabcontent + tabmenu
 function tabMenuFunction() {
-    const tabWrap = document.querySelectorAll('[data-tab-wrap]');
     const CLASS_IS = '__on';
 
-    for (let a = 0; a < tabWrap.length; a++) {
-        const tabMenu = tabWrap[a].querySelector('[tab-menu-wrap]');
-        const tabBtn = tabMenu.querySelectorAll('[data-tab-menu]');
+    document.querySelectorAll('[data-tab-wrap]').forEach(tabWrap => {
+        const tabMenu = tabWrap.querySelector('[tab-menu-wrap]');
+        const tabBtns = tabMenu.querySelectorAll('[data-tab-menu]');
+        const tabContents = tabWrap.querySelectorAll('[data-tab-content]');
 
-        tabBtn.forEach(e => {
-            const btnText = e.dataset.tabMenu;
-            const tabContainer = e.parentElement.nextElementSibling;
-            const tabContents = tabContainer.children;
-
-            // 초기 진입 시 all이 있을 경우 전부 노출, 아닐 경우 첫번째만 노출
-            if (btnText === 'all') {
-                for (let b = 0; b < tabContents.length; b++) {
-                    tabContents[b].classList.add(CLASS_IS);
-                }
-            } else {
-                // tabContainer의 하위 요소 중 e.dataset.tabMenu와 동일한 네이밍을 가지고 있는 tabContents에게 add(CLASS_IS);
-                // tabContainer.firstElementChild.classList.add(CLASS_IS);
-                tabContainer.querySelectorAll(`[data-tab-content=${btnText}]`).forEach(elem => {
-                    elem.classList.add(CLASS_IS);
-                });
-            }
-
-            // tabBtn 클릭 이벤트
-            e.addEventListener('click', () => {
-                const tabContentSelect = tabContainer.querySelector(`[data-tab-content=${btnText}]`);
-
-                for (let c = 0; c < tabContents.length; c++) {
-                    tabContents[c].classList.remove(CLASS_IS);
-                    tabBtn[c].classList.remove(CLASS_IS);
-                }
-
-                if (btnText === 'all') {
-                    for (let f = 0; f < tabContents.length; f++) {
-                        tabContents[f].classList.add(CLASS_IS);
-                        tabBtn[f].classList.remove(CLASS_IS);
-                    }
+        function activateTab(btnText) {
+            for (const content of tabContents) {
+                if (btnText === 'all' || content.dataset.tabContent === btnText) {
+                    // data-tab-content가 btnText와 동일하면 해당 element에 class 추가
+                    content.classList.add(CLASS_IS);
                 } else {
-                    tabContentSelect.classList.add(CLASS_IS);
-                    tabContentSelect.parentElement.scrollTop = 0;
+                    content.classList.remove(CLASS_IS);
                 }
+            }
+            for (const btn of tabBtns) {
+                // tabBtns의 btn(매개변수격)의 data-tab-menu가 btnText와 동일하면 해당 element에 class 추가
+                if (btn.dataset.tabMenu === btnText) {
+                    btn.classList.add(CLASS_IS);
+                } else {
+                    btn.classList.remove(CLASS_IS);
+                }
+            }
+        }
 
-                e.classList.add(CLASS_IS);
-            });
+        activateTab('all'); // 초기 진입 시 all이 있을 경우 전부 노출, 아닐 경우 첫번째만 노출
+
+        tabMenu.addEventListener('click', e => {
+            const btn = e.target.closest('[data-tab-menu]');
+            if (btn) {
+                activateTab(btn.dataset.tabMenu);
+                tabWrap.scrollTop = 0;
+            }
         });
-    }
+    });
 }
+// function tabMenuFunction() {
+//     const tabWrap = document.querySelectorAll('[data-tab-wrap]');
+//     const CLASS_IS = '__on';
+
+//     for (let a = 0; a < tabWrap.length; a++) {
+//         const tabMenu = tabWrap[a].querySelector('[tab-menu-wrap]');
+//         const tabBtn = tabMenu.querySelectorAll('[data-tab-menu]');
+
+//         tabBtn.forEach(e => {
+//             const btnText = e.dataset.tabMenu;
+//             const tabContainer = e.parentElement.nextElementSibling;
+//             const tabContents = tabContainer.children;
+
+//             // 초기 진입 시 all이 있을 경우 전부 노출, 아닐 경우 첫번째만 노출
+//             if (btnText === 'all') {
+//                 for (let b = 0; b < tabContents.length; b++) {
+//                     tabContents[b].classList.add(CLASS_IS);
+//                 }
+//             } else {
+//                 // tabContainer의 하위 요소 중 e.dataset.tabMenu와 동일한 네이밍을 가지고 있는 tabContents에게 add(CLASS_IS);
+//                 tabContainer.querySelectorAll(`[data-tab-content=${btnText}]`).forEach(elem => {
+//                     elem.classList.add(CLASS_IS);
+//                 });
+//             }
+
+//             // tabBtn 클릭 이벤트
+//             e.addEventListener('click', () => {
+//                 const tabContentSelect = tabContainer.querySelectorAll(`[data-tab-content=${btnText}]`);
+
+//                 for (let c = 0; c < tabContents.length; c++) {
+//                     tabContents[c].classList.remove(CLASS_IS);
+//                     tabBtn[c].classList.remove(CLASS_IS);
+//                 }
+
+//                 if (btnText === 'all') {
+//                     for (let f = 0; f < tabContents.length; f++) {
+//                         tabContents[f].classList.add(CLASS_IS);
+//                         tabBtn[f].classList.remove(CLASS_IS);
+//                     }
+//                 } else {
+//                     tabContentSelect.forEach(g => {
+//                         g.classList.add(CLASS_IS);
+//                         g.parentElement.scrollTop = 0;
+//                     });
+//                 }
+
+//                 e.classList.add(CLASS_IS);
+//             });
+//         });
+//     }
+// }
 
 // input text del-btn
 function delBtn() {
-    const inputWrap = document.querySelectorAll('.inp-box.__del');
-    inputWrap.forEach(e => {
-        const inputElem = e.querySelector('input, textarea');
-        const $btn = document.createElement('button');
-        $btn.innerText = 'X';
-        $btn.classList.add('btn-del');
-        inputElem.parentElement.appendChild($btn);
+    document.querySelectorAll('.inp-box.__del').forEach(inputWrap => {
+        const inputElem = inputWrap.querySelector('input, textarea');
+        const btn = inputElem.parentElement.appendChild(document.createElement('button'));
+        btn.innerText = 'X';
+        btn.classList.add('btn-del');
+        btn.style.display = 'none';
 
-        inputElem.addEventListener('keyup', () => {
-            if (inputElem.value) {
-                $btn.style.display = 'block';
-            } else {
-                $btn.style.display = 'none';
-            }
+        inputElem.addEventListener('input', () => {
+            btn.style.display = inputElem.value ? 'block' : 'none';
         });
-
-        $btn.addEventListener('click', el => {
+        btn.addEventListener('click', () => {
             inputElem.value = '';
-            el.target.style.display = 'none';
+            btn.style.display = 'none';
         });
     });
 }
 
 // input range
 function inputRange() {
-    const rangeInputs = document.querySelectorAll('input[type="range"]');
-    rangeInputs.forEach(inp => {
+    document.querySelectorAll('input[type="range"]').forEach(inp => {
         const parentElem = inp.parentElement;
 
         inp.addEventListener('input', e => {
-            const { min } = e.target;
-            const { max } = e.target;
-            const val = e.target.value;
-            const move = `${(e.target.offsetWidth / 100) * val}`;
-            let more = `${2.5 * (val / 10) - 12.5}`;
-            let moveResult;
+            const { min, max, value: val, offsetWidth } = e.target;
+            const move = `${(offsetWidth / 100) * val}`;
+            const more = `${2.5 * (val / 10) - 12.5}`;
 
             if (parentElem.classList.contains('flag-mode')) {
-                const flagWrap = parentElem.querySelector('.result-wrap');
-                const flag = flagWrap.querySelector('span'); // 텍스트 출력 및 위치 이동 요소
-                // console.dir(flag);
+                const flag = parentElem.querySelector('.result-wrap span');
                 flag.innerText = val;
 
-                if (more < 0) {
-                    more = Math.abs(more);
-                } else {
-                    more *= -1;
-                }
-
-                moveResult = Number(move) + Number(more);
+                const moveResult = Number(move) + (more < 0 ? Math.abs(more) : more * -1);
                 flag.style = `transform: translateX(${moveResult}px)`;
             }
-            inp.style.backgroundSize = ((val - min) * 100) / (max - min) + '% 100%';
+
+            inp.style.backgroundSize = `${((val - min) * 100) / (max - min)}% 100%`;
         });
     });
 }
 
 // textcounting
 function textCount() {
-    const textfield = document.querySelectorAll('.inp-box.__count');
-    textfield.forEach(elm => {
-        const area = elm.querySelector('input, textarea');
-        area.addEventListener('input', () => {
-            const { length } = area.value;
-            const cnt = area.nextElementSibling.querySelector('span');
-            cnt.innerText = length;
-        });
+    document.querySelectorAll('.inp-box.__count').forEach(textfield => {
+        const area = textfield.querySelector('input, textarea');
+        if (area) {
+            area.addEventListener('input', () => {
+                const { length } = area.value;
+                const cnt = area.nextElementSibling.querySelector('span');
+                cnt.innerText = length;
+            });
+        }
     });
 }
 
@@ -338,11 +396,12 @@ function dropdownText(e) {
     const label = e.target.nextElementSibling;
     const textField = label.nextElementSibling;
 
-    if (e.target.checked) {
-        textField.disabled = false;
-    } else {
-        textField.disabled = true;
-    }
+    // if (e.target.checked) {
+    //     textField.disabled = false;
+    // } else {
+    //     textField.disabled = true;
+    // }
+    textField.disabled = !e.target.checked;
 }
 
 // selectbox === dropdown
@@ -483,98 +542,173 @@ function dropdown() {
 }
 
 // accordion
-function accordion() {
-    const accordionWrap = document.querySelectorAll('[data-accordion]');
+// function accordion() {
+//     // const accordionWrap = document.querySelectorAll('[data-accordion]');
+//     const CLASS_IS = '__show';
+
+//     document.querySelectorAll('[data-accordion]').forEach(accordionWrap => {
+//         const accordionBtn = accordionWrap.querySelector('[accordion-trg]');
+//         const accordionCont = accordionWrap.querySelector('[accordion-cont]');
+
+//         accordionBtn.addEventListener('click', trg => {
+//             const btn = trg.target;
+//             const parent = btn.parentElement;
+//             const stat = parent.dataset.accordion;
+//             const cont = btn.nextElementSibling;
+
+//             if (stat === '1') {
+//                 btn.classList.toggle(CLASS_IS);
+//                 cont.classList.toggle(CLASS_IS);
+
+//                 if (accordionCont.style.maxHeight) {
+//                     accordionCont.style.maxHeight = null;
+//                 } else {
+//                     accordionCont.style.paddingTop = `2rem 0`;
+//                     // setTimeout(() => {
+//                     //     accordionCont.style.paddingTop = `2rem 0`;
+//                     // }, 50);
+//                     accordionCont.style.maxHeight = `${accordionCont.scrollHeight}px`;
+//                 }
+//             } else {
+//                 const accordions = parent.parentElement.querySelectorAll('[data-accordion]');
+
+//                 if (!btn.classList.contains(CLASS_IS)) {
+//                     accordions.forEach(el => {
+//                         const otherTrg = el.querySelector('[accordion-trg]');
+//                         const otherCont = el.querySelector('[accordion-cont]');
+
+//                         otherTrg.classList.remove(CLASS_IS);
+//                         otherCont.classList.remove(CLASS_IS);
+//                         otherCont.style.maxHeight = null;
+//                         setTimeout(() => {
+//                             otherCont.style.padding = 0;
+//                             cont.style.paddingTop = `2rem 0`;
+//                         }, 50);
+//                     });
+
+//                     // cont.style.paddingTop = `2rem 0`;
+//                     btn.classList.add(CLASS_IS);
+//                     cont.classList.add(CLASS_IS);
+//                     cont.style.maxHeight = `${cont.scrollHeight}px`;
+//                 } else {
+//                     btn.classList.remove(CLASS_IS);
+//                     cont.classList.remove(CLASS_IS);
+//                     cont.style.maxHeight = null;
+//                 }
+//             }
+//         });
+//     });
+// }
+function toggleAccordion(accordionBtn, accordionCont) {
     const CLASS_IS = '__show';
+    const parent = accordionBtn.parentElement;
+    const stat = parent.dataset.accordion;
 
-    accordionWrap.forEach(e => {
-        const accordionBtn = e.querySelector('[accordion-trg]');
-        const accordionCont = e.querySelector('[accordion-cont]');
+    if (stat === '1') {
+        accordionBtn.classList.toggle(CLASS_IS);
+        accordionCont.classList.toggle(CLASS_IS);
 
-        accordionBtn.addEventListener('click', trg => {
-            const btn = trg.target;
-            const parent = btn.parentElement;
-            const stat = parent.dataset.accordion;
-            const cont = btn.nextElementSibling;
+        accordionCont.style.maxHeight = accordionCont.style.maxHeight ? null : `${accordionCont.scrollHeight}px`;
+        accordionCont.style.paddingtop = accordionCont.style.maxHeight ? null : `2rem 0`;
+    } else {
+        const accordions = parent.parentElement.querySelectorAll('[data-accordion]');
 
-            if (stat === '1') {
-                btn.classList.toggle(CLASS_IS);
-                cont.classList.toggle(CLASS_IS);
+        if (!accordionBtn.classList.contains(CLASS_IS)) {
+            accordions.forEach(el => {
+                const otherTrg = el.querySelector('[accordion-trg]');
+                const otherCont = el.querySelector('[accordion-cont]');
 
-                if (accordionCont.style.maxHeight) {
-                    accordionCont.style.maxHeight = null;
-                } else {
+                otherTrg.classList.remove(CLASS_IS);
+                otherCont.classList.remove(CLASS_IS);
+                otherCont.style.maxHeight = null;
+
+                setTimeout(() => {
+                    otherCont.style.padding = 0;
                     accordionCont.style.paddingTop = `2rem 0`;
-                    // setTimeout(() => {
-                    //     accordionCont.style.paddingTop = `2rem 0`;
-                    // }, 50);
-                    accordionCont.style.maxHeight = `${accordionCont.scrollHeight}px`;
-                }
-            } else {
-                const accordions = parent.parentElement.querySelectorAll('[data-accordion]');
+                }, 50);
+            });
 
-                if (!btn.classList.contains(CLASS_IS)) {
-                    accordions.forEach(el => {
-                        const otherTrg = el.querySelector('[accordion-trg]');
-                        const otherCont = el.querySelector('[accordion-cont]');
+            accordionBtn.classList.add(CLASS_IS);
+            accordionCont.classList.add(CLASS_IS);
+            accordionCont.style.maxHeight = `${accordionCont.scrollHeight}px`;
+        } else {
+            accordionBtn.classList.remove(CLASS_IS);
+            accordionCont.classList.remove(CLASS_IS);
+            accordionCont.style.maxHeight = null;
+        }
+    }
+}
 
-                        otherTrg.classList.remove(CLASS_IS);
-                        otherCont.classList.remove(CLASS_IS);
-                        otherCont.style.maxHeight = null;
-                        setTimeout(() => {
-                            otherCont.style.padding = 0;
-                            cont.style.paddingTop = `2rem 0`;
-                        }, 50);
-                    });
+function accordion() {
+    document.querySelectorAll('[data-accordion]').forEach(accordionWrap => {
+        const accordionBtn = accordionWrap.querySelector('[accordion-trg]');
+        const accordionCont = accordionWrap.querySelector('[accordion-cont]');
 
-                    // cont.style.paddingTop = `2rem 0`;
-                    btn.classList.add(CLASS_IS);
-                    cont.classList.add(CLASS_IS);
-                    cont.style.maxHeight = `${cont.scrollHeight}px`;
-                } else {
-                    btn.classList.remove(CLASS_IS);
-                    cont.classList.remove(CLASS_IS);
-                    cont.style.maxHeight = null;
-                }
-            }
+        accordionBtn.addEventListener('click', () => {
+            toggleAccordion(accordionBtn, accordionCont);
         });
     });
 }
 
 // date
+// function isNow() {
+//     const dateElem = document.querySelector('.now .date');
+//     const clockElem = document.querySelector('.now .clock');
+//     const dayNight = document.querySelector('.now .day-night');
+//     const now = new Date();
+//     const year = now.getFullYear();
+//     const month = now.getMonth() + 1;
+//     const date = now.getDate();
+//     const day = now.getDay() - 1;
+//     const week = ['월', '화', '수', '목', '금', '토', '일'];
+//     // const hours = String(now.getHours()).padStart(2, '0');
+//     const hours = String(now.getHours());
+//     let hour;
+//     const minutes = String(now.getMinutes()).padStart(2, '0');
+//     const seconds = String(now.getSeconds()).padStart(2, '0');
+
+//     if (hours > 12) {
+//         hour = hours - 12;
+//         dayNight.innerText = '지금은 오후';
+//     } else {
+//         hour = hours;
+//         dayNight.innerText = '지금은 오전';
+//     }
+
+//     if (document.body.contains(dateElem)) {
+//         dateElem.innerText = `오늘은 ${year}년 ${month}월 ${date}일 ${week[day]}요일`;
+//         clockElem.innerText = `${hour}시 ${minutes}분 ${seconds}초 입니다.`;
+//     }
+// }
+
 function isNow() {
-    const dateElem = document.querySelector('.now .date');
-    const clockElem = document.querySelector('.now .clock');
-    const dayNight = document.querySelector('.now .day-night');
     const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth() + 1;
-    const date = now.getDate();
-    const day = now.getDay() - 1;
+    const hour = now.getHours();
+    const dayNight = hour >= 12 ? '오후' : '오전';
+    const hours12 = hour % 12 || 12; // 0시를 12시로 표기하기 위함
     const week = ['월', '화', '수', '목', '금', '토', '일'];
-    // const hours = String(now.getHours()).padStart(2, '0');
-    const hours = String(now.getHours());
-    let hour;
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
 
-    if (hours > 12) {
-        hour = hours - 12;
-        dayNight.innerText = '지금은 오후';
-    } else {
-        hour = hours;
-        dayNight.innerText = '지금은 오전';
-    }
+    document.querySelectorAll('.now').forEach(elem => {
+        const dateElem = elem.querySelector('.date');
+        const clockElem = elem.querySelector('.clock');
+        const dayOfWeek = week[now.getDay() - 1];
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1;
+        const date = now.getDate();
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const seconds = now.getSeconds().toString().padStart(2, '0');
 
-    if (document.body.contains(dateElem)) {
-        dateElem.innerText = `오늘은 ${year}년 ${month}월 ${date}일 ${week[day]}요일`;
-        clockElem.innerText = `${hour}시 ${minutes}분 ${seconds}초 입니다.`;
-    }
+        if (dateElem) {
+            dateElem.innerText = `오늘은 ${year}년 ${month}월 ${date}일 ${dayOfWeek}요일`;
+        }
+
+        if (clockElem) {
+            clockElem.innerText = `지금은 ${dayNight} ${hours12}시 ${minutes}분 ${seconds}초 입니다.`;
+        }
+    });
 }
 
-setInterval(() => {
-    isNow();
-}, 1000);
+setInterval(isNow, 1000);
 
 // paralle effect
 function scrollParalle() {
@@ -612,28 +746,82 @@ function scrollParalle() {
 }
 
 // tooltop
+// function tooltip() {
+//     const tooltipElem = document.querySelectorAll('[data-tooltip]');
+
+//     tooltipElem.forEach(el => {
+//         const tooltipActive = () => {
+//             const prevSpan = el.querySelector('span');
+//             if (prevSpan) {
+//                 prevSpan.remove();
+//             }
+//             const span = document.createElement('span');
+//             const content = el.dataset.tooltip;
+//             el.appendChild(span);
+//             let text;
+//             if (el.classList.contains('star')) {
+//                 text = '★'.repeat(content);
+//                 span.innerText = text;
+//             } else {
+//                 text = content;
+//                 span.innerText = text;
+//             }
+//             span.style.display = 'block';
+//         };
+//         const tooltipRemove = () => {
+//             const span = el.querySelector('span');
+//             span.remove();
+//         };
+//         el.addEventListener('mouseenter', () => {
+//             tooltipActive();
+//         });
+//         el.addEventListener('focus', () => {
+//             tooltipActive();
+//         });
+//         el.addEventListener('mouseout', () => {
+//             tooltipRemove();
+//         });
+//         el.addEventListener('blur', () => {
+//             tooltipRemove();
+//         });
+//     });
+// }
 function tooltip() {
     const tooltipElem = document.querySelectorAll('[data-tooltip]');
 
+    const tooltipActive = el => {
+        const span = document.createElement('span');
+        const content = el.dataset.tooltip;
+        el.appendChild(span);
+        let text;
+        if (el.classList.contains('star')) {
+            text = '★'.repeat(content);
+        } else {
+            text = content;
+        }
+        span.innerText = text;
+        span.style.display = 'block';
+    };
+
+    const tooltipRemove = el => {
+        const span = el.lastChild;
+        if (span && span.tagName === 'SPAN') {
+            span.remove();
+        }
+    };
+
     tooltipElem.forEach(el => {
         el.addEventListener('mouseenter', () => {
-            const span = document.createElement('span');
-            const content = el.dataset.tooltip;
-            el.appendChild(span);
-            let text;
-            if (el.classList.contains('star')) {
-                text = '★'.repeat(content);
-                span.innerText = text;
-            } else {
-                text = content;
-                span.innerText = text;
-            }
-            span.style.display = 'block';
+            tooltipActive(el);
+        });
+        el.addEventListener('focus', () => {
+            tooltipActive(el);
         });
         el.addEventListener('mouseout', () => {
-            // const span = el.childNodes[1];
-            const span = el.querySelector('span');
-            span.remove();
+            tooltipRemove(el);
+        });
+        el.addEventListener('blur', () => {
+            tooltipRemove(el);
         });
     });
 }
