@@ -745,47 +745,6 @@ function scrollParalle() {
     });
 }
 
-// tooltop
-// function tooltip() {
-//     const tooltipElem = document.querySelectorAll('[data-tooltip]');
-
-//     tooltipElem.forEach(el => {
-//         const tooltipActive = () => {
-//             const prevSpan = el.querySelector('span');
-//             if (prevSpan) {
-//                 prevSpan.remove();
-//             }
-//             const span = document.createElement('span');
-//             const content = el.dataset.tooltip;
-//             el.appendChild(span);
-//             let text;
-//             if (el.classList.contains('star')) {
-//                 text = '★'.repeat(content);
-//                 span.innerText = text;
-//             } else {
-//                 text = content;
-//                 span.innerText = text;
-//             }
-//             span.style.display = 'block';
-//         };
-//         const tooltipRemove = () => {
-//             const span = el.querySelector('span');
-//             span.remove();
-//         };
-//         el.addEventListener('mouseenter', () => {
-//             tooltipActive();
-//         });
-//         el.addEventListener('focus', () => {
-//             tooltipActive();
-//         });
-//         el.addEventListener('mouseout', () => {
-//             tooltipRemove();
-//         });
-//         el.addEventListener('blur', () => {
-//             tooltipRemove();
-//         });
-//     });
-// }
 function tooltip() {
     const tooltipElem = document.querySelectorAll('[data-tooltip]');
 
@@ -1100,7 +1059,6 @@ window.addEventListener('DOMContentLoaded', () => {
     changeMode();
     inputRange();
     delBtn();
-    // themeChange();
     textCount();
     isMobile();
     circeEffect();
