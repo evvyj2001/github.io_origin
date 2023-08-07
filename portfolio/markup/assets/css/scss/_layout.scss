@@ -65,18 +65,20 @@ h3 {
             width: fit-content;
             font-size: 2rem;
             position: relative;
-            padding-right: 1rem;
-            &::first-letter {
-                color: var(--mainColor);
-            }
+            padding-right: 0.8rem;
+            line-height: 1;
+            // &::first-letter {
+            //     color: var(--mainColor);
+            // }
             i {
                 display: inline-block;
-                width: 0.5rem;
-                height: 0.5rem;
-                background: var(--mainColor);
+                width: 1px;
+                height: 100%;
+                background: var(--black);
                 border-radius: 100%;
                 right: 0;
-                bottom: 0.4rem;
+                bottom: 0;
+                top: 0;
                 animation: logoAnimation 1s;
                 animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
                 animation-delay: 14s;
@@ -84,13 +86,13 @@ h3 {
                 transform: translateY(0);
                 &:after {
                     @include pseudo;
-                    width: 0.5rem;
-                    height: 0.5rem;
+                    width: 1px;
+                    height: 100%;
                     background: var(--white);
                     right: 0;
                     top: 0;
                     opacity: 0;
-                    animation: dotOpacity 1.2s ease-in-out 16s infinite;
+                    animation: dotOpacity 1.2s ease 16s infinite;
                 }
             }
         }
@@ -713,12 +715,15 @@ button {
             @include fontType1;
         }
     }
-    // [tab-container] {
-    // }
     [data-tab-content] {
         display: none;
         &.__on {
             display: block;
+            & + .__on {
+                margin-top: 2rem;
+                padding-top: 2rem;
+                border-top: 2px dashed #ededed;
+            }
         }
     }
 }
@@ -746,11 +751,13 @@ button {
             margin-right: 3rem;
         }
         &:after {
-            content: '>';
-            @include fontType1;
-            @include absolute(top 1.2rem right 1.4rem);
-            line-height: 1;
-            transform: rotate(90deg);
+            content: '';
+            display: inline-block;
+            width: 1.4rem;
+            height: 1.4rem;
+            background: url('../img/common/ico_arrow_blk_sm.png') 50% no-repeat;
+            background-size: 1.4rem auto;
+            @include absolute(top 1rem right 1.4rem);
         }
     }
     [selectbox-list] {
@@ -829,7 +836,7 @@ button {
     &.__open {
         [selectbox-trg] {
             &:after {
-                transform: rotate(-90deg);
+                transform: rotate(-180deg);
             }
         }
     }

@@ -172,77 +172,6 @@ function changeMode() {
         });
     });
 }
-// function changeMode() {
-//     const selectBtns = document.querySelectorAll('.theme-select > button');
-//     const CLASS_ON = '__on';
-//     const THEME_STYLE = 'Theme';
-//     const savedTheme = localStorage.getItem(THEME_STYLE);
-//     let mainColor;
-//     let lightMainColor;
-//     let darkMainColor;
-
-//     const painting = () => {
-//         document.documentElement.style.setProperty('--mainColor', `${mainColor}`);
-//         document.documentElement.style.setProperty('--lightMainColor', `${lightMainColor}`);
-//         document.documentElement.style.setProperty('--darkenMainColor', `${darkMainColor}`);
-//     };
-
-//     const greenTheme = () => {
-//         mainColor = '#00c73c';
-//         lightMainColor = '#a2fbbd';
-//         darkMainColor = '#03862a';
-//     };
-//     const redTheme = () => {
-//         mainColor = 'var(--red)';
-//         lightMainColor = '#ffa0a0';
-//         darkMainColor = '#a21005';
-//     };
-//     const blueTheme = () => {
-//         mainColor = 'var(--blue)';
-//         lightMainColor = '#8787ff';
-//         darkMainColor = '#1212ad';
-//     };
-
-//     if (savedTheme === 'green') {
-//         greenTheme();
-//     } else if (savedTheme === 'red') {
-//         redTheme();
-//     } else if (savedTheme === 'blue') {
-//         blueTheme();
-//     }
-
-//     if (!savedTheme) {
-//         document.querySelector('.btn-green').classList.add(CLASS_ON);
-//         greenTheme();
-//     } else {
-//         document.querySelector(`.btn-${savedTheme}`).classList.add(CLASS_ON);
-//     }
-
-//     painting();
-
-//     selectBtns.forEach(el => {
-//         const $CLASS = el.classList;
-//         const $TITLE = el.title;
-
-//         el.addEventListener('click', () => {
-//             for (let i = 0; i < selectBtns.length; i++) {
-//                 selectBtns[i].classList.remove(CLASS_ON);
-//             }
-//             $CLASS.add(CLASS_ON);
-
-//             localStorage.setItem(THEME_STYLE, $TITLE);
-
-//             if ($CLASS.contains('btn-green')) {
-//                 greenTheme();
-//             } else if ($CLASS.contains('btn-red')) {
-//                 redTheme();
-//             } else if ($CLASS.contains('btn-blue')) {
-//                 blueTheme();
-//             }
-//             painting();
-//         });
-//     });
-// }
 
 // tabcontent + tabmenu
 function tabMenuFunction() {
@@ -250,6 +179,7 @@ function tabMenuFunction() {
 
     document.querySelectorAll('[data-tab-wrap]').forEach(tabWrap => {
         const tabMenu = tabWrap.querySelector('[tab-menu-wrap]');
+        const tabCont = tabWrap.querySelector('[tab-container]');
         const tabBtns = tabMenu.querySelectorAll('[data-tab-menu]');
         const tabContents = tabWrap.querySelectorAll('[data-tab-content]');
 
@@ -270,6 +200,7 @@ function tabMenuFunction() {
                     btn.classList.remove(CLASS_IS);
                 }
             }
+            tabCont.scrollTop = 0;
         }
 
         activateTab('all'); // 초기 진입 시 all이 있을 경우 전부 노출, 아닐 경우 첫번째만 노출
@@ -278,62 +209,10 @@ function tabMenuFunction() {
             const btn = e.target.closest('[data-tab-menu]');
             if (btn) {
                 activateTab(btn.dataset.tabMenu);
-                tabWrap.scrollTop = 0;
             }
         });
     });
 }
-// function tabMenuFunction() {
-//     const tabWrap = document.querySelectorAll('[data-tab-wrap]');
-//     const CLASS_IS = '__on';
-
-//     for (let a = 0; a < tabWrap.length; a++) {
-//         const tabMenu = tabWrap[a].querySelector('[tab-menu-wrap]');
-//         const tabBtn = tabMenu.querySelectorAll('[data-tab-menu]');
-
-//         tabBtn.forEach(e => {
-//             const btnText = e.dataset.tabMenu;
-//             const tabContainer = e.parentElement.nextElementSibling;
-//             const tabContents = tabContainer.children;
-
-//             // 초기 진입 시 all이 있을 경우 전부 노출, 아닐 경우 첫번째만 노출
-//             if (btnText === 'all') {
-//                 for (let b = 0; b < tabContents.length; b++) {
-//                     tabContents[b].classList.add(CLASS_IS);
-//                 }
-//             } else {
-//                 // tabContainer의 하위 요소 중 e.dataset.tabMenu와 동일한 네이밍을 가지고 있는 tabContents에게 add(CLASS_IS);
-//                 tabContainer.querySelectorAll(`[data-tab-content=${btnText}]`).forEach(elem => {
-//                     elem.classList.add(CLASS_IS);
-//                 });
-//             }
-
-//             // tabBtn 클릭 이벤트
-//             e.addEventListener('click', () => {
-//                 const tabContentSelect = tabContainer.querySelectorAll(`[data-tab-content=${btnText}]`);
-
-//                 for (let c = 0; c < tabContents.length; c++) {
-//                     tabContents[c].classList.remove(CLASS_IS);
-//                     tabBtn[c].classList.remove(CLASS_IS);
-//                 }
-
-//                 if (btnText === 'all') {
-//                     for (let f = 0; f < tabContents.length; f++) {
-//                         tabContents[f].classList.add(CLASS_IS);
-//                         tabBtn[f].classList.remove(CLASS_IS);
-//                     }
-//                 } else {
-//                     tabContentSelect.forEach(g => {
-//                         g.classList.add(CLASS_IS);
-//                         g.parentElement.scrollTop = 0;
-//                     });
-//                 }
-
-//                 e.classList.add(CLASS_IS);
-//             });
-//         });
-//     }
-// }
 
 // input text del-btn
 function delBtn() {
