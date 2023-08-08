@@ -22,6 +22,7 @@ $blue: #3030ef;
 
 // 기타 요소
 $vh100: calc(var(--vh) * 100);
+$imgUrlKolon: './../img/kolon';
 
 :root {
     --vh100: #{$vh100};

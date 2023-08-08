@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+@import 'reset';
+@import 'mixin';
+@import 'typo';
+@import 'variable';
+@import 'form';
+
+/* kolon 공통 s */
+.blind {
+    @include blind;
+}
+.l- {
+    &right,
+    &left {
+        display: flex;
+    }
+}
+
+/* kolon layout s */
+#skipNav {
+    @include blind;
+}
+#wrap {
+    width: 100%;
+    height: var(--vh100);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+#headerArea {
+    width: 100%;
+    height: auto;
+    // @include fixed(top 0 left 0);
+}
+.header {
+    &-inner {
+        // padding: 0 2rem;
+        [class*='-top'] {
+            max-width: 140rem;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            &:before {
+                @include pseudo;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: -1;
+                width: 100vw;
+                height: 100%;
+                background: #002f5e;
+            }
+        }
+        .logo {
+            > a {
+                width: 31.7rem;
+                height: 2.5rem;
+                display: block;
+                @include textBlind;
+                margin: 4rem auto 0;
+                background: url('#{$imgUrlKolon}/common/header_logo.png') no-repeat 50%;
+            }
+        }
+        .l-left,
+        .l-right {
+            a {
+                font-size: 1.4rem;
+                padding: 1rem 1.5rem;
+                color: #fff;
+                &:not(.sitemap, .login) {
+                    border-right: 1px solid #00172f;
+                }
+            }
+            li {
+                & + li {
+                    margin-left: 1rem;
+                }
+            }
+            .sitemap {
+                background: #00172f;
+            }
+            .login {
+                background: #006ebc;
+            }
+        }
+        nav {
+        }
+    }
+}
+
+#footerArea {
+    margin-top: auto;
+}
