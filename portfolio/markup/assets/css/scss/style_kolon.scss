@@ -23,20 +23,36 @@
 }
 #wrap {
     width: 100%;
-    height: var(--vh100);
-    overflow: hidden;
+    height: 100%;
     display: flex;
     flex-direction: column;
     position: relative;
 }
+.product-search {
+    width: 100%;
+    height: 4rem;
+    overflow: hidden;
+    background: #fff;
+}
 #headerArea {
     width: 100%;
     height: auto;
-    // @include fixed(top 0 left 0);
+    border-bottom: 1px solid #17499d;
+    @include fixed(top 0 left 0);
+    transform: translateY(-4rem);
+    transition-property: transform background-color;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+    background-color: transparent;
+    &.__up {
+        transform: translateY(0);
+    }
+    &.__white {
+        background-color: #fff;
+    }
 }
 .header {
     &-inner {
-        // padding: 0 2rem;
         [class*='-top'] {
             max-width: 140rem;
             width: 100%;
@@ -89,10 +105,200 @@
             }
         }
         nav {
+            position: relative;
+            .header-bg {
+                display: block;
+                width: 100%;
+                background: #fff;
+                @include absolute(left 0 top 7rem);
+                height: 0;
+                transition: 0.1s height linear;
+                &.__down {
+                    height: 7rem;
+                }
+            }
+            > ul {
+                max-width: 140rem;
+                padding: 0 2rem;
+                margin: 3rem auto 0;
+                @include flex(null, space-around);
+                > li {
+                    position: relative;
+                    &:after {
+                        @include pseudo;
+                        @include sizeSet(0.6rem, 0.6rem);
+                        background: #e60012;
+                        border-radius: 50%;
+                        top: 0.6rem;
+                        right: 0.4rem;
+                        opacity: 0;
+                        transition: 0.2s;
+                    }
+                    &:hover {
+                        &:after {
+                            opacity: 1;
+                            top: 1.6rem;
+                        }
+                        .depth2 {
+                            display: block;
+                        }
+                    }
+                    &:last-of-type {
+                        .depth2 {
+                            left: auto;
+                            right: 0;
+                        }
+                    }
+                }
+                h3 {
+                    font-size: 2rem;
+                    font-weight: 700;
+                    > a {
+                        display: block;
+                        padding: 1.5rem 1.5rem 3rem;
+                    }
+                }
+            }
+            .depth2 {
+                @include absolute(top 6.9rem left 0);
+                width: max-content;
+                display: none;
+                > li {
+                    float: left;
+                    &:hover {
+                        a {
+                            color: #006ebc;
+                            &:after {
+                                display: block;
+                            }
+                        }
+                    }
+                    a {
+                        padding: 2.5rem 1.5rem;
+                        font-size: 1.6rem;
+                        display: block;
+                        position: relative;
+                        &:after {
+                            @include pseudo;
+                            width: calc(100% - 3rem);
+                            height: 1px;
+                            background: #006ebc;
+                            bottom: 2rem;
+                            display: none;
+                        }
+                    }
+                }
+            }
         }
     }
 }
 
 #footerArea {
     margin-top: auto;
+    background: #2e2e2e;
+    color: #fff;
+    padding: 8rem 0;
+    .footer {
+        &-inner {
+            max-width: 140rem;
+            padding: 0 2rem;
+            margin: 0 auto;
+            flex-direction: column;
+            @include flex(center, null);
+        }
+        &-menu {
+            display: flex;
+            li {
+                &:first-child {
+                    > a {
+                        color: #fff;
+                    }
+                }
+                & + li {
+                    position: relative;
+                    &:before {
+                        @include pseudo;
+                        @include sizeSet(1px, 1rem);
+                        background: #b0b0b0;
+                        left: 0;
+                        top: 50%;
+                        margin-top: -0.5rem;
+                    }
+                }
+            }
+            a {
+                font-size: 1.4rem;
+                padding: 0 2.5rem;
+                color: #b0b0b0;
+            }
+        }
+        &-logo {
+            margin-top: 5rem;
+        }
+    }
+    address {
+        font-size: 1.2rem;
+        color: #b0b0b0;
+        text-align: center;
+        margin-top: 2rem;
+    }
+    .family-site {
+        margin-top: 3rem;
+        width: 18rem;
+        font-size: 1.2rem;
+        position: relative;
+        &.__open {
+            ul {
+                max-height: 20rem;
+            }
+        }
+        > button,
+        ul {
+            width: 100%;
+        }
+        > button {
+            background: #3c3c3c;
+            color: #fff;
+            text-align: left;
+            padding: 1.5rem;
+            position: relative;
+            &:after {
+                @include pseudo;
+                @include sizeSet(1px, 4.5rem);
+                background: #2e2e2e;
+                top: 0;
+                right: 4.5rem;
+            }
+            > i {
+                float: right;
+            }
+        }
+        > ul {
+            @include absolute(bottom 4.5rem left 0);
+            overflow: hidden;
+            max-height: 0;
+            transition: 0.2s linear;
+            > li {
+                width: 100%;
+                &:hover {
+                    a {
+                        background: #004dad;
+                    }
+                }
+                a {
+                    display: block;
+                    background: rgba(60, 60, 60, 0.8);
+                    padding: 1.3rem 1.5rem;
+                    font-size: 1.2rem;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+.container {
+    // 임의
+    background: gray;
+    height: 1000rem;
 }
