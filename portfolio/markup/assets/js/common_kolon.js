@@ -56,15 +56,27 @@ function headerFunc() {
 // footer
 function familysite() {
     const trg = document.querySelector('.family-site > button');
+    const parent = trg.offsetParent;
     const arr = trg.querySelector('i.fas');
-    trg.addEventListener('click', e => {
-        const parent = e.target.offsetParent;
+    const menuOpen = () => {
+        parent.classList.add('__open');
+        arr.classList.replace('fa-chevron-up', 'fa-chevron-down');
+    };
+    const menuClose = () => {
+        parent.classList.remove('__open');
+        arr.classList.replace('fa-chevron-down', 'fa-chevron-up');
+    };
+    trg.addEventListener('click', () => {
         if (parent.classList.contains('__open')) {
-            parent.classList.remove('__open');
-            arr.classList.replace('fa-chevron-down', 'fa-chevron-up');
+            menuClose();
         } else {
-            parent.classList.add('__open');
-            arr.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            menuOpen();
+        }
+    });
+    // 다른 영역 클릭 시 액션
+    document.querySelector('body').addEventListener('click', el => {
+        if (el.target.className !== el.currentTarget.querySelector('.family-btn').className) {
+            menuClose();
         }
     });
 }

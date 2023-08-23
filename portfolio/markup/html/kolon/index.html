@@ -1,17 +1,102 @@
 <!DOCTYPE html>
 <html lang="ko">
+    <head>
+        <!--#include file="./_head.html"-->
+    </head>
 
-<head>
-    <!--#include file="./_head.html"-->
-</head>
-
-<body>
-    <div id="wrap">
-        <!--#include file="./_header.html"-->
-        <div class="container" id="content">content</div>
-        <!--#include file="./_footer.html"-->
-    </div>
-
-</body>
-
+    <body>
+        <div id="wrap">
+            <!--#include file="./_header.html"-->
+            <div class="container" id="content">
+                <div class="visual">
+                    <!-- 이미지 슬라이드 -->
+                    <div class="bg-slide swiper">
+                        <!-- Additional required wrapper -->
+                        <div class="swiper-wrapper">
+                            <!-- Slides -->
+                            <div class="swiper-slide">
+                                <img src="./../assets/img/kolon/main_bg01.jpg" alt="" />
+                                <div class="text-box">
+                                    <dl>
+                                        <dt><span>Change</span> <span>Chanllenge</span></dt>
+                                        <dd>코오롱이 만나는 새로운 세상, One&amp;Only의 배움으로 열어갑니다.</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="./../assets/img/kolon/main_bg02.jpg" alt="" />
+                                <div class="text-box">
+                                    <dl>
+                                        <dt><span>Infinite</span> <span>Possibility</span></dt>
+                                        <dd>고객의 가치를 더욱 빛나게 만들어 나가겠습니다.</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="./../assets/img/kolon/main_bg03.jpg" alt="" />
+                                <div class="text-box">
+                                    <dl>
+                                        <dt><span>Future</span> <span>Vision</span></dt>
+                                        <dd>세계를 향한 코오롱 인더스트리의 도전은 계속됩니다.</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- thumb 슬라이드 -->
+                    <div class="thumb-slide swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <dl>
+                                    <dt>01</dt>
+                                    <dd>Change Challenge</dd>
+                                </dl>
+                            </div>
+                            <div class="swiper-slide">
+                                <dl>
+                                    <dt>02</dt>
+                                    <dd>Infinite Possibility</dd>
+                                </dl>
+                            </div>
+                            <div class="swiper-slide">
+                                <dl>
+                                    <dt>03</dt>
+                                    <dd>Future Vision</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--#include file="./_footer.html"-->
+        </div>
+        <script>
+            const thumbSwiper = new Swiper('.thumb-slide', {
+                loop: true,
+                slidesPerView: 3,
+                touchRatio: 0.3,
+                slideToClickedSlide: true,
+                watchSlidesProgress: true,
+            });
+            const visualSwiper = new Swiper('.bg-slide', {
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true,
+                },
+                speed: 1000,
+                loop: true,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                thumbs: {
+                    swiper: thumbSwiper,
+                },
+                autoplay: {
+                    delay: 2000,
+                    disableOnInteraction: false,
+                },
+            });
+        </script>
+    </body>
 </html>

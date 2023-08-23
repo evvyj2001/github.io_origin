@@ -59,6 +59,12 @@
     @include position(relative, $args);
 }
 
+// position center
+@mixin positionCenter() {
+    @include absolute(top 50% left 50%);
+    transform: translate(-50%, -50%);
+}
+
 // text-ellipsis
 @mixin ellipsis($line: 1) {
     @if ($line == 1) {

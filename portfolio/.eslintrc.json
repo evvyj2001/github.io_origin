@@ -14,7 +14,7 @@
         "fadeOut": true,
         "popOpen": true,
         "popClose": true,
-        // "Swiper": true,
+        "Swiper": true,
         "isMobile": true,
         // "AOS": true,
         // "gsap": true,

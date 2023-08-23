@@ -5,8 +5,10 @@
 @import 'typo';
 @import 'variable';
 @import 'form';
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
 /* kolon 공통 s */
+
 .blind {
     @include blind;
 }
@@ -30,16 +32,17 @@
 }
 .product-search {
     width: 100%;
-    height: 4rem;
+    height: 5rem;
     overflow: hidden;
     background: #fff;
 }
 #headerArea {
+    z-index: 100;
     width: 100%;
     height: auto;
     border-bottom: 1px solid #17499d;
     @include fixed(top 0 left 0);
-    transform: translateY(-4rem);
+    transform: translateY(-5.1rem);
     transition-property: transform background-color;
     transition-duration: 0.2s;
     transition-timing-function: linear;
@@ -49,6 +52,13 @@
     }
     &.__white {
         background-color: #fff;
+        nav {
+            h3 {
+                > a {
+                    color: #222;
+                }
+            }
+        }
     }
 }
 .header {
@@ -63,12 +73,12 @@
             position: relative;
             &:before {
                 @include pseudo;
-                top: 0;
+                top: -1px;
                 left: 50%;
                 transform: translateX(-50%);
                 z-index: -1;
                 width: 100vw;
-                height: 100%;
+                height: calc(100% + 1px);
                 background: #002f5e;
             }
         }
@@ -80,6 +90,7 @@
                 @include textBlind;
                 margin: 4rem auto 0;
                 background: url('#{$imgUrlKolon}/common/header_logo.png') no-repeat 50%;
+                filter: drop-shadow(1px 2px 4px rgba(0, 0, 0, 0.2));
             }
         }
         .l-left,
@@ -156,6 +167,7 @@
                     > a {
                         display: block;
                         padding: 1.5rem 1.5rem 3rem;
+                        color: #fff;
                     }
                 }
             }
@@ -197,7 +209,7 @@
     margin-top: auto;
     background: #2e2e2e;
     color: #fff;
-    padding: 8rem 0;
+    padding: 5rem 0;
     .footer {
         &-inner {
             max-width: 140rem;
@@ -296,9 +308,84 @@
         }
     }
 }
-
+// CONTENT s
 .container {
     // 임의
     background: gray;
-    height: 1000rem;
+    height: 200rem;
+    .visual {
+        height: var(--vh100);
+        width: 100%;
+        position: relative;
+    }
+    .bg-slide {
+        height: 100%;
+        .swiper-slide {
+            position: relative;
+            overflow: hidden;
+            > img {
+                @include positionCenter;
+            }
+        }
+        .text-box {
+            @include positionCenter;
+            text-align: center;
+            @include sizeSet(100%, 100%);
+            dl {
+                padding-top: 20rem;
+                @include positionCenter;
+                top: 45%;
+                width: 100%;
+            }
+            dt {
+                letter-spacing: 1rem;
+                font-weight: 700;
+                font-size: 6.5rem;
+                color: #fff;
+                font-family: 'Questrial', sans-serif;
+                span {
+                    display: inline-block;
+                    &:first-child {
+                        &:first-letter {
+                            color: #006ebc;
+                        }
+                    }
+                    &:last-child {
+                        &:first-letter {
+                            color: #e60012;
+                        }
+                    }
+                }
+            }
+            dd {
+                font-size: 2.2rem;
+                margin-top: 2rem;
+                color: #fff;
+            }
+        }
+    }
+    .thumb-slide {
+        @include absolute(right 0 bottom 0);
+        width: 50%;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        cursor: pointer;
+        .swiper-slide {
+            min-height: 10rem;
+        }
+        .swiper-slide-thumb-active {
+            background-color: #17499d;
+        }
+        dl {
+            padding: 2rem;
+            font-size: 1.8rem;
+            font-family: 'Questrial', sans-serif;
+        }
+        dt {
+            opacity: 0.6;
+        }
+        dd {
+            margin-top: 1rem;
+        }
+    }
 }
