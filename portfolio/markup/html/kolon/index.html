@@ -7,7 +7,7 @@
     <body>
         <div id="wrap">
             <!--#include file="./_header.html"-->
-            <div class="container" id="content">
+            <div class="container">
                 <div class="visual">
                     <!-- 이미지 슬라이드 -->
                     <div class="bg-slide swiper">
@@ -43,6 +43,7 @@
                             </div>
                         </div>
                     </div>
+                    <button aria-pressed="true" class="btn-pause">정지</button>
                     <!-- thumb 슬라이드 -->
                     <div class="thumb-slide swiper">
                         <div class="swiper-wrapper">
@@ -67,6 +68,71 @@
                         </div>
                     </div>
                 </div>
+                <div class="business">
+                    <div class="inner">
+                        <h2 class="blind">본문컨텐츠영역</h2>
+                        <div class="tit-box">
+                            <h3>business<span>사업분야</span></h3>
+                            <p class="sub-txt">코오롱 인더스트리의 핵심 사업분야를 소개합니다.</p>
+                        </div>
+                        <div class="business-detail">
+                            <div class="item __open">
+                                <dl>
+                                    <dt>산업자재</dt>
+                                    <dd>Industrial Materials</dd>
+                                </dl>
+                                <p>코오롱 인더스트리에서 생산하는 다양한 산업자재 관련 제품을 확인해보세요.</p>
+                                <ul class="links">
+                                    <li><a href="#">타이어코오드</a></li>
+                                    <li><a href="#">에어백</a></li>
+                                    <li><a href="#">SPB</a></li>
+                                </ul>
+                                <a href="#" class="btn-more">더보기</a>
+                            </div>
+                            <div class="item">
+                                <dl>
+                                    <dt>필름/전자</dt>
+                                    <dd>Film/Electronic</dd>
+                                </dl>
+                                <p>코오롱 인더스트리에서 생산하는 다양한 필름/전자관련 제품을 확인해보세요.</p>
+                                <ul class="links">
+                                    <li><a href="#">폴리에스터 필름</a></li>
+                                    <li><a href="#">증착필름</a></li>
+                                    <li><a href="#">패널재료</a></li>
+                                </ul>
+                                <a href="#" class="btn-more">더보기</a>
+                            </div>
+                            <div class="item">
+                                <dl>
+                                    <dt>화학</dt>
+                                    <dd>Chemistry</dd>
+                                </dl>
+                                <p>코오롱 인더스트리에서 생산하는 다양한 화학관련 제품을 확인해보세요.</p>
+                                <ul class="links">
+                                    <li><a href="#">석유수지</a></li>
+                                    <li><a href="#">에폭시수지</a></li>
+                                    <li><a href="#">PET수지</a></li>
+                                </ul>
+                                <a href="#" class="btn-more">더보기</a>
+                            </div>
+                            <div class="item">
+                                <dl>
+                                    <dt>패션</dt>
+                                    <dd>Fashion</dd>
+                                </dl>
+                                <p>코오롱 인더스트리에서 생산하는 다양한 패션의류 제품을 확인해보세요.</p>
+                                <ul class="links">
+                                    <li><a href="#">Outdoor&Sports</a></li>
+                                    <li><a href="#">Golf</a></li>
+                                    <li><a href="#">Womanswear</a></li>
+                                    <li><a href="#">Premium</a></li>
+                                    <li><a href="#">Online</a></li>
+                                </ul>
+                                <a href="#" class="btn-more">더보기</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!--#include file="./_footer.html"-->
         </div>
@@ -74,16 +140,15 @@
             const thumbSwiper = new Swiper('.thumb-slide', {
                 loop: true,
                 slidesPerView: 3,
-                touchRatio: 0.3,
-                slideToClickedSlide: true,
+                // touchRatio: 0.3,
                 watchSlidesProgress: true,
             });
             const visualSwiper = new Swiper('.bg-slide', {
                 effect: 'fade',
-                fadeEffect: {
-                    crossFade: true,
-                },
-                speed: 1000,
+                // fadeEffect: {
+                //     crossFade: true,
+                // },
+                speed: 1500,
                 loop: true,
                 navigation: {
                     nextEl: '.swiper-button-next',
@@ -93,9 +158,61 @@
                     swiper: thumbSwiper,
                 },
                 autoplay: {
-                    delay: 2000,
+                    delay: 3000,
                     disableOnInteraction: false,
                 },
+                on: {
+                    init() {
+                        const pauseBtn = document.querySelector('.btn-pause');
+                        pauseBtn.addEventListener('click', e => {
+                            const slideState = e.target.getAttribute('aria-pressed');
+                            if (slideState === 'true') {
+                                pauseBtn.setAttribute('aria-pressed', 'false');
+                                pauseBtn.innerText = '재생';
+                                this.autoplay.stop();
+                            } else {
+                                pauseBtn.setAttribute('aria-pressed', 'true');
+                                this.autoplay.start();
+                                pauseBtn.innerText = '정지';
+                            }
+                        });
+                    },
+                    slideChangeTransitionStart(e) {
+                        const items = e.el.querySelectorAll('.swiper-slide');
+                        const item = e.el.querySelector('.swiper-slide-visible');
+                        items.forEach(i => {
+                            i.classList.remove('__on');
+                        });
+                        item.classList.add('__on');
+                    },
+                },
+            });
+
+            // 메인 business 슬라이드
+            const businessList = document.querySelector('.business-detail');
+
+            const businessItem = businessList.querySelectorAll('.item');
+
+            // const open = () => {
+            //     console.log(`open`);
+            // }
+            // const close = () => {
+            //     console.log('close');
+            // }
+            businessItem.forEach(el => {
+                const siblings = t => [...t.parentElement.children].filter(e => e !== t);
+                const it = businessList.querySelector('.__open');
+                const ot = siblings(it);
+                el.addEventListener('mouseenter', () => {
+                    console.log(ot);
+                    for (let i = 0; i < ot.length; i++) {
+                        ot[i].classList.remove('__open');
+                    }
+                    // ot.forEach(elm => {
+                    //     console.log(elm);
+                    //     // elm.classList.remove('__open');
+                    // })
+                });
             });
         </script>
     </body>

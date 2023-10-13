@@ -8,7 +8,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
 /* kolon 공통 s */
-
 .blind {
     @include blind;
 }
@@ -24,6 +23,7 @@
     @include blind;
 }
 #wrap {
+    min-width: 144rem;
     width: 100%;
     height: 100%;
     display: flex;
@@ -64,7 +64,7 @@
 .header {
     &-inner {
         [class*='-top'] {
-            max-width: 140rem;
+            max-width: 144rem;
             width: 100%;
             margin: 0 auto;
             padding: 0 2rem;
@@ -126,10 +126,11 @@
                 transition: 0.1s height linear;
                 &.__down {
                     height: 7rem;
+                    border-bottom: 1px solid var(--lightGray);
                 }
             }
             > ul {
-                max-width: 140rem;
+                max-width: 144rem;
                 padding: 0 2rem;
                 margin: 3rem auto 0;
                 @include flex(null, space-around);
@@ -212,7 +213,7 @@
     padding: 5rem 0;
     .footer {
         &-inner {
-            max-width: 140rem;
+            max-width: 144rem;
             padding: 0 2rem;
             margin: 0 auto;
             flex-direction: column;
@@ -310,19 +311,49 @@
 }
 // CONTENT s
 .container {
-    // 임의
-    background: gray;
-    height: 200rem;
+    min-height: 200rem;
+    .inner {
+        max-width: 144rem;
+        padding: 0 2rem;
+        position: relative;
+        margin: 0 auto;
+    }
     .visual {
         height: var(--vh100);
         width: 100%;
         position: relative;
+        overflow: hidden;
+        border-bottom-left-radius: 5rem;
+        .btn-pause {
+            @include absolute(bottom 3rem);
+            left: calc(50% - 5rem);
+            font-size: 2rem;
+            color: #fff;
+            z-index: 5;
+            @include sizeSet(3rem, 3rem);
+            background: url('#{$imgUrlKolon}/visual_pause_icon.png') 50% no-repeat;
+            background-size: 100% auto;
+            @include textBlind;
+            &[aria-pressed='false'] {
+                background-image: url('#{$imgUrlKolon}/visual_play_icon.png');
+            }
+        }
     }
     .bg-slide {
         height: 100%;
         .swiper-slide {
             position: relative;
             overflow: hidden;
+            &.__on {
+                > img {
+                    animation: mainVisual 5s ease-in;
+                }
+                dl {
+                    dt {
+                        letter-spacing: 1rem;
+                    }
+                }
+            }
             > img {
                 @include positionCenter;
             }
@@ -338,11 +369,12 @@
                 width: 100%;
             }
             dt {
-                letter-spacing: 1rem;
+                letter-spacing: 3rem;
                 font-weight: 700;
-                font-size: 6.5rem;
+                font-size: 6rem;
                 color: #fff;
                 font-family: 'Questrial', sans-serif;
+                transition: 1.5s letter-spacing linear;
                 span {
                     display: inline-block;
                     &:first-child {
@@ -387,5 +419,81 @@
         dd {
             margin-top: 1rem;
         }
+    }
+}
+.inner {
+    .tit-box {
+        h3 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            font-family: 'Questrial', sans-serif;
+            text-transform: uppercase;
+            &::first-letter {
+                color: #006ebc;
+            }
+            > span {
+                font-weight: 400;
+                font-size: 2rem;
+                color: #999;
+                margin-left: 1.5rem;
+            }
+        }
+        p {
+            color: #999;
+            font-size: 1.8rem;
+            margin-top: 1.5rem;
+        }
+    }
+}
+.business {
+    padding: 10rem 0;
+}
+.business-detail {
+    margin-top: 5rem;
+    display: flex;
+    .item {
+        width: 20%;
+        padding: 4rem 3rem;
+        &.__open {
+            width: 40%;
+        }
+        &:first-of-type {
+            background: url('#{$imgUrlKolon}/business_img1.jpg') 50% no-repeat;
+            background-size: cover;
+            &.__open {
+                background-image: url('#{$imgUrlKolon}/business_img1_2.jpg');
+            }
+        }
+        &:nth-of-type(2) {
+            background: url('#{$imgUrlKolon}/business_img2.jpg') 50% no-repeat;
+            background-size: cover;
+            &.__open {
+                background-image: url('#{$imgUrlKolon}/business_img2_2.jpg');
+            }
+        }
+        &:nth-of-type(3) {
+            background: url('#{$imgUrlKolon}/business_img3.jpg') 50% no-repeat;
+            background-size: cover;
+            &.__open {
+                background-image: url('#{$imgUrlKolon}/business_img3_2.jpg');
+            }
+        }
+        &:nth-of-type(4) {
+            background: url('#{$imgUrlKolon}/business_img4.jpg') 50% no-repeat;
+            background-size: cover;
+            &.__open {
+                background-image: url('#{$imgUrlKolon}/business_img4_2.jpg');
+            }
+        }
+    }
+}
+
+/* keyframes */
+@keyframes mainVisual {
+    from {
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1.02);
     }
 }
