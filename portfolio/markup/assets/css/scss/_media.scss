@@ -10,9 +10,9 @@
 }
 
 @media all and (max-width: 690px) {
-    html {
-        font-size: 9px;
-    }
+    // html {
+    //     font-size: 9.5px;
+    // }
     #cursor {
         display: none;
     }
@@ -52,7 +52,6 @@
         right: 2rem;
     }
     .intro {
-        // padding-top: 12rem;
         .text {
             &-sub {
                 font-size: 2.2rem;
@@ -96,9 +95,12 @@
             margin-left: -2rem;
             padding: 0 2rem;
         }
-        .flex-box {
-            .list-set {
-                width: 100% !important;
+        .list-set {
+            width: 100% !important;
+            dd {
+                [data-tooltip] {
+                    border-bottom: none;
+                }
             }
         }
     }
@@ -109,14 +111,6 @@
             word-break: keep-all;
             padding: 0 2rem;
         }
-        // .contact-wrap {
-        //     flex-direction: column;
-        //     li {
-        //         & + li {
-        //             margin-left: 0;
-        //         }
-        //     }
-        // }
     }
     .tab-menu {
         > button {
@@ -124,6 +118,31 @@
                 background: inherit;
                 border-color: var(--mainColor);
                 color: var(--mainColor);
+            }
+        }
+    }
+    .popup {
+        height: 100%;
+        width: 100%;
+        border-radius: 0;
+        .popup-body {
+            height: calc(var(--vh100) - 12.5rem);
+            .tab-container,
+            .cont,
+            .pf-img {
+                max-height: none;
+            }
+        }
+        .btn-wrap {
+            .btn {
+                height: 4rem;
+                width: 100%;
+                &:hover {
+                    color: var(--white) !important;
+                    &:before {
+                        width: 100%;
+                    }
+                }
             }
         }
     }
@@ -141,7 +160,7 @@
             }
         }
         .tab-container {
-            max-height: 30rem;
+            max-height: calc(var(--vh100) - 19.6rem);
         }
     }
 }
@@ -149,7 +168,6 @@
 @media all and (max-width: 420px) {
     .popup {
         &-body {
-            max-height: 40rem;
             .cont {
                 max-height: none;
             }

@@ -219,7 +219,7 @@ function delBtn() {
     document.querySelectorAll('.inp-box.__del').forEach(inputWrap => {
         const inputElem = inputWrap.querySelector('input, textarea');
         const btn = inputElem.parentElement.appendChild(document.createElement('button'));
-        btn.innerText = 'X';
+        // btn.innerText = 'X';
         btn.classList.add('btn-del');
         btn.style.display = 'none';
 
@@ -410,74 +410,24 @@ function dropdown() {
         });
     }
 
-    // bodyEl.addEventListener('click', event => {
-    //     if (event.target === event.currentTarget.querySelector('[selectbox-trg]')) {
-    //         console.log('닫힘X');
-    //     } else {
-    //         console.log('닫힘O');
-    //         // removeEvent();
-    //     }
-    // });
+    // 외부 영역 클릭 시 닫힘 이벤트 작동 시 text, check 이벤트 안돌아가서 일단 보류 ㅠㅠ
+    // const handleOutSideClick = hdEvent => {
+    //     dropdownElem.forEach(each => {
+    //         if (each && !each.contains(hdEvent.target)) {
+    //             const list = each.querySelector('ul');
+    //             each.className = '';
+    //             list.style.maxHeight = 0;
+    //             list.style.zIndex = 10;
+    //             setTimeout(() => {
+    //                 list.style.borderWidth = 0;
+    //             }, 150);
+    //         }
+    //     });
+    // };
+
+    // document.addEventListener('click', handleOutSideClick);
 }
 
-// accordion
-// function accordion() {
-//     // const accordionWrap = document.querySelectorAll('[data-accordion]');
-//     const CLASS_IS = '__show';
-
-//     document.querySelectorAll('[data-accordion]').forEach(accordionWrap => {
-//         const accordionBtn = accordionWrap.querySelector('[accordion-trg]');
-//         const accordionCont = accordionWrap.querySelector('[accordion-cont]');
-
-//         accordionBtn.addEventListener('click', trg => {
-//             const btn = trg.target;
-//             const parent = btn.parentElement;
-//             const stat = parent.dataset.accordion;
-//             const cont = btn.nextElementSibling;
-
-//             if (stat === '1') {
-//                 btn.classList.toggle(CLASS_IS);
-//                 cont.classList.toggle(CLASS_IS);
-
-//                 if (accordionCont.style.maxHeight) {
-//                     accordionCont.style.maxHeight = null;
-//                 } else {
-//                     accordionCont.style.paddingTop = `2rem 0`;
-//                     // setTimeout(() => {
-//                     //     accordionCont.style.paddingTop = `2rem 0`;
-//                     // }, 50);
-//                     accordionCont.style.maxHeight = `${accordionCont.scrollHeight}px`;
-//                 }
-//             } else {
-//                 const accordions = parent.parentElement.querySelectorAll('[data-accordion]');
-
-//                 if (!btn.classList.contains(CLASS_IS)) {
-//                     accordions.forEach(el => {
-//                         const otherTrg = el.querySelector('[accordion-trg]');
-//                         const otherCont = el.querySelector('[accordion-cont]');
-
-//                         otherTrg.classList.remove(CLASS_IS);
-//                         otherCont.classList.remove(CLASS_IS);
-//                         otherCont.style.maxHeight = null;
-//                         setTimeout(() => {
-//                             otherCont.style.padding = 0;
-//                             cont.style.paddingTop = `2rem 0`;
-//                         }, 50);
-//                     });
-
-//                     // cont.style.paddingTop = `2rem 0`;
-//                     btn.classList.add(CLASS_IS);
-//                     cont.classList.add(CLASS_IS);
-//                     cont.style.maxHeight = `${cont.scrollHeight}px`;
-//                 } else {
-//                     btn.classList.remove(CLASS_IS);
-//                     cont.classList.remove(CLASS_IS);
-//                     cont.style.maxHeight = null;
-//                 }
-//             }
-//         });
-//     });
-// }
 function toggleAccordion(accordionBtn, accordionCont) {
     const CLASS_IS = '__show';
     const parent = accordionBtn.parentElement;
@@ -530,36 +480,6 @@ function accordion() {
 }
 
 // date
-// function isNow() {
-//     const dateElem = document.querySelector('.now .date');
-//     const clockElem = document.querySelector('.now .clock');
-//     const dayNight = document.querySelector('.now .day-night');
-//     const now = new Date();
-//     const year = now.getFullYear();
-//     const month = now.getMonth() + 1;
-//     const date = now.getDate();
-//     const day = now.getDay() - 1;
-//     const week = ['월', '화', '수', '목', '금', '토', '일'];
-//     // const hours = String(now.getHours()).padStart(2, '0');
-//     const hours = String(now.getHours());
-//     let hour;
-//     const minutes = String(now.getMinutes()).padStart(2, '0');
-//     const seconds = String(now.getSeconds()).padStart(2, '0');
-
-//     if (hours > 12) {
-//         hour = hours - 12;
-//         dayNight.innerText = '지금은 오후';
-//     } else {
-//         hour = hours;
-//         dayNight.innerText = '지금은 오전';
-//     }
-
-//     if (document.body.contains(dateElem)) {
-//         dateElem.innerText = `오늘은 ${year}년 ${month}월 ${date}일 ${week[day]}요일`;
-//         clockElem.innerText = `${hour}시 ${minutes}분 ${seconds}초 입니다.`;
-//     }
-// }
-
 function isNow() {
     const now = new Date();
     const hour = now.getHours();
