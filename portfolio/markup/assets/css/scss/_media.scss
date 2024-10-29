@@ -84,6 +84,20 @@
         // .img-wrap {
         //     display: none;
         // }
+        .project-wrap {
+            div {
+                > a {
+                    > p {
+                        background: rgba(0, 0, 0, 0.4);
+                        opacity: 1;
+                        transform: unset;
+                        position: relative;
+                        z-index: 2;
+                        color: var(--white);
+                    }
+                }
+            }
+        }
     }
     .skills {
         .tab-menu {

@@ -36,30 +36,39 @@ function navBottom() {
 
 // scroll spy
 function findScroll() {
-    // const nav = document.querySelector('nav > ul');
-    // if (document.body.contains(nav)) {
-    //     const lineBottom = document.querySelector('.line-bottom');
-    //     const lineMove = lineBottom.querySelector('span');
-    //     const section = document.querySelectorAll('.section');
-    //     const sections = [];
-    //     const CLASS_IS = '__on';
-    //     Array.prototype.forEach.call(section, e => {
-    //         sections[e.id] = e.offsetTop;
-    //     });
-    //     const scrollPosition = document.documentElement.scrollTop || document.querySelector('.container').scrollTop;
-    //     for (const i of Object.keys(sections)) {
-    //         if (sections[i] <= scrollPosition + 100) {
-    //             const item = document.querySelector(`a[data-scroll="${i}"]`);
-    //             const itemWidth = item.clientWidth / 2;
-    //             const position = item.offsetLeft - nav.offsetLeft;
-    //             const lineHalf = lineMove.clientWidth / 2;
-    //             lineMove.style.opacity = 1;
-    //             lineMove.style.transform = `translateX(calc(${position}px + ${itemWidth}px - ${lineHalf}px))`;
-    //             document.querySelector(`.${CLASS_IS}`).classList.remove(CLASS_IS);
-    //             item.parentNode.classList.add(CLASS_IS);
-    //         }
-    //     }
-    // }
+    const nav = document.querySelector('.header-inner nav > ul');
+
+    if (document.body.contains(nav)) {
+        const lineBottom = document.querySelector('.line-bottom');
+        const lineMove = lineBottom.querySelector('span');
+        const scrollCont = document.querySelector('.scroll-content');
+        const section = scrollCont.querySelectorAll('.section');
+        const sections = [];
+
+        const CLASS_IS = '__on';
+
+        const scrollPosition = document.documentElement.scrollTop || document.querySelector('.container').scrollTop;
+
+        Array.prototype.forEach.call(section, e => {
+            sections[e.id] = e.offsetTop; // section의 id를 매개변수로 하여 해당하는 index의 section에게 e.offsetTop 부여
+        });
+
+        for (const i of Object.keys(sections)) {
+            if (sections[i] <= scrollPosition + 100) {
+                const item = document.querySelector(`a[data-scroll="${i}"]`);
+                const itemWidth = item.clientWidth / 2;
+                const position = item.offsetLeft - nav.offsetLeft;
+                const lineHalf = lineMove.clientWidth / 2;
+
+                lineMove.style.opacity = 1;
+                lineMove.style.transform = `translateX(calc(${position}px + ${itemWidth}px - ${lineHalf}px))`;
+                document.querySelectorAll(`.header-inner .${CLASS_IS}`).forEach(btn => {
+                    btn.classList.remove(CLASS_IS);
+                });
+                item.parentNode.classList.add(CLASS_IS);
+            }
+        }
+    }
 }
 
 // mobile size
@@ -525,8 +534,7 @@ function scrollParalle() {
         document.querySelectorAll('.shake').forEach(elm => {
             const CLASS_IS = '__active';
             const offset = elm.offsetTop;
-            // console.log(`offset: ${offset}, scroll: ${container.scrollTop}`);
-            // console.dir(elm);
+
             if (offset - 200 >= container.scrollTop) {
                 setTimeout(() => {
                     elm.classList.add(CLASS_IS);
@@ -822,7 +830,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     scrollContent.addEventListener('scroll', () => {
         scrollIndicator();
-        findScroll();
+        findScroll(); // nav tab
 
         // top-btn
         if (scrollContent.scrollTop < 300) {
@@ -832,38 +840,6 @@ window.addEventListener('DOMContentLoaded', () => {
             topBtn.style.opacity = 1;
             topBtn.style.zIndex = 1;
         }
-
-        // scroll spy
-        // const scrollTop = window.pageYOffset;
-        const sections = document.querySelectorAll('.scroll-content .section');
-        const navBtn = document.querySelectorAll('#header nav [data-scroll]');
-
-        const scrollPos = window.scrollY + window.innerHeight / 5;
-
-        sections.forEach((section, index) => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.id;
-            const sectionTarget = document.querySelector(`[data-scroll=${sectionId}]`);
-
-            const navBtnFunc = () => {
-                navBtn.forEach(btn => {
-                    btn.parentElement.classList.remove('__on');
-                });
-                sectionTarget.parentElement.classList.add('__on');
-            };
-
-            if (index === sections.length - 1) {
-                if (
-                    scrollPos >= sectionTop - window.innerHeight &&
-                    scrollPos < sectionTop + sectionHeight - window.innerHeight / 2
-                ) {
-                    navBtnFunc();
-                }
-            } else if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                navBtnFunc();
-            }
-        });
     });
 
     // quoteChange();

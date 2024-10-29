@@ -78,9 +78,9 @@ h3 {
                 right: 0;
                 bottom: 0;
                 top: 0;
-                animation: logoAnimation 1s;
-                animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-                animation-delay: 14s;
+                // animation: logoAnimation 1s;
+                // animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+                // animation-delay: 14s;
                 position: absolute;
                 transform: translateY(0);
                 &:after {
@@ -91,7 +91,7 @@ h3 {
                     right: 0;
                     top: 0;
                     opacity: 0;
-                    animation: dotOpacity 1.2s ease 16s infinite;
+                    animation: dotOpacity 1.2s ease 0s infinite;
                 }
             }
         }
@@ -186,11 +186,11 @@ h3 {
             }
             &:before {
                 top: 0.5rem;
-                left: -0.4rem;
+                // left: -0.4rem;
             }
             &:after {
                 bottom: 0.3rem;
-                left: 0.4rem;
+                // left: 0.4rem;
             }
         }
         &.__on {
@@ -452,7 +452,8 @@ button {
     @include fixed(top 0 left 0);
     background: rgba(0, 0, 0, 0.5);
     opacity: 0;
-    transition: 0.4s;
+    transition-duration: 0.4s;
+    transition-property: opacity, z-index;
     backdrop-filter: blur(0.2rem);
     &.__show {
         opacity: 1;

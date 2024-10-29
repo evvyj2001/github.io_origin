@@ -78,7 +78,7 @@
 }
 
 .theme-select {
-    @include fixed(left 0 top 6rem);
+    @include fixed(left 1rem top 7rem);
     z-index: 2;
     background: var(--white);
     padding: 1rem;
@@ -531,13 +531,15 @@
     }
     .btn-detail {
         margin: 3rem auto 0;
-        width: fit-content;
+        width: auto;
         @include fontType1;
-        padding: 1rem 3rem;
+        padding: 0 3rem;
         background: var(--dark);
         color: var(--white);
-        font-size: 1.8rem;
+        font-size: 2rem;
         border-radius: 5rem;
+        height: 5.6rem;
+        line-height: 5.4rem;
         > i {
             margin-left: 0.5rem;
             display: inline-block;
