@@ -153,24 +153,24 @@
 // }
 
 // media query
-// $breakpoints: (
-//     'phone': 360px,
-//     'phone-wide': 480px,
-//     'phablet': 640px,
-//     'tablet-small': 768px,
-//     'tablet': 960px,
-//     'tablet-wide': 1080px,
-//     'desktop': 1280px,
-//     'desktop-wide': 1440px,
-// );
-// @mixin mq($width, $type: min) {
-//     @if map_has_key($breakpoints, $width) {
-//         $width: map_get($breakpoints, $width);
-//         @if $type == max {
-//             $width: $width - 1px;
-//         }
-//         @media only screen and (#{$type}-width: $width) {
-//             @content;
-//         }
-//     }
-// }
+$breakpoints: (
+    'phone': 360px,
+    'phone-wide': 480px,
+    'phablet': 640px,
+    'tablet-small': 768px,
+    'tablet': 960px,
+    'tablet-wide': 1080px,
+    'desktop': 1280px,
+    'desktop-wide': 1440px,
+);
+@mixin mq($width, $type: min) {
+    @if map_has_key($breakpoints, $width) {
+        $width: map_get($breakpoints, $width);
+        @if $type == max {
+            $width: $width - 1px;
+        }
+        @media only screen and (#{$type}-width: $width) {
+            @content;
+        }
+    }
+}

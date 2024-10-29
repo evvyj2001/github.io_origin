@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
-@import 'variable';
-@import 'mixin';
+@import 'import/mixin';
 
 @media all and (min-width: 691px) {
     .nav-wrap {
@@ -9,10 +8,7 @@
     }
 }
 
-@media all and (max-width: 690px) {
-    // html {
-    //     font-size: 9.5px;
-    // }
+@include mq('phablet', max) {
     #cursor {
         display: none;
     }
@@ -111,6 +107,15 @@
             word-break: keep-all;
             padding: 0 2rem;
         }
+        .contact-wrap {
+            flex-direction: column;
+            > li {
+                & + li {
+                    margin-left: 0;
+                    margin-top: 2rem;
+                }
+            }
+        }
     }
     .tab-menu {
         > button {
@@ -127,6 +132,7 @@
         border-radius: 0;
         .popup-body {
             height: calc(var(--vh100) - 12.5rem);
+            margin-bottom: 0;
             .tab-container,
             .cont,
             .pf-img {
@@ -134,8 +140,10 @@
             }
         }
         .btn-wrap {
+            width: calc(100% + 4rem);
+            margin-left: -2rem;
             .btn {
-                height: 4rem;
+                height: 6rem;
                 width: 100%;
                 &:hover {
                     color: var(--white) !important;
@@ -147,12 +155,21 @@
         }
     }
     #popupIntro {
-        p {
-            br {
-                display: none;
+        .popup-body {
+            p {
+                width: 100%;
+                @include absolute(top 50% left 50%);
+                transform: translate(-50%, -50%);
+                br {
+                    display: none;
+                }
+                &.txt {
+                    padding: 0 2rem;
+                }
             }
         }
     }
+
     #popupModule {
         .tab-menu {
             > button {

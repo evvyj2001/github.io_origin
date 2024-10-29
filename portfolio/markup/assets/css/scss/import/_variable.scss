@@ -22,20 +22,5 @@ $blue: #3030ef;
 
 // 기타 요소
 $vh100: calc(var(--vh) * 100);
-$imgUrlKolon: './../img/kolon';
 
-:root {
-    --vh100: #{$vh100};
-    --white: #{$white};
-    --black: #{$black};
-    --mainColor: #{$mainColor};
-    --gray: #{$gray};
-    --lightGray: #{$lightGray};
-    --lightGreen: #{$lightGreen};
-    --lightMainColor: #{$lightMainColor};
-    --darkenMainColor: #{$darkenMainColor};
-    --subPointColor: #{$subPointColor};
-    --dark: #{$dark};
-    --red: #{$red};
-    --blue: #{$blue};
-}
+$imgUrlKolon: './../img/kolon';

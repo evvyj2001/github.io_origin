@@ -13,9 +13,9 @@ function tabMove() {
         item.addEventListener('click', e => {
             const targetElem = e.target.dataset.scroll;
             const scrollElem = document.getElementById(targetElem);
-            const scrollTop = scrollElem.offsetTop;
+
             document.querySelector('.container').scrollTo({
-                top: scrollTop,
+                top: scrollElem.offsetTop,
                 left: 0,
                 behavior: 'smooth',
             });
@@ -36,36 +36,30 @@ function navBottom() {
 
 // scroll spy
 function findScroll() {
-    const nav = document.querySelector('nav > ul');
-    if (document.body.contains(nav)) {
-        const lineBottom = document.querySelector('.line-bottom');
-        const lineMove = lineBottom.querySelector('span');
-
-        const section = document.querySelectorAll('.section');
-        const sections = [];
-
-        const CLASS_IS = '__on';
-
-        Array.prototype.forEach.call(section, e => {
-            sections[e.id] = e.offsetTop;
-        });
-        const scrollPosition = document.documentElement.scrollTop || document.querySelector('.container').scrollTop;
-
-        for (const i of Object.keys(sections)) {
-            if (sections[i] <= scrollPosition + 100) {
-                const item = document.querySelector(`a[data-scroll="${i}"]`);
-                const itemWidth = item.clientWidth / 2;
-                const position = item.offsetLeft - nav.offsetLeft;
-                const lineHalf = lineMove.clientWidth / 2;
-
-                lineMove.style.opacity = 1;
-                lineMove.style.transform = `translateX(calc(${position}px + ${itemWidth}px - ${lineHalf}px))`;
-
-                document.querySelector(`.${CLASS_IS}`).classList.remove(CLASS_IS);
-                item.parentNode.classList.add(CLASS_IS);
-            }
-        }
-    }
+    // const nav = document.querySelector('nav > ul');
+    // if (document.body.contains(nav)) {
+    //     const lineBottom = document.querySelector('.line-bottom');
+    //     const lineMove = lineBottom.querySelector('span');
+    //     const section = document.querySelectorAll('.section');
+    //     const sections = [];
+    //     const CLASS_IS = '__on';
+    //     Array.prototype.forEach.call(section, e => {
+    //         sections[e.id] = e.offsetTop;
+    //     });
+    //     const scrollPosition = document.documentElement.scrollTop || document.querySelector('.container').scrollTop;
+    //     for (const i of Object.keys(sections)) {
+    //         if (sections[i] <= scrollPosition + 100) {
+    //             const item = document.querySelector(`a[data-scroll="${i}"]`);
+    //             const itemWidth = item.clientWidth / 2;
+    //             const position = item.offsetLeft - nav.offsetLeft;
+    //             const lineHalf = lineMove.clientWidth / 2;
+    //             lineMove.style.opacity = 1;
+    //             lineMove.style.transform = `translateX(calc(${position}px + ${itemWidth}px - ${lineHalf}px))`;
+    //             document.querySelector(`.${CLASS_IS}`).classList.remove(CLASS_IS);
+    //             item.parentNode.classList.add(CLASS_IS);
+    //         }
+    //     }
+    // }
 }
 
 // mobile size
@@ -813,7 +807,6 @@ function svgCircle() {
             });
             control.addEventListener('change', event => {
                 progress(event.target.valueAsNumber);
-                console.log('change ');
             });
             bar.style.strokeDasharray = CIRCUMFERENCE;
             progress(60);
@@ -839,6 +832,38 @@ window.addEventListener('DOMContentLoaded', () => {
             topBtn.style.opacity = 1;
             topBtn.style.zIndex = 1;
         }
+
+        // scroll spy
+        // const scrollTop = window.pageYOffset;
+        const sections = document.querySelectorAll('.scroll-content .section');
+        const navBtn = document.querySelectorAll('#header nav [data-scroll]');
+
+        const scrollPos = window.scrollY + window.innerHeight / 5;
+
+        sections.forEach((section, index) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.id;
+            const sectionTarget = document.querySelector(`[data-scroll=${sectionId}]`);
+
+            const navBtnFunc = () => {
+                navBtn.forEach(btn => {
+                    btn.parentElement.classList.remove('__on');
+                });
+                sectionTarget.parentElement.classList.add('__on');
+            };
+
+            if (index === sections.length - 1) {
+                if (
+                    scrollPos >= sectionTop - window.innerHeight &&
+                    scrollPos < sectionTop + sectionHeight - window.innerHeight / 2
+                ) {
+                    navBtnFunc();
+                }
+            } else if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                navBtnFunc();
+            }
+        });
     });
 
     // quoteChange();
@@ -901,6 +926,13 @@ window.addEventListener('DOMContentLoaded', () => {
 //     } else {
 //         console.log('scroll down!');
 //     }
+// });
+
+// scroll
+// const container = document.querySelector('.container');
+
+// container.addEventListener('scroll', () => {
+
 // });
 
 // resize

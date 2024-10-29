@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+@import 'import/variable';
+@import 'import/mixin';
+
+:root {
+    --vh100: #{$vh100};
+    --white: #{$white};
+    --black: #{$black};
+    --mainColor: #{$mainColor};
+    --gray: #{$gray};
+    --lightGray: #{$lightGray};
+    --lightGreen: #{$lightGreen};
+    --lightMainColor: #{$lightMainColor};
+    --darkenMainColor: #{$darkenMainColor};
+    --subPointColor: #{$subPointColor};
+    --dark: #{$dark};
+    --red: #{$red};
+    --blue: #{$blue};
+}
+
+/* width */
+// ::-webkit-scrollbar {
+//     width: 5px;
+// }
+
+// /* Track */
+// ::-webkit-scrollbar-track {
+//     background: var(--lightGray);
+// }
+
+// /* Handle */
+// ::-webkit-scrollbar-thumb {
+//     background: var(--mainColor);
+//     opacity: 0.3;
+// }
+
+// ::selection {
+//     background: var(--black);
+//     color: var(--white);
+// }

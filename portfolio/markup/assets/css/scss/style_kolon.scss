@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
-@import 'reset';
-@import 'mixin';
-@import 'typo';
-@import 'variable';
+@import 'import/reset';
+@import 'import/mixin';
+@import 'import/typo';
+@import 'import/variable';
 @import 'form';
 @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
